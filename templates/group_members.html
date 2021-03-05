@@ -1,0 +1,107 @@
+{% extends "base.html" %} {% block body %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Groups Members</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+                          {% if messages %}
+                          {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message}}</div>
+                        {% endfor %}
+                       {% endif %}
+                      {% endwith %}
+
+            <div class="dropdown">
+                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#add">
+                    Add Members
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="addTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Add Members</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/new/subscribers" method="post">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary" type="button">Choose Group</button>
+                                        </div>
+                                        <select name="gid" class="custom-select" id="inputGroupSelect03">
+                                  <option selected>Choose...</option>
+                                            {% for response in response %}
+                                  <option value="{{ response.id }}">{{ response.name }}</option>
+                                            {% endfor %}
+                                </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            <br>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Date</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Date</th>
+                            <th>Delete</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+{#                                    Start loop#}
+{% for post in post %}
+                        <tr>
+                            <td>{{ post.id}}</td>
+                            <td>{{ post.email }}</td>
+                            <td>{{ post.date }}</td>
+                            <td>
+                                <a href="/delete/subscriber/{{ post.group_id }}/{{ post.id }}" class="btn btn-danger btn-circle">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+{#                                    end loop#}
+{% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+{% endblock %}

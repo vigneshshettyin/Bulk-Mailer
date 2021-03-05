@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Bulk Mailer - Error!</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="ico" sizes="16x16">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Staatliches&amp;display=swap'>
+    <link href="{{ url_for('static', filename='css/error.css') }}" rel="stylesheet">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<main class="container">
+  <div class="row" id="mainCard">
+    <section class="col-md-6 offset-md-3">
+      
+      <div class="card text-center animated zoomIn slow p-5 shadow-lg">
+        
+         <span><i class="far text-warning fa-5x fa-frown"></i></span>
+        
+        <p class="display-3 mt-2 font-staatliches">Oops!</p>
+
+                     {% with messages = get_flashed_messages(with_categories=true) %}
+                          {% if messages %}
+                          {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message}}</div>
+                        {% endfor %}
+                       {% endif %}
+                      {% endwith %}
+
+        <button class="btn btn-primary btn-block rounded-pill">HOME PAGE</button>
+        
+      </div>
+    </section>
+  </div>
+</main>
+<!-- partial -->
+  
+</body>
+</html>

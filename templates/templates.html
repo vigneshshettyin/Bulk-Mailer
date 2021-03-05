@@ -1,0 +1,97 @@
+{% extends "base.html" %} {% block body %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Templates</h1>
+    </div>
+
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">
+    Add Template
+    </button>
+<div style="padding-top: 10px">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+                          {% if messages %}
+                          {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message}}</div>
+
+                        {% endfor %}
+                       {% endif %}
+                      {% endwith %}
+    
+</div>
+    <!-- Modal -->
+    <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="addTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Add Template</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+                <form action="/add/template" method="post">
+                     <input class="form-control" name="name" type="text" placeholder="Name..." required>
+                    <br>
+                    <input class="form-control" name="link" type="text" placeholder="CDN Link..." required>
+                    <br>
+                     <textarea id="summernote" name="editordata" required></textarea>
+                    <br>
+                    <center>
+                        <button class="btn btn-primary " type="submit">Submit</button>
+                    </center>
+                </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger px-2" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="container" style="height: 10px;width: 100vw;"></div>
+        <!-- Content Row -->
+    <div class="row">
+
+{#Start Loop#}
+
+{% for template in template %}
+
+
+        <div class="col-lg-4 col-md-2 py-4">
+            <div class="card">
+                <img class="card-img-top" src="{{template.link}}" height="300" width="300" alt="Card image cap">
+                <div class="card-body">
+                <center>
+                    <h5 class="card-title font-weight-bold">{{ template.name }}</h5>
+                    <div class="container">
+                        <a href="/use/template/{{ template.id }}"><button type="button" class="btn btn-outline-success" >Use Template</button></a>
+                        <a href="/delete/template/{{ template.id }}"><button type="button" class="btn btn-outline-danger">Delete Template</button></a>
+                    </div>
+                </center>
+                </div>
+            </div>
+        </div>
+
+
+{% endfor %}
+{#       End Loop#}
+
+
+
+
+    </div>
+    <!-- Content Row -->
+    
+</div>
+<!-- /.container-fluid -->
+{% endblock %}

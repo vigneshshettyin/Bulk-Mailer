@@ -1,0 +1,13 @@
+#mainCard{
+  min-height:100vh;
+  align-items:center;
+}
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+.font-staatliches {
+  font-family: 'Staatliches', cursive;
+}
+h4 {
+  font-family: "sans-sarif";
+  font-weight:bold;
+}

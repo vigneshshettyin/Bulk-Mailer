@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block body %}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Send Bulk Mails</h1>
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <div class="col-xl-8 col-lg-7">
+
+                            <!-- Mailing area -->
+                            <div class="card shadow mb-4" style="width: 90%;">
+                                <div class="card-header py-3">
+                                </div>
+                                <div class="card-body">
+                                    <form action="/mail" method="post">
+                                        <div class="form-group">
+                                            <div class="form-group" style="width: 70%;">
+                                          <label for="exampleInputPassword1">Name</label>
+                                          <input type="text" name="name" class="form-control" id="exampleInputtext" required>
+                                        </div>
+                                            <div class="input-group mb-3" style="width: 70%;">
+                                                <input type="text" name="username" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
+                                                <div class="input-group-append">
+                                                  <span class="input-group-text" id="basic-addon2">@bulkmailer.cf</span>
+                                                </div>
+                                            </div>
+                                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                        </div>
+                                        <div class="form-group" style="width: 70%;">
+                                          <label for="exampleInputPassword1">Subject</label>
+                                          <input type="text" name="subject" class="form-control" id="exampleInputtext" required>
+                                        </div>
+                                        <div class="input-group mb-3"  style="width:60%">
+                                            <div class="input-group-prepend">
+                                              <label class="input-group-text" for="inputGroupSelect01">Choose Group</label>
+                                            </div>
+                                            <select name="group" class="custom-select" id="inputGroupSelect01">
+                                              <option selected>Choose...</option>
+{#                                                Start Loop#}
+                                                {% for group in group %}
+                                              <option value="{{ group.id }}">{{ group.name }}</option>
+                                                {% endfor %}
+
+{#                                                End Loop#}
+
+                                            </select>
+                                        </div>
+
+                                        <br>
+                                        <div class="form-group">
+                                             <textarea id="summernote" name="editordata" required>{{ post.content }}</textarea>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                      </form>
+                                </div>
+                            </div>
+                        
+
+                        </div>
+
+                        <!-- Donut Chart -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4" style="width: auto;">
+                                <div class="card-body">
+                                    <h1 class="h3 mb-2 text-primary-800 font-weight-bold" style="text-align: center;color: #605bc2;">Select Template</h1>
+                                    <img class="img-fluid " style="width: 100%;" src="/static/img/mail.png" alt="">
+                                    <div class="container">
+                                        <div class="dropdown">
+                                            <center>
+                                                <button style="background: #3e64d3;color: #fff;" class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                  Choose
+                                                </button>
+                                            
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+{#                                                Start Loop#}
+{% for template in template %}
+                                              <a class="dropdown-item" href="/use/template/{{ template.id }}">{{ template.name }}</a>
+{% endfor %}
+{#                                                End Loop#}
+
+                                            </div>
+                                            </center>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+{% endblock %}
