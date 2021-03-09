@@ -6,6 +6,7 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from passlib.hash import sha256_crypt
 import json, random, string
+from validation import validate, EMAIL_VALIDATION, PASSWORD_VALIDATION
 # import psycopg2
 
 
@@ -130,7 +131,19 @@ def register_page():
         #get the data in name, email, and password fields
         name = request.form.get('name')
         email = request.form.get('email')
+        
+        # Validate email address
+        if not validate(EMAIL_VALIDATION, email):
+            flash("Invalid Email Address!", "danger")
+            return render_template('register.html', json=json)
+
         password = request.form.get('password')
+        
+        # Validate password
+        if not validate(PASSWORD_VALIDATION, password):
+            flash("Invalid Password. Please enter a valid password!", "danger")
+            return render_template('register.html', json=json)
+
         password2 = request.form.get('password2')
         #check if passwords match
         if(password!=password2):
