@@ -5,7 +5,8 @@ from datetime import datetime
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from passlib.hash import sha256_crypt
-import json, random, string, psycopg2
+import json, random, string
+# import psycopg2
 
 
 #load import.json file containing database uri, admin email and other impt info
@@ -143,7 +144,7 @@ def register_page():
             #check if the email already exists in the db
             if not response:
                 #add the user to the db using the details entered and flash a msg
-                entry = Organization(name=name, email=email, password=password, date=time, status=0)
+                entry = Organization(name=name, email=email, password=password, date=time, status=1)
                 db.session.add(entry)
                 db.session.commit()
                 flash("Now contact your organization head for account activation!", "success")

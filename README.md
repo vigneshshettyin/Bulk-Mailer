@@ -1,22 +1,6 @@
 # Bulk-Mailer Using Flask & Sendgrid API ⚡️ 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-## Overview of the Topic:
-
-Bulk Mailer is a Mail Client web application that can be used by organisations to send bulk emails for different groups of subscribers. In general, a bulk email service is a company that allows its customers to send mass email messages to multiple lists of recipients at a specified time. With this service, you can send a single message to thousands of people on a mailing list or a personalized email to each address on a list that can be of any size. 
-Today, marketers prefer to use bulk email services to deliver important messages with minimal effort. Unlike junk emails sent without the recipients’ permission, bulk emails are legal marketing campaigns since the recipients subscribe to receive them. However, if bulk email marketing is not properly managed, users may consider it spam, and consequently, it may hurt sender reputation.
-
-Most of the bulk email service providers price their offerings based on the number and frequency of the emails one wants to send. But, after registering with Bulk Mailer, you can send bulk emails free of charge! 
-
-Our application has a feature-rich email builder that lets you build beautiful and responsive emails in minutes. It supports adding and using different email templates as well which ensures consistency and reduced human efforts.
-
-## Scope and Importance:
-
-Bulk mailing is an incredibly useful tool for any business as it aims to promote a business or sell goods or even develop relationships. Sending thousands or tens of thousands of messages to even just a couple of email addresses would be draining due to the amount of time and effort required. Moreover, the cost of running such a campaign would not be sustainable for any business. Using a bulk email service is cheaper, faster, and much more convenient.
-
-This service is a prime example of how you can utilise technology to enhance traditional marketing methods. Time-saving is, of course, one of the big advantages with bulk mailing, but there are plenty of other benefits too like the ability to spark engagement. More businesses are now seeing the benefits of combining direct mail campaigns with digital marketing methods. 
-
-
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/vigneshshettyin/Bulk-Mailer/issues)
 [![Forks](https://img.shields.io/github/forks/vigneshshettyin/Bulk-Mailer.svg?logo=github)](https://github.com/vigneshshettyin/Bulk-Mailer/network/members)
 [![Stargazers](https://img.shields.io/github/stars/vigneshshettyin/Bulk-Mailer.svg?logo=github)](https://github.com/vigneshshettyin/Bulk-Mailer/stargazers)
@@ -89,8 +73,13 @@ If you can help us with these. Please don't hesitate to open a [Pull Request](ht
 
 ## Cool Developers🚧
 
-<a href="https://github.com/data-charya/Cn-project/graphs/contributors">
-  <img src="https://contributors-img.web.app/image?repo=data-charya/Cn-project" />
-</a>
+<table>
+  <tr>
+    <td align="center"><a href="https://www.linkedin.com/in/vigneshshettyin/"><img src="https://avatars3.githubusercontent.com/u/61915786?s=460&u=75ed488de9581ae3cfe3aa6515e404314308dfbe&v=4" width="100px;" alt=""/><br /><sub><b>Vignesh Shetty</b></sub></a></td>
+       <td align="center"><a href="https://www.linkedin.com/in/shanwill-pinto-b286b7184/"><img src="https://avatars1.githubusercontent.com/u/62848565?s=400&u=720456e69554e95661703a6ad9360c92a715b478&v=4" width="100px;" alt="Shanwill Pinto"/><br /><sub><b>Shanwill Pinto</b></sub></a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/raksharaj-shetty-7361321b2/"><img src="https://cdn.discordapp.com/attachments/708550144827719811/791978186857775104/IMG_8698.jpg" width="100px;" alt="Raksharaj Shetty"/><br /><sub><b>Raksharaj Shetty</b></sub></a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/laureenfernandes/"><img src="https://media-exp1.licdn.com/dms/image/C5603AQGATxe6tJVqnQ/profile-displayphoto-shrink_200_200/0/1595159549102?e=1614211200&v=beta&t=3-OAzS9NEiHAm8UWX1kavGZytpx2P5ENT5-E4b6FqrY" width="100px;" alt="Laureen Fernandes"/><br /><sub><b>Laureen Fernandes</b></sub></a></td>
+  </tr>
+</table>
 
 
