@@ -10,7 +10,7 @@ EMAIL_REGEX = "[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-
 ## 4. Password must contain at least one numeric digit (ex: 0, 1, 2, 3, etc.)
 ## 5. Password must contain at least one special character -for example, $, #, @, !,%,^,&,*,(,)
 
-PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[$#@!%^&*()])(?=\\S+$).{8, 20}$"
+PASSWORD_REGEX = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*()]).{8,20}$"
 
 EMAIL_VALIDATION = "email"
 PASSWORD_VALIDATION = "password"
