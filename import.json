@@ -6,6 +6,10 @@
     "databaseUri": "sqlite:///bulkmailer.db",
     "sendgridapi": "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",
     "admin_email": "rohitsdec4@gmail.com",
-    "site_url": "https://bulkmailer.cf"
+    "site_url": "https://bulkmailer.cf",
+    "email_verification_secret": "email-verification",
+    "email_verification_salt": "token",
+    "email_verification_timeout": "86400"
+
   }
 }

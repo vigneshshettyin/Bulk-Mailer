@@ -1,13 +1,28 @@
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
+from json import load
+
+config = None
+with open("import.json", "r") as f:
+    config = load(f)["jsondata"]
 
 # Token is valid for 1 day
-MAX_TIME = 86400
+if len(config["email_verification_timeout"]) != 0:
+    MAX_TIME = int(config["email_verification_timeout"])
+else:
+    raise Exception("Property 'email_verification_timeout' not set in 'import.json' file")
+    
 
 # Salt 
-VERIFICATION_SALT = "email-confirm"
+if len(config["email_verification_timeout"]) != 0:
+    VERIFICATION_SALT = config["email_verification_salt"]
+else:
+    raise Exception("Property 'email_verification_salt' not set in 'import.json' file")
 
 # Secret Key
-SECRET = "bulk-mailer"
+if len(config["email_verification_timeout"]) != 0:
+    SECRET = config["email_verification_secret"]
+else:
+    raise Exception("Property 'email_verification_secret' not set in 'import.json' file")
 
 def validate_token(token=None):
     """Helps in confirming the Email Address with the help of the token, sent on the registered email address.\n
