@@ -48,7 +48,7 @@
                       {% endwith %}
 
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control form-control-user" id="exampleInputEmail" placeholder="Name" required>
+                                    <input type="text" name="name" class="form-control form-control-user" id="exampleInputName" placeholder="Name" required>
                                 </div>
                                 <div class="form-group">
                                     <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" required>
@@ -61,7 +61,7 @@
                                         <input type="password" name="password2" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password" required>
                                     </div>
                                 </div>
-                                <input type="submit"  class="btn btn-primary btn-user btn-block">
+                                <input id="submit" type="submit"  class="btn btn-primary btn-user btn-block">
                                 <div class="text-center">
                                     <a class="small" href="/login">Already have an account? Login!</a>
                                 </div>
@@ -82,6 +82,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+
+    <script src="{{url_for('static', filename='js/register.js')}}"></script>
 
 </body>
 
