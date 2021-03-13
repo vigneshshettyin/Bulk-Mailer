@@ -4,7 +4,7 @@
     "favDescription": "Easily Create, Send & Analyze Your Bulk Email Campaigns. Reach the Inbox. Get The Best Value in Pro Email Marketing Tools. Get Started Now! High Delivery Rate. Powerful API.",
     "copyrightMessage": "2020 ARR",
     "databaseUri": "sqlite:///bulkmailer.db",
-    "sendgridapi": "#",
+    "sendgridapi": "",
     "admin_email": "rohitsdec4@gmail.com",
     "site_url": "https://bulkmailer.cf",
     "email_verification_secret": "email-verification",
