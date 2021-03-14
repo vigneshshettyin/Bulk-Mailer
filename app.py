@@ -203,7 +203,6 @@ def verify_email(token, email):
 
 #forgot password route
 @app.route('/forgot', methods = ['GET', 'POST'])
-@login_required
 def forgot_password_page():
     #check if form has been submitted
     if (request.method == 'POST'):
