@@ -47,10 +47,10 @@
                             <td>{{user.name}}</td>
                             <td>{{user.email}}</td>
                             <td>{{user.date}}</td>
-                            <td>{{user.status}}</td>
-                            <td>
-                                <a href="/activate/user/{{ user.id }}" class="btn btn-success btn-circle">
-                                    <i class="fas fa-check"></i>
+                            <td class="{{'bg-success' if user.status == 1 else 'bg-danger'}} font-weight-bold text-white">{{"Activated" if user.status == 1 else "Deactivated"}}</td>
+                            <td class="text-center">
+                                <a href="/activate/user/{{ user.id }}" class="btn {{'btn-success' if user.status == 0 else 'btn-danger'}} btn-circle">
+                                    <i class="fas {{'fa-check' if user.status == 0 else 'fa-times'}}"></i>
                                 </a>
                             </td>
                             <td>
