@@ -5,7 +5,8 @@ from datetime import datetime
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from passlib.hash import sha256_crypt
-import json, random, string
+import json as json_lib
+import random, string, requests
 from validation import validate, EMAIL_VALIDATION, PASSWORD_VALIDATION
 from email_utils.email_helper import mail_handler
 from email_utils.email_verification import generate_token, validate_token
@@ -14,7 +15,7 @@ from email_utils.email_verification import generate_token, validate_token
 
 #load import.json file containing database uri, admin email and other impt info
 with open('import.json', 'r') as c:
-    json = json.load(c)["jsondata"]
+    json = json_lib.load(c)["jsondata"]
 
 #create a Flask app and setup its configuration
 app = Flask(__name__)
@@ -78,6 +79,34 @@ time = x.strftime("%c")
 
 #domain name
 domain='@bulkmailer.cf'
+
+def get_user_name(username):
+    response = requests.get(f"https://api.github.com/users/{username}")
+    json_data = response.json()
+    return json_data['name']
+
+
+def get_contributors_data():
+    response = requests.get(
+        "https://api.github.com/repos/vigneshshettyin/Bulk-Mailer/contributors?per_page=1000")
+    json_data = response.json()
+    unique_contributors = {}
+    mentors = ['vigneshshettyin', 'data-charya', 'laureenf', 'shettyraksharaj']
+    for d in json_data:
+        if d["login"] not in unique_contributors.keys() and d["login"] not in mentors:
+            new_data = {
+                "username": d["login"],
+                "image": d["avatar_url"],
+                "profile_url": d["html_url"],
+                "name": get_user_name(d["login"])
+            }
+            unique_contributors[d["login"]] = new_data
+    return unique_contributors
+
+@app.route('/', methods = ['GET'])
+def default_page():
+    team = get_contributors_data()
+    return render_template('default.html', json=json, team=team)
 
 #login route
 @app.route('/login', methods = ['GET', 'POST'])

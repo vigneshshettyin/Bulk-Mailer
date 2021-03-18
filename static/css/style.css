@@ -1,0 +1,70 @@
+.parent-div1 {
+  height: 100%;
+}
+.div2 {
+  background-color: #fe552e;
+  height: 650px;
+}
+
+#right-side {
+  margin-top: 100px;
+  margin-left: 20px;
+  position: relative;
+  padding-left: 50px;
+  width: 600px;
+  height: 450px;
+  background-color: white;
+  border-radius: 80px;
+}
+
+#logo {
+  position: absolute;
+  top: 50px;
+  left: 340px;
+  width: 220px;
+  height: 220px;
+}
+
+#leftarrow {
+  position: absolute;
+  top: 550px;
+  left: 645px;
+  border: solid orange;
+  border-width: 0 0px 4px 0;
+  display: inline-block;
+  padding: 30px;
+}
+.up {
+  transform: rotate(45deg);
+}
+#rightarrow {
+  position: absolute;
+  top: 550px;
+  left: 645px;
+  border: solid white;
+  border-width: 0 4px 0px 0;
+  display: inline-block;
+  padding: 30px;
+}
+.down {
+  transform: rotate(45deg);
+}
+#mentor-image {
+  width: 50px;
+  height: 100px;
+}
+#contributor-image {
+  width: 50px;
+  height: 100px;
+}
+#name {
+  text-align: center;
+  font-size: 25px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  padding: 5px;
+}
+#right-side {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
