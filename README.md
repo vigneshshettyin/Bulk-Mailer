@@ -57,6 +57,10 @@ $ pip3 install -r requirements.txt
  ```shell
 $ python3 app.py
 ```
+or
+ ```shell
+$ flask run
+```
 
 ## Live Deployment 📦
 
