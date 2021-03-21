@@ -5,7 +5,6 @@
     "copyrightMessage": "2020 ARR",
     "databaseUri": "sqlite:///bulkmailer.db",
     "sendgridapi": "",
-    "admin_email": "rohitsdec4@gmail.com",
     "site_url": "https://bulkmailer.cf",
     "email_verification_secret": "email-verification",
     "email_verification_salt": "token",

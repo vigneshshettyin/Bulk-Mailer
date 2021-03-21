@@ -31,7 +31,7 @@ login_manager.login_message_category = 'info'
 #function to load the currently active user
 @login_manager.user_loader
 def load_user(user_id):
-    return Organization.query.get(user_id)
+    return User.query.get(user_id)
 
 '''DATABASE MODELS'''
 
@@ -41,6 +41,7 @@ class Group(db.Model):
     name = db.Column(db.String(50), nullable=False)
     date = db.Column(db.String(50), nullable=False)
     subscribers = db.relationship('Subscriber',cascade = "all,delete", backref='subscribers')
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 #represents a subscriber that belongs to a group
 class Subscriber(db.Model):
@@ -48,6 +49,7 @@ class Subscriber(db.Model):
     email = db.Column(db.String(50), nullable=False)
     date = db.Column(db.String(50), nullable=False)
     group_id = db.Column(db.Integer, db.ForeignKey('group.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 #represents an email template
 class Template(db.Model):
@@ -56,16 +58,22 @@ class Template(db.Model):
     link = db.Column(db.String(100), nullable=False)
     content = db.Column(db.String(500), nullable=False)
     date = db.Column(db.String(50), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 #represents a user in an organisation
 #currently only one organisation with multiple users is supported
-class Organization(db.Model, UserMixin):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(500), nullable=False)
     status = db.Column(db.Integer , nullable=False)
     date = db.Column(db.String(50), nullable=False)
+    is_staff = db.Column(db.Integer, nullable=True)
+    groups = db.relationship('Group', cascade="all,delete", backref='groups')
+    templates = db.relationship('Template', cascade="all,delete", backref='templates')
+    # subscribers = db.relationship('Subscriber',cascade = "all,delete", backref='subscribers')
+
 
 '''END OF DATABASE MODELS'''
 
@@ -80,33 +88,36 @@ time = x.strftime("%c")
 #domain name
 domain='@bulkmailer.cf'
 
-def get_user_name(username):
-    response = requests.get(f"https://api.github.com/users/{username}")
-    json_data = response.json()
-    return json_data['name']
+# def get_user_name(username):
+#     response = requests.get(f"https://api.github.com/users/{username}")
+#     json_data = response.json()
+#     return json_data['name']
+#
+#
+# def get_contributors_data():
+#     response = requests.get(
+#         "https://api.github.com/repos/vigneshshettyin/Bulk-Mailer/contributors?per_page=1000")
+#     json_data = response.json()
+#     unique_contributors = {}
+#     mentors = ['vigneshshettyin', 'data-charya', 'laureenf', 'shettyraksharaj']
+#     for d in json_data:
+#         if d["login"] not in unique_contributors.keys() and d["login"] not in mentors:
+#             new_data = {
+#                 "username": d["login"],
+#                 "image": d["avatar_url"],
+#                 "profile_url": d["html_url"],
+#                 "name": get_user_name(d["login"])
+#             }
+#             unique_contributors[d["login"]] = new_data
+#     return unique_contributors
+#
+# @app.route('/', methods = ['GET'])
+# def default_page():
+#     team = get_contributors_data()
+#     return render_template('default.html', json=json, team=team)
 
 
-def get_contributors_data():
-    response = requests.get(
-        "https://api.github.com/repos/vigneshshettyin/Bulk-Mailer/contributors?per_page=1000")
-    json_data = response.json()
-    unique_contributors = {}
-    mentors = ['vigneshshettyin', 'data-charya', 'laureenf', 'shettyraksharaj']
-    for d in json_data:
-        if d["login"] not in unique_contributors.keys() and d["login"] not in mentors:
-            new_data = {
-                "username": d["login"],
-                "image": d["avatar_url"],
-                "profile_url": d["html_url"],
-                "name": get_user_name(d["login"])
-            }
-            unique_contributors[d["login"]] = new_data
-    return unique_contributors
 
-@app.route('/', methods = ['GET'])
-def default_page():
-    team = get_contributors_data()
-    return render_template('default.html', json=json, team=team)
 
 #login route
 @app.route('/login', methods = ['GET', 'POST'])
@@ -122,7 +133,7 @@ def login():
         password = request.form.get('password')
         remember = request.form.get('remember')
         #get user with the email entered by querying the database
-        user = Organization.query.filter_by(email=email).first()
+        user = User.query.filter_by(email=email).first()
         #check if user exists
         if not user:
             #if user doesn't exist i.e., email not found, flash an error
@@ -184,11 +195,11 @@ def register_page():
         else:
             #generate the hashed password
             password = sha256_crypt.hash(password)
-            response = Organization.query.filter_by(email=email).first()
+            response = User.query.filter_by(email=email).first()
             #check if the email already exists in the db
             if not response:
                 #add the user to the db using the details entered and flash a msg
-                entry = Organization(name=name, email=email, password=password, date=time, status=1)
+                entry = User(name=name, email=email, password=password, date=time, status=1, is_staff=1)
                 db.session.add(entry)
                 db.session.commit()
 
@@ -219,7 +230,7 @@ def register_page():
 @app.route('/verify_email/<string:token>/<string:email>', methods=['GET'])
 def verify_email(token, email):
     if validate_token(token):
-        user = Organization.query.filter_by(email=email).first()
+        user = User.query.filter_by(email=email).first()
         user.status = 1
         db.session.commit()
         flash("Account activated Successfully!!", "success")
@@ -238,10 +249,10 @@ def forgot_password_page():
         #get the email entered
         email=request.form.get('email')
         #get the user from the db
-        post = Organization.query.filter_by(email=email).first()
+        post = User.query.filter_by(email=email).first()
         if post:
             #if user exists
-            if(post.email==json["admin_email"]):
+            if(post.is_staff==1):
                 #if user tried to reset admin password
                 flash("You can't reset password of administrator!", "danger")
                 return render_template('forgot-password.html', json=json)
@@ -281,7 +292,7 @@ def forgot_password_page():
 @login_required
 def group_page():
     #get all the groups in the db ordered by id
-    groups = Group.query.order_by(Group.id).all()
+    groups = Group.query.filter_by(user_id=current_user.id).all()
     return render_template('group_list.html', groups=groups)
 
 #route to add a new group
@@ -292,7 +303,7 @@ def submit_new_group():
     if(request.method=='POST'):
         #add the group with the entered name to the db and redirect to view groups page
         group_name = request.form.get('groupname')
-        entry = Group(name=group_name, date=time)
+        entry = Group(name=group_name, date=time, user_id=current_user.id)
         db.session.add(entry)
         db.session.commit()
         flash("New group added successfully!", "success")
@@ -304,23 +315,17 @@ def submit_new_group():
 def delete_group(id):
     #get the record of the group to be deleted
     delete_group = Group.query.filter_by(id=id).first()
-    if(delete_group.id == 3):
-        #if default group flash an error msg
-        flash("You can not delete default group!", 'warning')
-        return redirect('/view/groups')
-    else:
-        #otherwise, delete the record and redirect to view groups page
-        db.session.delete(delete_group)
-        db.session.commit()
-        flash("Group deleted successfully!", "danger")
-        return redirect('/view/groups')
+    db.session.delete(delete_group)
+    db.session.commit()
+    flash("Group deleted successfully!", "danger")
+    return redirect('/view/groups')
 
 #route to activate/deactivate a user's account
 @app.route("/activate/user/<int:id>", methods = ['GET'])
 @login_required
 def activate_user(id):
     #get the record of the user with the specified id
-    activate_user = Organization.query.filter_by(id=id).first()
+    activate_user = User.query.filter_by(id=id).first()
     if(activate_user.status == 1):
         #if user's status is active then deactivate account
         activate_user.status = 0
@@ -338,19 +343,19 @@ def activate_user(id):
 @login_required
 def delete_user(id):
     #get the record of the user with the specified id
-    delete_user = Organization.query.filter_by(id=id).first()
+    delete_user = User.query.filter_by(id=id).first()
     #if user tries to delete admin, flash an error
-    if(delete_user.email == json["admin_email"]):
+    if(delete_user.is_staff==1):
         flash("You cannot delete administrator", "warning")
     #otherwise check if user is admin
-    elif current_user.email == json["admin_email"]:
+    elif current_user.is_staff == 1:
         #delete specified user
         db.session.delete(delete_user)
         db.session.commit()
         flash("User deleted successfully!", "danger")
     else:
         #flash an error msg that only admins can delete users
-        flash('Only Admin can delete users!', 'warning')
+        flash('Only admins can delete users!', 'warning')
     #redirect to view users page
     return redirect('/view/users')
 
@@ -376,8 +381,8 @@ def delete_template(id):
 @login_required
 def subscribers_page(number):
     #get the records of all the subscribers of the group and display
-    post = Subscriber.query.filter_by(group_id=number).all()
-    response = Group.query.order_by(Group.id).all()
+    post = Subscriber.query.filter_by(group_id=number).filter_by(user_id=current_user.id).all()
+    response = Group.query.filter_by(user_id=current_user.id).all()
     return render_template('group_members.html', post=post, response=response)
 
 #route to add a new subscriber
@@ -388,7 +393,7 @@ def submit_new_subscribers():
         #using the data entered, create a subscriber in the specified group and add to db
         email = request.form.get('email')
         gid = request.form.get('gid')
-        entry = Subscriber(email=email, date=time, group_id=gid)
+        entry = Subscriber(email=email, date=time, group_id=gid, user_id=current_user.id)
         db.session.add(entry)
         db.session.commit()
         flash("New subscriber added successfully!", "success")
@@ -480,7 +485,7 @@ def use_group(id):
 @login_required
 def template_page():
     #get the records of all the templates and display them
-    template = Template.query.order_by(Template.id).all()
+    template = Template.query.filter_by(user_id=current_user.id).all()
     return render_template('templates.html', template=template)
 
 #route to add a template
@@ -494,64 +499,69 @@ def add_template():
         name = request.form.get('name')
         editordata = request.form.get('editordata')
         #use the data to create a record and add it to the db
-        entry = Template(name=name, date=time, content=editordata, link=link)
+        entry = Template(name=name, date=time, content=editordata, link=link, user_id=current_user.id)
         db.session.add(entry)
         db.session.commit()
         #flash a msg and redirect to view all templates page
         flash('Template added successfully!', 'success')
         return redirect('/view/templates')
 
-#api to subscribe using user's email
-@app.route('/subscribe', methods=['GET', 'POST'])
-def sub_page():
-    #if form has been submitted
-    if (request.method == 'POST'):
-        #get the user's email
-        email = request.form.get('email')
-        #check if the subscriber already exists in the db
-        check = Subscriber.query.filter_by(email=email).first()
-        if not check:
-            #if subscriber doesn't exist, create a record (add user to default group)
-            entry = Subscriber(email=email, date=time, group_id=3)
-            #commit to the db
-            db.session.add(entry)
-            db.session.commit()
-            # flash('Newsletter subscribed successfully!', 'success')
-            return render_template('thankyou.html')
-        else:
-            #if user exists then flash an error msg
-            flash('You have already subscribed!', 'danger')
-            return render_template('error.html')
+# -- API NotImplemented ---
+#
+
+# #api to subscribe using user's email
+# @app.route('/subscribe', methods=['GET', 'POST'])
+# def sub_page():
+#     #if form has been submitted
+#     if (request.method == 'POST'):
+#         #get the user's email
+#         email = request.form.get('email')
+#         #check if the subscriber already exists in the db
+#         check = Subscriber.query.filter_by(email=email).first()
+#         if not check:
+#             #if subscriber doesn't exist, create a record (add user to default group)
+#             entry = Subscriber(email=email, date=time, group_id=3)
+#             #commit to the db
+#             db.session.add(entry)
+#             db.session.commit()
+#             # flash('Newsletter subscribed successfully!', 'success')
+#             return render_template('thankyou.html')
+#         else:
+#             #if user exists then flash an error msg
+#             flash('You have already subscribed!', 'danger')
+#             return render_template('error.html')
 
 #api to unsubscribe from a group
-@app.route('/unsubscribe', methods=['GET', 'POST'])
-def unsub_page():
-    #check if form has been submitted
-    if (request.method == 'POST'):
-        #get the user's email
-        email = request.form.get('email')
-        #get the subcriber's record from the db
-        delete_subscriber = Subscriber.query.filter_by(email=email).first()
-        if not delete_subscriber:
-            #if subscriber doesn't exist, flash an error msg
-            flash('We did not find your data in our database!', 'danger')
-            return render_template('error.html')
-        else:
-            #if subscriber exists, delete from db
-            db.session.delete(delete_subscriber)
-            db.session.commit()
-            flash('Newsletter unsubscribed  successfully!', 'success')
-            return render_template('error.html')
+# @app.route('/unsubscribe', methods=['GET', 'POST'])
+# def unsub_page():
+#     #check if form has been submitted
+#     if (request.method == 'POST'):
+#         #get the user's email
+#         email = request.form.get('email')
+#         #get the subcriber's record from the db
+#         delete_subscriber = Subscriber.query.filter_by(email=email).first()
+#         if not delete_subscriber:
+#             #if subscriber doesn't exist, flash an error msg
+#             flash('We did not find your data in our database!', 'danger')
+#             return render_template('error.html')
+#         else:
+#             #if subscriber exists, delete from db
+#             db.session.delete(delete_subscriber)
+#             db.session.commit()
+#             flash('Newsletter unsubscribed  successfully!', 'success')
+#             return render_template('error.html')
 
+
+# -- API NotImplemented ---
 
 #main page
 @app.route('/')
 @login_required
 def dash_page():
     #get the number of groups, subscribers, and templates; display them to the user
-    glen = len(Group.query.all())
-    slen = len(Subscriber.query.all())
-    tlen = len(Template.query.all())
+    glen = len(Group.query.filter_by(user_id=current_user.id).all())
+    slen = len(Subscriber.query.filter_by(user_id=current_user.id).all())
+    tlen = len(Template.query.filter_by(user_id=current_user.id).all())
     return render_template('index.html', glen=glen, slen=slen, tlen=tlen)
 
 #route to view list of users
@@ -559,7 +569,7 @@ def dash_page():
 @login_required
 def users_page():
     #get the records of all the users and display to the user
-    users = Organization.query.order_by(Organization.id).all()
+    users = User.query.order_by(User.id).all()
     return render_template('user_list.html', users=users)
 
 #route to handle page not found
