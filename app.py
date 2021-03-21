@@ -568,9 +568,13 @@ def dash_page():
 @app.route('/view/users')
 @login_required
 def users_page():
-    #get the records of all the users and display to the user
-    users = User.query.order_by(User.id).all()
-    return render_template('user_list.html', users=users)
+    if(current_user.is_staff==1):
+        #get the records of all the users and display to the user
+        users = User.query.order_by(User.id).all()
+        return render_template('user_list.html', users=users)
+    else:
+        flash('Not authorized!', 'danger')
+        return redirect('/')
 
 #route to handle page not found
 @app.errorhandler(404)
