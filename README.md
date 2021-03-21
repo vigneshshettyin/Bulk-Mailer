@@ -38,19 +38,33 @@ If you created something awesome and want to contribute then feel free to open P
 
 ## How To Use 🔧
 
-```bash
-# Clone this repository
+**1.** Clone this repository to your local environment
+ ```shell
 $ git clone https://github.com/vigneshshettyin/Bulk-Mailer.git
-
-# Go into the repository
-$ cd Bulk-Mailer
-
-# Install Requirements
-$ pip3 install -r requirements.txt
-
-#Start development server
- http://127.0.0.1
 ```
+
+**2.** Change directory into the cloned repository  
+ ```shell
+$ cd Bulk-Mailer
+```
+
+**3.** Install requirements from requirements.txt  
+ ```shell
+$ pip3 install -r requirements.txt
+```
+
+**4.** Run the development server
+ ```shell
+$ python3 app.py
+```
+or
+ ```shell
+$ flask run
+```
+
+Now fire up your favorite web browser and go to http://127.0.0.1:5000/
+You will find the application running there.
+
 ## Live Deployment 📦
 
  Click Here to view the deployment!
