@@ -62,6 +62,9 @@ or
 $ flask run
 ```
 
+Now fire up your favorite web browser and go to http://127.0.0.1:5000/
+You will find the application running there.
+
 ## Live Deployment 📦
 
  Click Here to view the deployment!
