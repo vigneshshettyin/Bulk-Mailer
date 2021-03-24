@@ -8,7 +8,8 @@
     "site_url": "https://bulkmailer.cf",
     "email_verification_secret": "email-verification",
     "email_verification_salt": "token",
-    "email_verification_timeout": "86400"
-
+    "email_verification_timeout": "86400",
+    "google_client_id": "@",
+    "google_client_secret": "@"
   }
 }
