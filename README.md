@@ -31,7 +31,7 @@ But if you want to **Contribute** and make this much better for other developer 
 If you created something awesome and want to contribute then feel free to open Please don't hesitate to open an [Pull Request](https://github.com/vigneshshettyin/Bulk-Mailer/pulls).
 
 ## Tech Stack:
-<img alt="CSS3" src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/> <img alt="HTML5" src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/> <img alt="Python" src="https://img.shields.io/badge/python%20-%2314354C.svg?&style=for-the-badge&logo=python&logoColor=white"/> <img alt="JavaScript" src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
+<img alt="CSS3" src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/> 	<img alt="HTML5" src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/> <img alt="Python" src="https://img.shields.io/badge/python%20-%2314354C.svg?&style=for-the-badge&logo=python&logoColor=white"/> <img alt="JavaScript" src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/> <img alt="Bootstrap" src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white"/> <img alt="jQuery" src="https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white"/> <img alt="Flask" src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white"/> <img alt="PostgreSQL" src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white"/> <img alt="SQLite" src="https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white"/> <img alt="Heroku" src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white"/>
 
 
 ## Getting Started 🚀
@@ -48,12 +48,18 @@ $ git clone https://github.com/vigneshshettyin/Bulk-Mailer.git
 $ cd Bulk-Mailer
 ```
 
-**3.** Install requirements from requirements.txt  
+**3.** Setup virtual environment
+ ```shell
+$ py -m venv env
+$ .\env\Scripts\activate
+```
+
+**4.** Install requirements from requirements.txt  
  ```shell
 $ pip3 install -r requirements.txt
 ```
 
-**4.** Run the development server
+**5.** Run the development server
  ```shell
 $ python3 app.py
 ```
@@ -113,3 +119,20 @@ If you can help us with these. Please don't hesitate to open a [Pull Request](ht
 <a href="https://github.com/vigneshshettyin/Bulk-Mailer/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=vigneshshettyin/Bulk-Mailer" />
 </a>
+
+## Show some ❤️ by starring the repository
+
+<table><tr><td valign="top" width="50%">
+ 
+ 
+[![Forkers repo roster for @vigneshshettyin/Bulk-Mailer](https://reporoster.com/forks/vigneshshettyin/Bulk-Mailer)](https://github.com/vigneshshettyin/Bulk-Mailer/network/members)
+
+
+</td><td valign="top" width="50%">
+ 
+ 
+[![Stargazers repo roster for @vigneshshettyin/Bulk-Mailer](https://reporoster.com/stars/vigneshshettyin/Bulk-Mailer)](https://github.com/vigneshshettyin/Bulk-Mailer/stargazers)
+
+
+</td></tr></table>  
+
