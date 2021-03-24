@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, abort
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -10,8 +10,9 @@ import random, string, requests
 from validation import validate, EMAIL_VALIDATION, PASSWORD_VALIDATION
 from email_utils.email_helper import mail_handler
 from email_utils.email_verification import generate_token, validate_token
-# import psycopg2
-
+import os
+from hashlib import md5
+from oauthlib.oauth2 import WebApplicationClient
 
 #load import.json file containing database uri, admin email and other impt info
 with open('import.json', 'r') as c:
@@ -21,7 +22,10 @@ with open('import.json', 'r') as c:
 app = Flask(__name__)
 app.secret_key = "76^)(HEY,BULK-MAILER-HERE!)(skh390880213%^*&%6h&^&69lkjw*&kjh"
 app.config['SQLALCHEMY_DATABASE_URI'] = json["databaseUri"]
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
 #use LoginManager to provide login functionality and do some initial confg
 login_manager = LoginManager(app)
@@ -32,6 +36,14 @@ login_manager.login_message_category = 'info'
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
+
+
+# Google Login Credentials
+GOOGLE_CLIENT_ID = json["google_client_id"]
+GOOGLE_CLIENT_SECRET = json["google_client_secret"]
+GOOGLE_DISCOVERY_URL = (
+    "https://accounts.google.com/.well-known/openid-configuration"
+)
 
 '''DATABASE MODELS'''
 
@@ -69,6 +81,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(500), nullable=False)
     status = db.Column(db.Integer , nullable=False)
     date = db.Column(db.String(50), nullable=False)
+    profile_image = db.Column(db.String(500), nullable=True)
     is_staff = db.Column(db.Integer, nullable=True)
     groups = db.relationship('Group', cascade="all,delete", backref='groups')
     templates = db.relationship('Template', cascade="all,delete", backref='templates')
@@ -76,6 +89,13 @@ class User(db.Model, UserMixin):
 
 
 '''END OF DATABASE MODELS'''
+
+# For Gravatar
+
+
+def avatar(email, size):
+    digest = md5(email.lower().encode('utf-8')).hexdigest()
+    return f'https://www.gravatar.com/avatar/{digest}?d=identicon&s={size}'
 
 #generate a random 8 lettered password for forgot password
 letters = string.ascii_letters
@@ -173,7 +193,7 @@ def register_page():
         #get the data in name, email, and password fields
         name = request.form.get('name')
         email = request.form.get('email')
-        
+        profile_image = avatar(email, 128)
         # Validate email address
         if not validate(EMAIL_VALIDATION, email):
             flash("Invalid Email Address!", "danger")
@@ -199,7 +219,7 @@ def register_page():
             #check if the email already exists in the db
             if not response:
                 #add the user to the db using the details entered and flash a msg
-                entry = User(name=name, email=email, password=password, date=time, status=1, is_staff=1)
+                entry = User(name=name, email=email, password=password, date=time, profile_image=profile_image, status=1, is_staff=1)
                 db.session.add(entry)
                 db.session.commit()
 
@@ -562,7 +582,7 @@ def dash_page():
     glen = len(Group.query.filter_by(user_id=current_user.id).all())
     slen = len(Subscriber.query.filter_by(user_id=current_user.id).all())
     tlen = len(Template.query.filter_by(user_id=current_user.id).all())
-    return render_template('index.html', glen=glen, slen=slen, tlen=tlen)
+    return render_template('index.html', glen=glen, slen=slen, tlen=tlen, user=current_user)
 
 #route to view list of users
 @app.route('/view/users')
@@ -575,6 +595,98 @@ def users_page():
     else:
         flash('Not authorized!', 'danger')
         return redirect('/')
+
+
+# Google Login
+client = WebApplicationClient(GOOGLE_CLIENT_ID)
+
+
+def get_google_provider_cfg():
+    return requests.get(GOOGLE_DISCOVERY_URL).json()
+
+# Google Login Route
+
+
+@app.route('/login/google')
+def google_login():
+    # Find out what URL to hit for Google login
+    google_provider_cfg = get_google_provider_cfg()
+    authorization_endpoint = google_provider_cfg["authorization_endpoint"]
+
+    # Use library to construct the request for Google login and provide
+    # scopes that let us retrieve user's profile from Google
+
+    print(f"I am base url {request.base_url}")
+
+    request_uri = client.prepare_request_uri(
+        authorization_endpoint,
+        redirect_uri=request.base_url + "/callback",
+        scope=["openid", "email", "profile"],
+    )
+    return redirect(request_uri)
+
+
+@app.route('/login/google/callback')
+def google_login_callback():
+    # Get authorization code Google sent back to us
+    code = request.args.get("code")
+
+    # Find out what URL to hit to get tokens that allow us to ask for
+    # things on behalf of a user
+    google_provider_cfg = get_google_provider_cfg()
+    token_endpoint = google_provider_cfg["token_endpoint"]
+
+    token_url, headers, body = client.prepare_token_request(
+        token_endpoint,
+        authorization_response=request.url,
+        redirect_url=request.base_url,
+        code=code
+    )
+    token_response = requests.post(
+        token_url,
+        headers=headers,
+        data=body,
+        auth=(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET),
+    )
+
+    # Parse the tokens!
+    client.parse_request_body_response(json_lib.dumps(token_response.json()))
+
+    # Now that we have tokens, let's find and hit the URL
+    # from Google that gives us the user's profile information,
+    # including their Google profile image and email
+    userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
+    uri, headers, body = client.add_token(userinfo_endpoint)
+    userinfo_response = requests.get(uri, headers=headers, data=body)
+
+    # You want to make sure their email is verified.
+    # The user authenticated with Google, authorized your
+    # app, and now we've verified their email through Google!
+    if userinfo_response.json().get("email_verified"):
+        users_email = userinfo_response.json()["email"]
+        picture = userinfo_response.json()["picture"]
+        users_name = userinfo_response.json()["name"]
+    else:
+        abort(401)
+    pwd = new_password
+    password = sha256_crypt.hash(pwd)
+    # Create a user in your db with the information provided
+    # by Google
+
+    # Doesn't exist? Add it to the database.
+    if not User.query.filter_by(email=users_email).first():
+        entry = User(name=users_name, email=users_email, password=password,
+                     date=time, profile_image=picture, status=1, is_staff=1)
+        db.session.add(entry)
+        db.session.commit()
+
+    # Begin user session by logging the user in
+
+    user = User.query.filter_by(email=users_email).first()
+    login_user(user)
+
+    # Send user back to homepage
+    return redirect(url_for("dash_page"))
 
 #route to handle page not found
 @app.errorhandler(404)
