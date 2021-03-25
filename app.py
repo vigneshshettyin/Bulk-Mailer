@@ -106,7 +106,7 @@ x = datetime.now()
 time = x.strftime("%c")
 
 #domain name
-domain='@bulkmailer.cf'
+testing_email = json["testing_email"]
 
 # def get_user_name(username):
 #     response = requests.get(f"https://api.github.com/users/{username}")
@@ -285,7 +285,7 @@ def forgot_password_page():
                 subject = "Password Generated : " + passwordemail
                 content = '''<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head><title>Reset Your Password</title> <!--[if !mso]> --><meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--<![endif]--><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><style type="text/css">#outlook a{padding:0}.ReadMsgBody{width:100%}.ExternalClass{width:100%}.ExternalClass *{line-height:100%}body{margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}table,td{border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt}img{border:0;height:auto;line-height:100%;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic}p{display:block;margin:13px 0}</style><style type="text/css">@media only screen and (max-width:480px){@-ms-viewport{width:320px}@viewport{width:320px}}</style><style type="text/css">@media only screen and (min-width:480px){.mj-column-per-100{width:100%!important}}</style></head><body style="background: #f0f0f0;"><div class="mj-container" style="background-color:#f0f0f0;"><table role="presentation" cellpadding="0" cellspacing="0" style="background:#f0f0f0;font-size:0px;width:100%;" border="0"><tbody><tr><td><div style="margin:0px auto;max-width:600px;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;"><div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;"><table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0"><tbody><tr><td style="word-wrap:break-word;font-size:0px;"><div style="font-size:1px;line-height:30px;white-space:nowrap;">&#xA0;</div></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr></tbody></table><div style="margin:0px auto;max-width:600px;background:#FFFFFF;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;background:#FFFFFF;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:9px 0px 9px 0px;"><div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;"><table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0"><tbody><tr><td style="word-wrap:break-word;font-size:0px;padding:25px 25px 25px 25px;" align="center"><table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border-spacing:0px;" align="center" border="0"><tbody><tr><td style="width:204px;"> <img alt="" title="" height="100px" width="100px" src="https://cdn.discordapp.com/attachments/577137963985534994/791571694803353610/favicon.ico" style="border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:auto;" width="204"></td></tr></tbody></table></td></tr><tr><td style="word-wrap:break-word;font-size:0px;padding:0px 15px 0px 15px;" align="center"><div style="cursor:auto;color:#333333;font-family:Helvetica, sans-serif;font-size:15px;line-height:22px;text-align:center;"><h3 style="font-family: Helvetica, sans-serif; font-size: 24px; color: #333333; line-height: 50%;">Your password has been reset successfully</h3></div></td></tr><tr><td style="word-wrap:break-word;font-size:0px;padding:0px 50px 0px 50px;" align="center"><div style="cursor:auto;color:#333333;font-family:Helvetica, sans-serif;font-size:15px;line-height:22px;text-align:center;"><p>Forgot your password or need to change it? No problem.</p></div></td></tr><tr><td style="word-wrap:break-word;font-size:0px;padding:20px 25px 20px 25px;padding-top:10px;padding-left:25px;" align="center"><table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate;" align="center" border="0"><tbody><tr><td style="border:none;border-radius:5px;color:#FFFFFF;cursor:auto;padding:10px 25px;" align="center" valign="middle" bgcolor="#4DAA50"><a href="#" style="text-decoration: none; background: #4DAA50; color: #FFFFFF; font-family: Helvetica, sans-serif; font-size: 19px; font-weight: normal; line-height: 120%; text-transform: none; margin: 0px;" target="_blank">Login</a></td></tr></tbody></table></td></tr><tr><td style="word-wrap:break-word;font-size:0px;padding:0px 47px 0px 47px;" align="center"><div style="cursor:auto;color:#333333;font-family:Helvetica, sans-serif;font-size:15px;line-height:22px;text-align:center;"><p><span style="font-size:14px;"><strong>Questions?&#xA0;</strong><br>Email us at <a href="mailto:email@bulkmailer.cf" style="color: #555555;">email@bulkmailer.cf</a>.&#xA0;</span></p></div></td></tr></tbody></table></div></td></tr></tbody></table></div><table role="presentation" cellpadding="0" cellspacing="0" style="background:#f0f0f0;font-size:0px;width:100%;" border="0"><tbody><tr><td><div style="margin:0px auto;max-width:600px;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;"><div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;"><table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0"><tbody><tr><td style="word-wrap:break-word;font-size:0px;padding:0px 98px 0px 98px;" align="center"><div style="cursor:auto;color:#777777;font-family:Helvetica, sans-serif;font-size:15px;line-height:22px;text-align:center;"><p><span style="font-size:12px;"><a href="https://bulkmailer.cf" style="color: #555555;">TERMS OF SERVICE</a> | <a href="https://bulkmailer.cf" style="color: #555555;">PRIVACY POLICY</a><br>&#xA9; 2020 Bulk Mailer<br><a href="https://bulkmailer.cf/unsubscribe" style="color: #555555;">UNSUBSCRIBE</a></span></p></div></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr></tbody></table></div></body></html>'''
                 message = Mail(
-                    from_email=('resetpassword@bulkmailer.cf', 'Bulk Mailer Reset Password'),
+                    from_email=(testing_email, 'Bulk Mailer Reset Password'),
                     to_emails=email,
                     subject=subject,
                     html_content=content)
@@ -313,7 +313,7 @@ def forgot_password_page():
 def group_page():
     #get all the groups in the db ordered by id
     groups = Group.query.filter_by(user_id=current_user.id).all()
-    return render_template('group_list.html', groups=groups)
+    return render_template('group_list.html', groups=groups, user=current_user)
 
 #route to add a new group
 @app.route('/new/group', methods=['POST'])
@@ -344,19 +344,23 @@ def delete_group(id):
 @app.route("/activate/user/<int:id>", methods = ['GET'])
 @login_required
 def activate_user(id):
-    #get the record of the user with the specified id
-    activate_user = User.query.filter_by(id=id).first()
-    if(activate_user.status == 1):
-        #if user's status is active then deactivate account
-        activate_user.status = 0
-        flash("User deactivated successfully!", "warning")
+    if(current_user.is_staff!=1):
+        #get the record of the user with the specified id
+        activate_user = User.query.filter_by(id=id).first()
+        if(activate_user.status == 1):
+            #if user's status is active then deactivate account
+            activate_user.status = 0
+            flash("User deactivated successfully!", "warning")
+        else:
+            #otherwise, activate account
+            activate_user.status = 1
+            flash("User activated successfully!", "success")
+        db.session.commit()
+        #redirect to view users page
+        return redirect('/view/users')
     else:
-        #otherwise, activate account
-        activate_user.status = 1
-        flash("User activated successfully!", "success")
-    db.session.commit()
-    #redirect to view users page
-    return redirect('/view/users')
+        flash("Can't perform this operation!", "danger")
+        return redirect('/view/users')
 
 #route to delete a user
 @app.route("/delete/user/<int:id>", methods = ['GET'])
@@ -403,7 +407,7 @@ def subscribers_page(number):
     #get the records of all the subscribers of the group and display
     post = Subscriber.query.filter_by(group_id=number).filter_by(user_id=current_user.id).all()
     response = Group.query.filter_by(user_id=current_user.id).all()
-    return render_template('group_members.html', post=post, response=response)
+    return render_template('group_members.html', post=post, response=response, user=current_user)
 
 #route to add a new subscriber
 @app.route('/new/subscribers', methods=['POST'])
@@ -452,7 +456,7 @@ def mail_page():
         html_content = request.form.get('editordata')
         html_content = html_content + '''<table role="presentation" cellpadding="0" cellspacing="0" style="background:#f0f0f0;font-size:0px;width:100%;" border="0"><tbody><tr><td><div style="margin:0px auto;max-width:600px;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;"><div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;"><table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0"><tbody><tr><td style="word-wrap:break-word;font-size:0px;padding:0px 98px 0px 98px;" align="center"><div style="cursor:auto;color:#777777;font-family:Helvetica, sans-serif;font-size:15px;line-height:22px;text-align:center;"><p><span style="font-size:12px;"><a href="https://bulkmailer.cf" style="color: #555555;">TERMS OF SERVICE</a> | <a href="https://bulkmailer.cf" style="color: #555555;">PRIVACY POLICY</a><br>© 2020 Bulk Mailer<br><a href="https://bulkmailer.cf/unsubscribe" style="color: #555555;">UNSUBSCRIBE</a></span></p></div></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr></tbody></table>'''
         #generate the from email
-        fromemail = username + domain
+        fromemail = testing_email
         #generate the mail list by extracting the emails of all the subscribers in the specified group
         mailobj = Subscriber.query.filter_by(group_id=group).all()
         maillist = []
@@ -475,7 +479,7 @@ def mail_page():
     #get all the groups and templates in the db to display to the user
     group = Group.query.order_by(Group.id).all()
     mailtemp = Template.query.order_by(Template.id).all()
-    return render_template('mail.html', group=group, template=mailtemp)
+    return render_template('mail.html', group=group, template=mailtemp, user=current_user, json=json)
 
 #route to use a template
 @app.route("/use/template/<int:id>", methods = ['GET'])
@@ -498,7 +502,7 @@ def use_group(id):
     #get all the templates to display
     mailtemp = Template.query.order_by(Template.id).all()
     #redirect to mail with the specified group as the recipient
-    return render_template('mail3.html', template=mailtemp, post=post)
+    return render_template('mail3.html', template=mailtemp, post=post, user=current_user)
 
 #route to view all the templates
 @app.route('/view/templates')
@@ -506,7 +510,7 @@ def use_group(id):
 def template_page():
     #get the records of all the templates and display them
     template = Template.query.filter_by(user_id=current_user.id).all()
-    return render_template('templates.html', template=template)
+    return render_template('templates.html', template=template, user=current_user)
 
 #route to add a template
 @app.route('/add/template', methods=['POST'])
@@ -591,7 +595,7 @@ def users_page():
     if(current_user.is_staff==1):
         #get the records of all the users and display to the user
         users = User.query.order_by(User.id).all()
-        return render_template('user_list.html', users=users)
+        return render_template('user_list.html', users=users, user=current_user)
     else:
         flash('Not authorized!', 'danger')
         return redirect('/')
