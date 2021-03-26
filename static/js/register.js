@@ -12,25 +12,27 @@ emailField.addEventListener("keyup", (e) => {
 
   if (emailVal.length > 0) {
     fetch("/validate/email", {
-      body: JSON.stringify({ email: emailVal }),
-      method: "POST",
+      body : JSON.stringify({email : emailVal}),
+      method : "POST",
     })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.email_error) {
-          regitserBtn.disabled = true;
-          emailField.classList.add("is-invalid");
-          emailFeedBackArea.style.display = "block";
-          emailFeedBackArea.innerHTML = `<p class="text-center">${data.email_error}</p>`;
-        } else if (data.email_pattern_error) {
-          regitserBtn.disabled = true;
-          emailField.classList.add("is-invalid");
-          emailFeedBackArea.style.display = "block";
-          emailFeedBackArea.innerHTML = `<p class="text-center">${data.email_pattern_error}</p>`;
-        } else {
-          regitserBtn.removeAttribute("disabled");
-        }
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.email_error) {
+            regitserBtn.disabled = true;
+            emailField.classList.add("is-invalid");
+            emailFeedBackArea.style.display = "block";
+            emailFeedBackArea.innerHTML =
+                `<p class="text-center">${data.email_error}</p>`;
+          } else if (data.email_pattern_error) {
+            regitserBtn.disabled = true;
+            emailField.classList.add("is-invalid");
+            emailFeedBackArea.style.display = "block";
+            emailFeedBackArea.innerHTML =
+                `<p class="text-center">${data.email_pattern_error}</p>`;
+          } else {
+            regitserBtn.removeAttribute("disabled");
+          }
+        });
   }
 });
 
@@ -42,22 +44,23 @@ passwordField.addEventListener("keyup", (e) => {
 
   if (passwordVal.length > 0) {
     fetch("/validate/password", {
-      body: JSON.stringify({
-        password: passwordVal,
+      body : JSON.stringify({
+        password : passwordVal,
       }),
-      method: "POST",
+      method : "POST",
     })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.password_error) {
-          regitserBtn.disabled = true;
-          passwordField.classList.add("is-invalid");
-          passwordFeedBackArea.style.display = "block";
-          passwordFeedBackArea.innerHTML = `<p class="text-center">${data.password_error}</p>`;
-        } else {
-          regitserBtn.removeAttribute("disabled");
-        }
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.password_error) {
+            regitserBtn.disabled = true;
+            passwordField.classList.add("is-invalid");
+            passwordFeedBackArea.style.display = "block";
+            passwordFeedBackArea.innerHTML =
+                `<p class="text-center">${data.password_error}</p>`;
+          } else {
+            regitserBtn.removeAttribute("disabled");
+          }
+        });
   }
 });
 
@@ -70,22 +73,23 @@ password2Field.addEventListener("keyup", (e) => {
 
   if (passwordVal.length > 0) {
     fetch("/match/passwords", {
-      body: JSON.stringify({
-        password: password1Val,
-        password2: passwordVal,
+      body : JSON.stringify({
+        password : password1Val,
+        password2 : passwordVal,
       }),
-      method: "POST",
+      method : "POST",
     })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.password_mismatch) {
-          regitserBtn.disabled = true;
-          password2Field.classList.add("is-invalid");
-          passwordFeedBackArea.style.display = "block";
-          passwordFeedBackArea.innerHTML = `<p class="text-center">${data.password_mismatch}</p>`;
-        } else {
-          regitserBtn.removeAttribute("disabled");
-        }
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.password_mismatch) {
+            regitserBtn.disabled = true;
+            password2Field.classList.add("is-invalid");
+            passwordFeedBackArea.style.display = "block";
+            passwordFeedBackArea.innerHTML =
+                `<p class="text-center">${data.password_mismatch}</p>`;
+          } else {
+            regitserBtn.removeAttribute("disabled");
+          }
+        });
   }
 });
