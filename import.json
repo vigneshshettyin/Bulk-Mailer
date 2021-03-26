@@ -10,6 +10,7 @@
     "email_verification_salt": "token",
     "email_verification_timeout": "86400",
     "google_client_id": "#",
-    "google_client_secret": "#"
+    "google_client_secret": "#",
+    "contributors_api": "https://githubcapi.herokuapp.com/get-bulk-mailer-data/"
   }
 }
