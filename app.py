@@ -1,36 +1,24 @@
-from flask import (
-    Flask,
-    render_template,
-    request,
-    redirect,
-    url_for,
-    flash,
-    abort,
-    jsonify,
-)
-from flask_login import (
-    LoginManager,
-    UserMixin,
-    current_user,
-    login_user,
-    logout_user,
-    login_required,
-)
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
-from passlib.hash import sha256_crypt
 import json as json_lib
+import os
 import random
 import string
+from datetime import datetime
+from hashlib import md5
+
 import requests
-from validation import validate, EMAIL_VALIDATION, PASSWORD_VALIDATION
+from flask import (Flask, abort, flash, jsonify, redirect, render_template,
+                   request, url_for)
+from flask_login import (LoginManager, UserMixin, current_user, login_required,
+                         login_user, logout_user)
+from flask_sqlalchemy import SQLAlchemy
+from oauthlib.oauth2 import WebApplicationClient
+from passlib.hash import sha256_crypt
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
 from email_utils.email_helper import mail_handler
 from email_utils.email_verification import generate_token, validate_token
-import os
-from hashlib import md5
-from oauthlib.oauth2 import WebApplicationClient
+from validation import EMAIL_VALIDATION, PASSWORD_VALIDATION, validate
 
 # load import.json file containing database uri, admin email and other impt info
 with open("import.json", "r") as c:
