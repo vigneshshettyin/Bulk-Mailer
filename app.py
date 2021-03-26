@@ -22,9 +22,13 @@ from flask_login import logout_user
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from oauthlib.oauth2 import WebApplicationClient
+<<<<<<< HEAD
+import re
+=======
 from passlib.hash import sha256_crypt
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+>>>>>>> 1903e84e1aa8c946eb7db1979ec167146596164c
 
 from email_utils.email_helper import mail_handler
 from email_utils.email_verification import generate_token
@@ -171,8 +175,44 @@ testing_email = json["testing_email"]
 #     return render_template('default.html', json=json, team=team)
 
 
-# login route
-@app.route("/login", methods=["GET", "POST"])
+@app.route('/validate/email', methods=['POST'])
+def email_validation():
+    data = json_lib.loads(request.data)
+    email = data['email']
+    pattern = '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+    user = User.query.filter_by(email=email).first()
+    if user and user.status == 0:
+        return jsonify(account_inactive=True)
+    if user:
+        return jsonify(email_error='You are already registered. Please login to continue.', status=409)
+    if not bool(re.match(pattern, email)):
+        return jsonify(email_pattern_error='Please enter a valid email address.')
+    return jsonify(email_valid=True)
+
+
+@app.route('/validate/password', methods=['POST'])
+def validate_password():
+    data = json_lib.loads(request.data)
+    password = data["password"]
+    pattern = '^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[$#@!%^&*()])(?=\S+$).{8,30}$'
+    if bool(re.match(pattern, password)):
+        return jsonify(password_valid=True)
+    return jsonify(
+        password_error='Password must be 8-30 characters long and must contain atleast one uppercase letter, one lowercase letter, one number(0-9) and one special character(@,#,$,%,&,_)')
+
+
+@app.route('/match/passwords', methods=["POST"])
+def match_passwords():
+    data = json_lib.loads(request.data)
+    password1 = data['password']
+    password2 = data['password2']
+    if str(password1) == str(password2):
+        return jsonify(password_match=True)
+    return jsonify(password_mismatch='Password and Confirm Password do not match.')
+
+
+#login route
+@app.route('/login', methods = ['GET', 'POST'])
 def login():
     # check if user is authenticated
     if current_user.is_authenticated:
