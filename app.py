@@ -656,14 +656,10 @@ def mail_page():
 def use_template(id):
     # get the record of the template to be used
     post = Template.query.filter_by(id=id).first()
-    # get all groups and templates to be displayed
-    group = Group.query.order_by(Group.id).all()
-    mailtemp = Template.query.order_by(Template.id).all()
-    # redirect to mail with the specified template in the content
-    return render_template("mail2.html",
-                           group=group,
-                           template=mailtemp,
-                           post=post)
+    content = {
+        "content": post.content
+    }
+    return jsonify(post=content)
 
 
 # route to select a group
