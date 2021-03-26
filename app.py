@@ -6,10 +6,20 @@ from datetime import datetime
 from hashlib import md5
 
 import requests
-from flask import (Flask, abort, flash, jsonify, redirect, render_template,
-                   request, url_for)
-from flask_login import (LoginManager, UserMixin, current_user, login_required,
-                         login_user, logout_user)
+from flask import abort
+from flask import flash
+from flask import Flask
+from flask import jsonify
+from flask import redirect
+from flask import render_template
+from flask import request
+from flask import url_for
+from flask_login import current_user
+from flask_login import login_required
+from flask_login import login_user
+from flask_login import LoginManager
+from flask_login import logout_user
+from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from oauthlib.oauth2 import WebApplicationClient
 from passlib.hash import sha256_crypt
@@ -17,8 +27,11 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
 from email_utils.email_helper import mail_handler
-from email_utils.email_verification import generate_token, validate_token
-from validation import EMAIL_VALIDATION, PASSWORD_VALIDATION, validate
+from email_utils.email_verification import generate_token
+from email_utils.email_verification import validate_token
+from validation import EMAIL_VALIDATION
+from validation import PASSWORD_VALIDATION
+from validation import validate
 
 # load import.json file containing database uri, admin email and other impt info
 with open("import.json", "r") as c:
