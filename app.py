@@ -22,13 +22,10 @@ from flask_login import logout_user
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from oauthlib.oauth2 import WebApplicationClient
-<<<<<<< HEAD
 import re
-=======
 from passlib.hash import sha256_crypt
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
->>>>>>> 1903e84e1aa8c946eb7db1979ec167146596164c
 
 from email_utils.email_helper import mail_handler
 from email_utils.email_verification import generate_token
