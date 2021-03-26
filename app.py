@@ -143,34 +143,6 @@ time = x.strftime("%c")
 # domain name
 testing_email = json["testing_email"]
 
-# def get_user_name(username):
-#     response = requests.get(f"https://api.github.com/users/{username}")
-#     json_data = response.json()
-#     return json_data['name']
-#
-#
-# def get_contributors_data():
-#     response = requests.get(
-#         "https://api.github.com/repos/vigneshshettyin/Bulk-Mailer/contributors?per_page=1000")
-#     json_data = response.json()
-#     unique_contributors = {}
-#     mentors = ['vigneshshettyin', 'data-charya', 'laureenf', 'shettyraksharaj']
-#     for d in json_data:
-#         if d["login"] not in unique_contributors.keys() and d["login"] not in mentors:
-#             new_data = {
-#                 "username": d["login"],
-#                 "image": d["avatar_url"],
-#                 "profile_url": d["html_url"],
-#                 "name": get_user_name(d["login"])
-#             }
-#             unique_contributors[d["login"]] = new_data
-#     return unique_contributors
-#
-# @app.route('/', methods = ['GET'])
-# def default_page():
-#     team = get_contributors_data()
-#     return render_template('default.html', json=json, team=team)
-
 
 @app.route('/validate/email', methods=['POST'])
 def email_validation():
@@ -764,9 +736,16 @@ def add_template():
 
 # -- API NotImplemented ---
 
+# home page
+@app.route('/')
+def home_page():
+    response = requests.get(json["contributors_api"])
+    team = response.json()
+    return render_template('home.html', team=team)
 
-# main page
-@app.route("/")
+
+# dashboard page
+@app.route("/dashboard")
 @login_required
 def dash_page():
     # get the number of groups, subscribers, and templates; display them to the user
@@ -794,7 +773,7 @@ def users_page():
                                user=current_user)
     else:
         flash("Not authorized!", "danger")
-        return redirect("/")
+        return redirect("/dashboard")
 
 
 # Google Login
