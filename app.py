@@ -13,6 +13,7 @@ from email_utils.email_verification import generate_token, validate_token
 import os
 from hashlib import md5
 from oauthlib.oauth2 import WebApplicationClient
+import re
 
 #load import.json file containing database uri, admin email and other impt info
 with open('import.json', 'r') as c:
@@ -137,6 +138,40 @@ testing_email = json["testing_email"]
 #     return render_template('default.html', json=json, team=team)
 
 
+@app.route('/validate/email', methods=['POST'])
+def email_validation():
+    data = json_lib.loads(request.data)
+    email = data['email']
+    pattern = '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+    user = User.query.filter_by(email=email).first()
+    if user and user.status == 0:
+        return jsonify(account_inactive=True)
+    if user:
+        return jsonify(email_error='You are already registered. Please login to continue.', status=409)
+    if not bool(re.match(pattern, email)):
+        return jsonify(email_pattern_error='Please enter a valid email address.')
+    return jsonify(email_valid=True)
+
+
+@app.route('/validate/password', methods=['POST'])
+def validate_password():
+    data = json_lib.loads(request.data)
+    password = data["password"]
+    pattern = '^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[$#@!%^&*()])(?=\S+$).{8,30}$'
+    if bool(re.match(pattern, password)):
+        return jsonify(password_valid=True)
+    return jsonify(
+        password_error='Password must be 8-30 characters long and must contain atleast one uppercase letter, one lowercase letter, one number(0-9) and one special character(@,#,$,%,&,_)')
+
+
+@app.route('/match/passwords', methods=["POST"])
+def match_passwords():
+    data = json_lib.loads(request.data)
+    password1 = data['password']
+    password2 = data['password2']
+    if str(password1) == str(password2):
+        return jsonify(password_match=True)
+    return jsonify(password_mismatch='Password and Confirm Password do not match.')
 
 
 #login route
