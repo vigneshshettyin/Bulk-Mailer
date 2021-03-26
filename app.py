@@ -63,7 +63,6 @@ def load_user(user_id):
 GOOGLE_CLIENT_ID = json["google_client_id"]
 GOOGLE_CLIENT_SECRET = json["google_client_secret"]
 GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid-configuration"
-
 """DATABASE MODELS"""
 
 # represents a group of users to whom a specific email can be sent
@@ -73,9 +72,9 @@ class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     date = db.Column(db.String(50), nullable=False)
-    subscribers = db.relationship(
-        "Subscriber", cascade="all,delete", backref="subscribers"
-    )
+    subscribers = db.relationship("Subscriber",
+                                  cascade="all,delete",
+                                  backref="subscribers")
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
 
@@ -116,7 +115,9 @@ class User(db.Model, UserMixin):
     profile_image = db.Column(db.String(500), nullable=True)
     is_staff = db.Column(db.Integer, nullable=True)
     groups = db.relationship("Group", cascade="all,delete", backref="groups")
-    templates = db.relationship("Template", cascade="all,delete", backref="templates")
+    templates = db.relationship("Template",
+                                cascade="all,delete",
+                                backref="templates")
     # subscribers = db.relationship('Subscriber',cascade = "all,delete", backref='subscribers')
 
 
@@ -190,7 +191,8 @@ def login():
             # if user doesn't exist i.e., email not found, flash an error
             flash("Valid account not found!", "danger")
             return render_template("login.html", json=json)
-        elif (sha256_crypt.verify(password, user.password) == 1) and (user.status == 1):
+        elif (sha256_crypt.verify(password, user.password)
+              == 1) and (user.status == 1):
             # if user exists and correct password has been entered and the user's account has been activated
             # update the last login to current date and add it to the db
             user.date = time
@@ -201,7 +203,8 @@ def login():
             # go to the page that the user tried to access if exists
             # otherwise go to the dash page
             next_page = request.args.get("next")
-            return redirect(next_page) if next_page else redirect(url_for("dash_page"))
+            return redirect(next_page) if next_page else redirect(
+                url_for("dash_page"))
         else:
             # user doesn't exist so flash an error
             flash("Account not activated or invalid credentials!", "danger")
@@ -273,13 +276,13 @@ def register_page():
                 # generate the welcome email to be sent to the user
                 subject = "Welcome aboard " + name + "!"
 
-                content = render_template(
-                    "email_template.html", token=verification_token, email=email
-                )
+                content = render_template("email_template.html",
+                                          token=verification_token,
+                                          email=email)
 
-                response = mail_handler(
-                    recepient_email=email, subject=subject, content=content
-                )
+                response = mail_handler(recepient_email=email,
+                                        subject=subject,
+                                        content=content)
 
                 # If any error occurs, the response will be equal to False
                 if isinstance(response, bool) and not response:
@@ -399,7 +402,8 @@ def edit_group(group_id):
         name = data["name"]
         exist = Group.query.filter_by(name=name).first()
         if exist:
-            return jsonify(group_duplicate="Group with this name already exists.")
+            return jsonify(
+                group_duplicate="Group with this name already exists.")
         grp = Group.query.filter_by(id=group_id).first()
         grp.name = name
         try:
@@ -407,8 +411,8 @@ def edit_group(group_id):
             return jsonify(group_success="Group edited successfully.")
         except Exception:
             return jsonify(
-                group_error="SOmething went wrong while editing. Please try again"
-            )
+                group_error=
+                "SOmething went wrong while editing. Please try again")
     else:
         try:
             grp = Group.query.filter_by(id=group_id).first()
@@ -506,15 +510,13 @@ def delete_template(id):
 @login_required
 def subscribers_page(number):
     # get the records of all the subscribers of the group and display
-    post = (
-        Subscriber.query.filter_by(group_id=number)
-        .filter_by(user_id=current_user.id)
-        .all()
-    )
+    post = (Subscriber.query.filter_by(group_id=number).filter_by(
+        user_id=current_user.id).all())
     response = Group.query.filter_by(user_id=current_user.id).all()
-    return render_template(
-        "group_members.html", post=post, response=response, user=current_user
-    )
+    return render_template("group_members.html",
+                           post=post,
+                           response=response,
+                           user=current_user)
 
 
 # route to add a new subscriber
@@ -527,9 +529,10 @@ def submit_new_subscribers():
         # using the data entered, create a subscriber in the specified group and add to db
         email = request.form.get("email")
         gid = request.form.get("gid")
-        entry = Subscriber(
-            email=email, date=time, group_id=gid, user_id=current_user.id
-        )
+        entry = Subscriber(email=email,
+                           date=time,
+                           group_id=gid,
+                           user_id=current_user.id)
         db.session.add(entry)
         db.session.commit()
         flash("New subscriber added successfully!", "success")
@@ -573,8 +576,8 @@ def mail_page():
         group = request.form.get("group")
         html_content = request.form.get("editordata")
         html_content = (
-            html_content
-            + """<table role="presentation" cellpadding="0" cellspacing="0" style="background:#f0f0f0;font-size:0px;width:100%;" border="0"><tbody><tr><td><div style="margin:0px auto;max-width:600px;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;"><div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;"><table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0"><tbody><tr><td style="word-wrap:break-word;font-size:0px;padding:0px 98px 0px 98px;" align="center"><div style="cursor:auto;color:#777777;font-family:Helvetica, sans-serif;font-size:15px;line-height:22px;text-align:center;"><p><span style="font-size:12px;"><a href="https://bulkmailer.cf" style="color: #555555;">TERMS OF SERVICE</a> | <a href="https://bulkmailer.cf" style="color: #555555;">PRIVACY POLICY</a><br>© 2020 Bulk Mailer<br><a href="https://bulkmailer.cf/unsubscribe" style="color: #555555;">UNSUBSCRIBE</a></span></p></div></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr></tbody></table>"""
+            html_content +
+            """<table role="presentation" cellpadding="0" cellspacing="0" style="background:#f0f0f0;font-size:0px;width:100%;" border="0"><tbody><tr><td><div style="margin:0px auto;max-width:600px;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;"><div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;"><table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0"><tbody><tr><td style="word-wrap:break-word;font-size:0px;padding:0px 98px 0px 98px;" align="center"><div style="cursor:auto;color:#777777;font-family:Helvetica, sans-serif;font-size:15px;line-height:22px;text-align:center;"><p><span style="font-size:12px;"><a href="https://bulkmailer.cf" style="color: #555555;">TERMS OF SERVICE</a> | <a href="https://bulkmailer.cf" style="color: #555555;">PRIVACY POLICY</a><br>© 2020 Bulk Mailer<br><a href="https://bulkmailer.cf/unsubscribe" style="color: #555555;">UNSUBSCRIBE</a></span></p></div></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr></tbody></table>"""
         )
         # generate the from email
         fromemail = testing_email
@@ -601,9 +604,11 @@ def mail_page():
     # get all the groups and templates in the db to display to the user
     group = Group.query.order_by(Group.id).all()
     mailtemp = Template.query.order_by(Template.id).all()
-    return render_template(
-        "mail.html", group=group, template=mailtemp, user=current_user, json=json
-    )
+    return render_template("mail.html",
+                           group=group,
+                           template=mailtemp,
+                           user=current_user,
+                           json=json)
 
 
 # route to use a template
@@ -618,7 +623,10 @@ def use_template(id):
     group = Group.query.order_by(Group.id).all()
     mailtemp = Template.query.order_by(Template.id).all()
     # redirect to mail with the specified template in the content
-    return render_template("mail2.html", group=group, template=mailtemp, post=post)
+    return render_template("mail2.html",
+                           group=group,
+                           template=mailtemp,
+                           post=post)
 
 
 # route to select a group
@@ -632,9 +640,10 @@ def use_group(id):
     # get all the templates to display
     mailtemp = Template.query.order_by(Template.id).all()
     # redirect to mail with the specified group as the recipient
-    return render_template(
-        "mail3.html", template=mailtemp, post=post, user=current_user
-    )
+    return render_template("mail3.html",
+                           template=mailtemp,
+                           post=post,
+                           user=current_user)
 
 
 # route to view all the templates
@@ -645,7 +654,9 @@ def use_group(id):
 def template_page():
     # get the records of all the templates and display them
     template = Template.query.filter_by(user_id=current_user.id).all()
-    return render_template("templates.html", template=template, user=current_user)
+    return render_template("templates.html",
+                           template=template,
+                           user=current_user)
 
 
 # route to add a template
@@ -661,9 +672,11 @@ def add_template():
         name = request.form.get("name")
         editordata = request.form.get("editordata")
         # use the data to create a record and add it to the db
-        entry = Template(
-            name=name, date=time, content=editordata, link=link, user_id=current_user.id
-        )
+        entry = Template(name=name,
+                         date=time,
+                         content=editordata,
+                         link=link,
+                         user_id=current_user.id)
         db.session.add(entry)
         db.session.commit()
         # flash a msg and redirect to view all templates page
@@ -716,8 +729,8 @@ def add_template():
 #             flash('Newsletter unsubscribed  successfully!', 'success')
 #             return render_template('error.html')
 
-
 # -- API NotImplemented ---
+
 
 # main page
 @app.route("/")
@@ -727,9 +740,11 @@ def dash_page():
     glen = len(Group.query.filter_by(user_id=current_user.id).all())
     slen = len(Subscriber.query.filter_by(user_id=current_user.id).all())
     tlen = len(Template.query.filter_by(user_id=current_user.id).all())
-    return render_template(
-        "index.html", glen=glen, slen=slen, tlen=tlen, user=current_user
-    )
+    return render_template("index.html",
+                           glen=glen,
+                           slen=slen,
+                           tlen=tlen,
+                           user=current_user)
 
 
 # route to view list of users
@@ -741,7 +756,9 @@ def users_page():
     if current_user.is_staff == 1:
         # get the records of all the users and display to the user
         users = User.query.order_by(User.id).all()
-        return render_template("user_list.html", users=users, user=current_user)
+        return render_template("user_list.html",
+                               users=users,
+                               user=current_user)
     else:
         flash("Not authorized!", "danger")
         return redirect("/")
