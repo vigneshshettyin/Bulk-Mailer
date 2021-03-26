@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, abort
+from flask import Flask, render_template, request, redirect, url_for, flash, abort, jsonify
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -328,6 +328,34 @@ def submit_new_group():
         db.session.commit()
         flash("New group added successfully!", "success")
     return redirect('/view/groups')
+
+@app.route('/edit/group/<int:group_id>', methods=['GET','POST'])
+@login_required
+def edit_group(group_id):
+    if request.method == 'POST':
+        data = json_lib.loads(request.data)
+        name = data["name"]
+        exist = Group.query.filter_by(name=name).first()
+        if exist:
+            return jsonify(group_duplicate="Group with this name already exists.")
+        grp = Group.query.filter_by(id=group_id).first()
+        grp.name = name
+        try:
+            db.session.commit()
+            return jsonify(group_success="Group edited successfully.")
+        except Exception:
+            return jsonify(group_error="SOmething went wrong while editing. Please try again")
+    else:
+        try:
+            grp = Group.query.filter_by(id=group_id).first()
+            group = {
+                "id": grp.id,
+                "name": grp.name
+            }
+            return jsonify(group=group)
+        except Exception:
+            return jsonify(group_not_exist="Group doesn't exist.")
+
 
 #route to delete group with specified id
 @app.route("/delete/group/<int:id>", methods = ['GET'])
