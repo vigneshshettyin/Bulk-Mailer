@@ -18,6 +18,7 @@
 
   <!-- Bootstrap Scripts -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
@@ -49,7 +50,7 @@
             </li>
             <li class="nav-item">
               <!----dashboard link------>
-              <a class="nav-link" href="#">Login</a> 
+              <a class="nav-link" href="#about">About</a> 
             </li>
           </ul>
 
@@ -64,18 +65,21 @@
         <div class="col-lg-6">
           <h1 class="big-heading">BulkMailer</h1>
           <p id="intro">Bulk Mailer is a Mail Client web application that can be used by organisations to send bulk emails for different groups of subscribers.</p>
+
+          <!-------link to the dashboard onclick------->
+
           <button type="button" class="btn btn-outline-light btn-lg download-button">Get Started</button>
         </div>
 
         <div class="col-lg-6">
-          <div class="card mb-3" style="max-width: 540px;border-radius: 50px;">
+          <div class="card mb-3" style="min-width: 420px;max-width: 540px;border-radius: 50px;display: inline-block;">
             <div class="row g-0">
              
               <div class="col-md-auto">
-                <div class="card-body">
+                <div class="card-body" style="position: relative;">
                   <h4 class="card-title" id="tagline">Open Source Events Project <br/>is associated  with : <span style="color: #ef6f00;">GSSOC</span></h4>
                   <div class="col-md-auto" id="logo">
-                    <img src="images/logo.png" alt="..." class="img-fluid" width="150px"/>
+                    <img src="images/logo.png" alt="logo" class="img-fluid" width="150px"/>
                   </div>
                   <p class="col-md-auto" id="para">
                       GSSOC is a 3 months long <br />
@@ -258,7 +262,47 @@
         </div>
     </div>
 </div>
-  
+
+  <!----------About Section----------->
+
+  <section class="section about-section " id="about">
+    <div class="container">
+      <h2>About</h2>
+        <div class="row align-items-center flex-row-reverse">
+            <div class="col-lg-6">
+                <div class="about-text go-to">
+                    <p>In general, a bulk email service is a company that allows its customers to send mass email messages to multiple lists of recipients at a specified time. With this service, you can send a single message to thousands of people on a mailing list or a personalized email to each address on a list that can be of any size.</p>
+                    <p>Our application has a feature-rich email builder that lets you build beautiful and responsive emails in minutes. It supports adding and using different email templates as well which ensures consistency and reduced human efforts.</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-avatar">
+                    <img src="/images/favicon.png" title="" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-------technology used section--------->
+
+  <div class="container">
+    <h2 style="padding: 20px;font-size: 6vw;font-family: Montserrat;">Technology Used</h2>
+     <section class="customer-logos slider" style="padding-bottom: 40px;">
+        <div class="slide"><img src="/images/sql.png"></div>
+        <div class="slide"><img src="/images/python.png"></div>
+        <div class="slide"><img src="images/postgresql.png"></div>
+        <div class="slide"><img src="/images/jquery.png"></div>
+        <div class="slide"><img src="/images/javascript.png"></div>
+        <div class="slide"><img src="/images/html.png"></div>
+        <div class="slide"><img src="/images/heroku.png"></div>
+        <div class="slide"><img src="/images/flask.png"></div>
+        <div class="slide"><img src="/images/css-3.png"></div>
+        <div class="slide"><img src="/images/bootstrap.png"></div>
+     </section>
+  </div>
+
+
   <!-- Footer -->
 
   <footer class="white-section" id="footer">
@@ -271,6 +315,32 @@
     </div>
   </footer>
 
+
+  <!---slider script---->
+<script>
+  $(document).ready(function(){
+  $('.customer-logos').slick({
+      slidesToShow: 6,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 1500,
+      arrows: false,
+      dots: false,
+      pauseOnHover: false,
+      responsive: [{
+          breakpoint: 768,
+          settings: {
+              slidesToShow: 4
+          }
+      }, {
+          breakpoint: 520,
+          settings: {
+              slidesToShow: 3
+          }
+      }]
+  });
+});
+</script>
 
 </body>
 
