@@ -1,105 +1,220 @@
 {% extends "base.html" %} {% block body %}
 <!-- Begin Page Content -->
 <div class="container-fluid">
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">GROUPS LIST</h1>
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div
+        class="alert alert-{{ category }} alert-dismissible fade show"
+        role="alert"
+      >
+        {{ message}}
+      </div>
+      {% endfor %} {% endif %} {% endwith %}
 
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Groups List</h1>
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                          {% if messages %}
-                          {% for category, message in messages %}
-                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                        {{ message}}</div>
-                        {% endfor %}
-                       {% endif %}
-                      {% endwith %}
-
-
-        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addgroup">
-                    Add Group
-                </button>
-                <!-- Modal -->
-                <div class="modal fade" id="addgroup" tabindex="-1" role="dialog" aria-labelledby="addTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Add Group</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/new/group" method="post">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Group Name</label>
-                                        <input type="text" class="form-control" name="groupname" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Group Name...">
-                                        <small id="emailHelp" class="form-text text-muted">This will be your new group name. Ex Newsletter...</small>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
-                            </div>
-                            <br>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="auto" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Group Name</th>
-                            <th>Date Created</th>
-                            <th style="width: 10%;">Delete</th>
-                            <th>Send Mail</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>#</th>
-                            <th>Group Name</th>
-                            <th>Date Created</th>
-                            <th style="width: 10%;">Delete</th>
-                            <th>Send Mail</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-{#                                    Start loop#}
-{% for group in groups %}
-                        <tr>
-                        <td>{{ group.id }}</td>
-                            <td>
-                                <a style="text-decoration: none;" href="/view/subscribers/{{ group.id }}">{{ group.name }}</a></td>
-                            <td>{{ group.date }}</td>
-                            <td>
-                                <a href="/delete/group/{{ group.id }}" class="btn btn-danger btn-circle">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="/use/group/{{ group.id}}" class="btn btn-success btn-circle">
-                                    <span class="icon text-white-50">
-                                                        <i style="color: white" class="fas fa-paper-plane"></i>
-                                                    </span>
-{#                                    <span class="text">SEND</span>#}
-                                </a>
-                            </td>
-                        </tr>
-{#                                    end loop#}
-{% endfor %}
-                    </tbody>
-                </table>
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-toggle="modal"
+        data-target="#addgroup"
+      >
+        ADD GROUP
+      </button>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="addgroup"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="addTitle"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">ADD GROUP</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
+            <div class="modal-body">
+              <form action="/new/group" method="post">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Group Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="groupname"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter Group Name..."
+                  />
+                  <small id="emailHelp" class="form-text text-muted"
+                    >This will be your new group name. Ex Newsletter...</small
+                  >
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+            <br />
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="auto"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>GROUP NAME</th>
+              <th>CREATED DATE</th>
+              <th style="width: 10%">EDIT</th>
+              <th style="width: 10%">DELETE</th>
+              <th>SEND MAIL</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>#</th>
+              <th>GROUP NAME</th>
+              <th>CREATED DATE</th>
+              <th style="width: 10%">EDIT</th>
+              <th style="width: 10%">DELETE</th>
+              <th>SEND MAIL</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            {# Start loop#} {% for group in groups %}
+            <tr>
+              <td>{{ group.id }}</td>
+              <td>
+                <a
+                  style="text-decoration: none"
+                  href="/view/subscribers/{{ group.id }}"
+                  >{{ group.name }}</a
+                >
+              </td>
+              <td>{{ group.date }}</td>
+              <td>
+                <a
+                  onclick="editGrp('{{group.id}}')"
+                  style="cursor: pointer"
+                  class="btn btn-primary btn-circle"
+                >
+                  <i class="fas fa-edit"></i>
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/delete/group/{{ group.id }}"
+                  class="btn btn-danger btn-circle"
+                >
+                  <i class="fas fa-trash"></i>
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/use/group/{{ group.id}}"
+                  class="btn btn-success btn-circle"
+                >
+                  <span class="icon text-white-50">
+                    <i style="color: white" class="fas fa-paper-plane"></i>
+                  </span>
+                  {# <span class="text">SEND</span>#}
+                </a>
+              </td>
+            </tr>
+            {# end loop#} {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- /.container-fluid -->
+<script>
+  function editGrp(grpId) {
+    fetch(`/edit/group/${grpId}`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        Swal.fire({
+          title: "Update Group Details",
+          html: `<form action="" method="POST" id="editGrpForm">
+          <input type="text" id="name" name="name" class="swal2-input" value="${data.group.name}" placeholder="Name">
+        </form>
+        `,
+          confirmButtonText: "Update",
+          focusConfirm: false,
+          customClass: {
+            confirmButton: "btn btn-primary btn-lg",
+          },
+          showLoaderOnConfirm: true,
+          preConfirm: () => {
+            const name = Swal.getPopup().querySelector("#name").value;
+            if (!name) {
+              Swal.showValidationMessage(`Name is missing`);
+            }
+            return {
+              name: name,
+            };
+          },
+          allowOutsideClick: () => !Swal.isLoading(),
+        }).then((result) => {
+          if (result.value) {
+            fetch(`/edit/group/${grpId}`, {
+              body: JSON.stringify({
+                name: result.value.name,
+              }),
+              method: "POST",
+            })
+              .then((res) => res.json())
+              .then((data2) => {
+                if (data2.group_success) {
+                  Swal.fire({
+                    icon: "success",
+                    title: "Updated",
+                    html: `${data2.group_success}`,
+                  });
+                  window.location.reload();
+                } else if (data2.group_duplicate) {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Already exists",
+                    html: `${data2.group_duplicate}`,
+                  });
+                } else {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Oops..",
+                    text: `${data2.group_error}`,
+                  });
+                }
+              });
+          }
+        });
+      });
+  }
+</script>
 {% endblock %}

@@ -32,7 +32,7 @@
                                           <input type="text" name="name" class="form-control" id="exampleInputtext" required>
                                         </div>
                                             <div class="input-group mb-3" style="width: 70%;">
-                                                <input type="text" name="username" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
+                                                <input type="text" id="username" name="username" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" required readonly>
                                                 <div class="input-group-append">
                                                   <span class="input-group-text" id="basic-addon2">@bulkmailer.cf</span>
                                                 </div>
@@ -87,8 +87,8 @@
                                             
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 {#                                                Start Loop#}
-{% for template in template %}
-                                              <a class="dropdown-item" href="/use/template/{{ template.id }}">{{ template.name }}</a>
+{% for temp in template %}
+                                              <a class="dropdown-item" onclick="useTemplate('{{temp.id}}')" style="cursor: pointer;">{{ temp.name }}</a>
 {% endfor %}
 {#                                                End Loop#}
 
@@ -103,4 +103,17 @@
 
                 </div>
                 <!-- /.container-fluid -->
+<script>
+    function useTemplate(temp_id){
+        console.log("Sending request")
+        fetch(`/use/template/${temp_id}`,{
+            method: "GET"
+        })
+        .then((res) => res.json())
+        .then((data)=>{
+            $(".note-editable").html(`${data.post.content}`);
+            $("#username").removeAttr("readonly");
+        })
+    }
+</script>
 {% endblock %}

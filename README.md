@@ -3,8 +3,8 @@
 
 ## Overview of the Topic:
 
-Bulk Mailer is a Mail Client web application that can be used by organisations to send bulk emails for different groups of subscribers. In general, a bulk email service is a company that allows its customers to send mass email messages to multiple lists of recipients at a specified time. With this service, you can send a single message to thousands of people on a mailing list or a personalized email to each address on a list that can be of any size.
-Today, marketers prefer to use bulk email services to deliver important messages with minimal effort. Unlike junk emails sent without the recipients’ permission, bulk emails are legal marketing campaigns since the recipients subscribe to receive them. However, if bulk email marketing is not properly managed, users may consider it spam, and consequently, it may hurt sender reputation.
+Bulk Mailer is a Mail Client web application that can be used by organizations to send bulk emails for different groups of subscribers. In general, a bulk email service is a company that allows its customers to send mass email messages to multiple lists of recipients at a specified time. With this service, you can send a single message to thousands of people on a mailing list or a personalized email to each address on a list that can be of any size.
+Today, marketers prefer to use bulk email services to deliver important messages with minimal effort. Unlike junk emails sent without the recipients’ permission, bulk emails are legal marketing campaigns since the recipients subscribe to receive them. However, if bulk email marketing is not properly managed, users may consider it spam, and consequently, it may hurt the sender’s reputation.
 
 Most of the bulk email service providers price their offerings based on the number and frequency of the emails one wants to send. But, after registering with Bulk Mailer, you can send bulk emails free of charge!
 
@@ -14,7 +14,7 @@ Our application has a feature-rich email builder that lets you build beautiful a
 
 Bulk mailing is an incredibly useful tool for any business as it aims to promote a business or sell goods or even develop relationships. Sending thousands or tens of thousands of messages to even just a couple of email addresses would be draining due to the amount of time and effort required. Moreover, the cost of running such a campaign would not be sustainable for any business. Using a bulk email service is cheaper, faster, and much more convenient.
 
-This service is a prime example of how you can utilise technology to enhance traditional marketing methods. Time-saving is, of course, one of the big advantages with bulk mailing, but there are plenty of other benefits too like the ability to spark engagement. More businesses are now seeing the benefits of combining direct mail campaigns with digital marketing methods.
+This service is a prime example of how you can utilize technology to enhance traditional marketing methods. Time-saving is, of course, one of the big advantages of bulk mailing, but there are plenty of other benefits too like the ability to spark engagement. More businesses are now seeing the benefits of combining direct mail campaigns with digital marketing methods.
 
 
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/vigneshshettyin/Bulk-Mailer/issues)
@@ -31,26 +31,46 @@ But if you want to **Contribute** and make this much better for other developer 
 If you created something awesome and want to contribute then feel free to open Please don't hesitate to open an [Pull Request](https://github.com/vigneshshettyin/Bulk-Mailer/pulls).
 
 ## Tech Stack:
-<img alt="CSS3" src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/> <img alt="HTML5" src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/> <img alt="Python" src="https://img.shields.io/badge/python%20-%2314354C.svg?&style=for-the-badge&logo=python&logoColor=white"/> <img alt="JavaScript" src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
+<img alt="CSS3" src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/> 	<img alt="HTML5" src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/> <img alt="Python" src="https://img.shields.io/badge/python%20-%2314354C.svg?&style=for-the-badge&logo=python&logoColor=white"/> <img alt="JavaScript" src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/> <img alt="Bootstrap" src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white"/> <img alt="jQuery" src="https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white"/> <img alt="Flask" src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white"/> <img alt="PostgreSQL" src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white"/> <img alt="SQLite" src="https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white"/> <img alt="Heroku" src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white"/>
 
 
 ## Getting Started 🚀
 
 ## How To Use 🔧
 
-```bash
-# Clone this repository
+**1.** Clone this repository to your local environment
+ ```shell
 $ git clone https://github.com/vigneshshettyin/Bulk-Mailer.git
-
-# Go into the repository
-$ cd Bulk-Mailer
-
-# Install Requirements
-$ pip3 install -r requirements.txt
-
-#Start development server
- http://127.0.0.1
 ```
+
+**2.** Change directory into the cloned repository  
+ ```shell
+$ cd Bulk-Mailer
+```
+
+**3.** Setup virtual environment
+ ```shell
+$ py -m venv env
+$ .\env\Scripts\activate
+```
+
+**4.** Install requirements from requirements.txt  
+ ```shell
+$ pip3 install -r requirements.txt
+```
+
+**5.** Run the development server
+ ```shell
+$ python3 app.py
+```
+or
+ ```shell
+$ flask run
+```
+
+Now fire up your favorite web browser and go to http://127.0.0.1:5000/
+You will find the application running there.
+
 ## Live Deployment 📦
 
  Click Here to view the deployment!
@@ -99,3 +119,20 @@ If you can help us with these. Please don't hesitate to open a [Pull Request](ht
 <a href="https://github.com/vigneshshettyin/Bulk-Mailer/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=vigneshshettyin/Bulk-Mailer" />
 </a>
+
+## Show some ❤️ by starring the repository
+
+<table><tr><td valign="top" width="50%">
+ 
+ 
+[![Forkers repo roster for @vigneshshettyin/Bulk-Mailer](https://reporoster.com/forks/vigneshshettyin/Bulk-Mailer)](https://github.com/vigneshshettyin/Bulk-Mailer/network/members)
+
+
+</td><td valign="top" width="50%">
+ 
+ 
+[![Stargazers repo roster for @vigneshshettyin/Bulk-Mailer](https://reporoster.com/stars/vigneshshettyin/Bulk-Mailer)](https://github.com/vigneshshettyin/Bulk-Mailer/stargazers)
+
+
+</td></tr></table>  
+

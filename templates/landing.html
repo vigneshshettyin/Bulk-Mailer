@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>BulkMailer</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="{{ url_for('static', filename='css/landing.css') }}" rel="stylesheet">
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="ico" sizes="16x16">
+
+  <!-- Font Awesome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+  <!-- Bootstrap Scripts -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <section class="colored-section" id="title">
+
+    <div class="container-fluid">
+
+      <!-- Nav Bar -->
+
+      <nav class="navbar navbar-expand-lg navbar-dark">
+
+        <a class="navbar-brand" href=""><img src="{{ url_for('static', filename='img/favicon.png') }}" width="40px"></a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#Mentors">Mentors</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#Contributors">Contributors</a>
+            </li>
+            <li class="nav-item">
+              <!----dashboard link------>
+              <a class="nav-link" href="#about">About</a> 
+            </li>
+
+            <li class="nav-item">
+              <!----dashboard link------>
+              <a class="nav-link" href="/login">Login</a> 
+            </li>
+          </ul>
+
+        </div>
+      </nav>
+
+
+      <!-- Title -->
+
+      <div class="row">
+
+        <div class="col-lg-6">
+          <h1 class="big-heading">BulkMailer</h1>
+          <p id="intro">Bulk Mailer is a Mail Client web application that can be used by organisations to send bulk emails for different groups of subscribers.</p>
+
+          <!-------link to the dashboard onclick------->
+
+        <a href="#about">  <button type="button"  class="btn btn-outline-light btn-lg download-button" >Get Started</button></a>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card mb-3" style="min-width: 420px;max-width: 540px;border-radius: 50px;display: inline-block;">
+            <div class="row g-0">
+             
+              <div class="col-md-auto">
+                <div class="card-body" style="position: relative;">
+                  <h4 class="card-title" id="tagline">Open Source Events Project <br/>is associated  with : <span style="color: #ef6f00;">GSSOC</span></h4>
+                  <div class="col-md-auto" id="logo">
+                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo" class="img-fluid" width="150px"/>
+                  </div>
+                  <p class="col-md-auto" id="para">
+                      GSSOC is a 3 months long <br />
+                      Open Source program <br />
+                      during summers <br />
+                      conduted by GirlScript <br />
+                      Foundation with an aim to <br />
+                      help begineers get started <br />
+                      with Open Source <br />
+                      Development while <br />
+                      encouraging diversity. 
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+<!--mentor-->
+
+<div class="container" id="Mentors">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title  text-center ">
+                    <h3 class="top-sep">Mentors</h3>
+                </div>
+            </div>
+        </div>
+        <!-----Row------->
+        <div class="row justify-content-center">
+          <!---cols----->
+            <div class="col-md-6 col-lg-4 mb-30">
+                <div class="team-item">
+                    <div class="mb-30 position-relative d-flex align-items-center">
+                            <span class="socials d-inline-block">
+                                <a href="#" class="zmdi zmdi-facebook"></a>
+                                <a href="https://www.twitter.com/vigneshshettyin" class="zmdi zmdi-twitter"></a>
+                                <a href="https://www.linkedin.com/in/vigneshshettyin/" class="zmdi zmdi-linkedin"></a>
+                                <a href="https://github.com/vigneshshettyin" class="zmdi zmdi-github"></a>
+                            </span>
+                        <span class="img-holder d-inline-block">
+                                <img src="https://avatars.githubusercontent.com/u/77713888?s=460&u=0e918e87ea6d336a6b88a26f5de7111836035d7c&v=4" alt="Team">
+                            </span>
+                    </div>
+                    <div class="team-content">
+                        <h5 class="mb-2">Vignesh</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 mb-30">
+                <div class="team-item">
+                    <div class="mb-30 position-relative d-flex align-items-center">
+                            <span class="socials d-inline-block">
+                                <a href="#" class="zmdi zmdi-facebook"></a>
+                                <a href="#" class="zmdi zmdi-twitter"></a>
+                                <a href="https://www.linkedin.com/in/shanwill-pinto-b286b7184/" class="zmdi zmdi-linkedin"></a>
+                                <a href="https://github.com/data-charya" class="zmdi zmdi-github"></a>
+                            </span>
+                        <span class="img-holder d-inline-block">
+                                <img src="https://avatars.githubusercontent.com/u/62848565?s=400&u=720456e69554e95661703a6ad9360c92a715b478&v=4" alt="Team">
+                            </span>
+                    </div>
+                    <div class="team-content">
+                        <h5 class="mb-2">Shanwill Pinto</h5>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4 mb-30">
+                <div class="team-item">
+                    <div class="mb-30 position-relative d-flex align-items-center">
+                            <span class="socials d-inline-block">
+                                <a href="#" class="zmdi zmdi-facebook"></a>
+                                <a href="#" class="zmdi zmdi-twitter"></a>
+                                <a href="https://www.linkedin.com/in/raksharaj-shetty-7361321b2/" class="zmdi zmdi-linkedin"></a>
+                                <a href="#" class="zmdi zmdi-github"></a>
+                            </span>
+                        <span class="img-holder d-inline-block">
+                                <img src="https://media-exp1.licdn.com/dms/image/C5635AQH-n8zzOCTCJg/profile-framedphoto-shrink_200_200/0/1607897185789?e=1617937200&v=beta&t=F3-xq4nMx4dc5lCJh-tRW-UJlWppsDjZLjaiL5k3bns" alt="Team">
+                            </span>
+                    </div>
+                    <div class="team-content">
+                        <h5 class="mb-2">Raksharaj Shetty</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 mb-30">
+                <div class="team-item">
+                    <div class="mb-30 position-relative d-flex align-items-center">
+                            <span class="socials d-inline-block">
+                                <a href="#" class="zmdi zmdi-facebook"></a>
+                                <a href="#" class="zmdi zmdi-twitter"></a>
+                                <a href="https://www.linkedin.com/in/laureenfernandes/" class="zmdi zmdi-linkedin"></a>
+                                <a href="#" class="zmdi zmdi-github"></a>
+                            </span>
+                        <span class="img-holder d-inline-block">
+                                <img src="https://media-exp1.licdn.com/dms/image/C5603AQGATxe6tJVqnQ/profile-displayphoto-shrink_200_200/0/1595159549102?e=1623283200&v=beta&t=27ecLr2m3fLZSuBWxkRI-2adW83GyrQ4kXgJ9ADmgGo" alt="Team">
+                            </span>
+                    </div>
+                    <div class="team-content">
+                        <h5 class="mb-2">Laureen Fernandes</h5>
+                    </div>
+                </div>
+            </div>
+          </div>
+</div>
+ 
+  <!--contributors-->
+  <div class="container" id=Contributors>
+    <div class="row">
+        <div class="col-12">
+            <div class="section-title title-left text-center text-lg-left">
+                <h3 class="top-sep1">Contributors</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+      
+      {% for t,d in team.items() %}
+
+        <div class="col-md-6 col-lg-4 mb-30">
+            <div class="team-item">
+                <div class="mb-30 position-relative d-flex align-items-center">
+                        <span class="socials d-inline-block">
+                          <a href="#" class="zmdi zmdi-facebook"></a>
+                          <a href="#" class="zmdi zmdi-twitter"></a>
+                          <a href="#" class="zmdi zmdi-linkedin"></a>
+                          <a href="https://github.com/{{d.username}}" class="zmdi zmdi-github"></a>
+                        </span>
+                    <span class="img-holder d-inline-block">
+                            <img src="{{ d.image }}" alt="{{ d.name }}">
+                        </span>
+                </div>
+                <div class="team-content">
+                    <h5 class="mb-2">{{ d.name }}</h5>
+                </div>
+            </div>
+        </div>
+
+
+        {% endfor %}
+
+    </div>
+</div>
+
+  <!----------About Section----------->
+
+  <section class="section about-section " id="about">
+    <div class="container">
+      <h2>About</h2>
+        <div class="row align-items-center flex-row-reverse">
+            <div class="col-lg-6">
+                <div class="about-text go-to">
+                    <p>In general, a bulk email service is a company that allows its customers to send mass email messages to multiple lists of recipients at a specified time. With this service, you can send a single message to thousands of people on a mailing list or a personalized email to each address on a list that can be of any size.</p>
+                    <p>Our application has a feature-rich email builder that lets you build beautiful and responsive emails in minutes. It supports adding and using different email templates as well which ensures consistency and reduced human efforts.</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-avatar">
+                    <img src="{{ url_for('static', filename='img/favicon.png') }}" title="" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-------technology used section--------->
+
+  <div class="container">
+    <h2 style="padding: 20px;font-size: 6vw;font-family: Montserrat;">Technology Used</h2>
+     <section class="customer-logos slider" style="padding-bottom: 40px;">
+        <div class="slide"><img src="{{ url_for('static', filename='img/sql.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/python.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/postgresql.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/jquery.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/javascript.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/html.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/heroku.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/flask.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/css-3.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/bootstrap.png') }}"></div>
+     </section>
+  </div>
+
+
+  <!-- Footer -->
+
+  <footer class="white-section" id="footer">
+    <div class="container-fluid" id="social-icon">
+      <a href="#" class="fab fa-facebook"></a> 
+      <a href="#" class="fab fa-twitter"></a>
+      <a href="#" class="fab fa-linkedin"></a>
+      <a href="#" class="fab fa-github"></a>
+      <p>© Copyright 2021 BulkMailer</p>
+    </div>
+  </footer>
+
+
+  <!---slider script---->
+<script>
+  $(document).ready(function(){
+  $('.customer-logos').slick({
+      slidesToShow: 6,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 1500,
+      arrows: false,
+      dots: false,
+      pauseOnHover: false,
+      responsive: [{
+          breakpoint: 768,
+          settings: {
+              slidesToShow: 4
+          }
+      }, {
+          breakpoint: 520,
+          settings: {
+              slidesToShow: 3
+          }
+      }]
+  });
+});
+</script>
+
+</body>
+
+</html>

@@ -34,6 +34,7 @@ Example how to mark a checkbox:-
 - [ ] I have commented my code, particularly whereever it was hard to understand.
 - [ ] My changes generate no new warnings.
 - [ ] Any dependent changes have been merged and published in downstream modules.
+- [ ] I am a GSSOC Participant.
 
 ## Additional Info (optional)
 Any additional information you want to give
