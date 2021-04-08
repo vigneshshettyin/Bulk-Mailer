@@ -11,7 +11,8 @@
   <!-- CSS Stylesheets -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/styles.css">
+  <link href="{{ url_for('static', filename='css/landing.css') }}" rel="stylesheet">
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="ico" sizes="16x16">
 
   <!-- Font Awesome -->
   <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
@@ -33,7 +34,7 @@
 
       <nav class="navbar navbar-expand-lg navbar-dark">
 
-        <a class="navbar-brand" href=""><img src="images/favicon.png" width="40px"></a>
+        <a class="navbar-brand" href=""><img src="{{ url_for('static', filename='img/favicon.png') }}" width="40px"></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
             <span class="navbar-toggler-icon"></span>
@@ -52,6 +53,11 @@
               <!----dashboard link------>
               <a class="nav-link" href="#about">About</a> 
             </li>
+
+            <li class="nav-item">
+              <!----dashboard link------>
+              <a class="nav-link" href="/login">Login</a> 
+            </li>
           </ul>
 
         </div>
@@ -68,7 +74,7 @@
 
           <!-------link to the dashboard onclick------->
 
-          <button type="button" class="btn btn-outline-light btn-lg download-button">Get Started</button>
+        <a href="#about">  <button type="button"  class="btn btn-outline-light btn-lg download-button" >Get Started</button></a>
         </div>
 
         <div class="col-lg-6">
@@ -79,7 +85,7 @@
                 <div class="card-body" style="position: relative;">
                   <h4 class="card-title" id="tagline">Open Source Events Project <br/>is associated  with : <span style="color: #ef6f00;">GSSOC</span></h4>
                   <div class="col-md-auto" id="logo">
-                    <img src="images/logo.png" alt="logo" class="img-fluid" width="150px"/>
+                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo" class="img-fluid" width="150px"/>
                   </div>
                   <p class="col-md-auto" id="para">
                       GSSOC is a 3 months long <br />
@@ -122,9 +128,9 @@
                     <div class="mb-30 position-relative d-flex align-items-center">
                             <span class="socials d-inline-block">
                                 <a href="#" class="zmdi zmdi-facebook"></a>
-                                <a href="#" class="zmdi zmdi-twitter"></a>
-                                <a href="#" class="zmdi zmdi-linkedin"></a>
-                                <a href="#" class="zmdi zmdi-github"></a>
+                                <a href="https://www.twitter.com/vigneshshettyin" class="zmdi zmdi-twitter"></a>
+                                <a href="https://www.linkedin.com/in/vigneshshettyin/" class="zmdi zmdi-linkedin"></a>
+                                <a href="https://github.com/vigneshshettyin" class="zmdi zmdi-github"></a>
                             </span>
                         <span class="img-holder d-inline-block">
                                 <img src="https://avatars.githubusercontent.com/u/77713888?s=460&u=0e918e87ea6d336a6b88a26f5de7111836035d7c&v=4" alt="Team">
@@ -142,8 +148,8 @@
                             <span class="socials d-inline-block">
                                 <a href="#" class="zmdi zmdi-facebook"></a>
                                 <a href="#" class="zmdi zmdi-twitter"></a>
-                                <a href="#" class="zmdi zmdi-linkedin"></a>
-                                <a href="#" class="zmdi zmdi-github"></a>
+                                <a href="https://www.linkedin.com/in/shanwill-pinto-b286b7184/" class="zmdi zmdi-linkedin"></a>
+                                <a href="https://github.com/data-charya" class="zmdi zmdi-github"></a>
                             </span>
                         <span class="img-holder d-inline-block">
                                 <img src="https://avatars.githubusercontent.com/u/62848565?s=400&u=720456e69554e95661703a6ad9360c92a715b478&v=4" alt="Team">
@@ -162,11 +168,11 @@
                             <span class="socials d-inline-block">
                                 <a href="#" class="zmdi zmdi-facebook"></a>
                                 <a href="#" class="zmdi zmdi-twitter"></a>
-                                <a href="#" class="zmdi zmdi-linkedin"></a>
+                                <a href="https://www.linkedin.com/in/raksharaj-shetty-7361321b2/" class="zmdi zmdi-linkedin"></a>
                                 <a href="#" class="zmdi zmdi-github"></a>
                             </span>
                         <span class="img-holder d-inline-block">
-                                <img src="https://picsum.photos/200" alt="Team">
+                                <img src="https://media-exp1.licdn.com/dms/image/C5635AQH-n8zzOCTCJg/profile-framedphoto-shrink_200_200/0/1607897185789?e=1617937200&v=beta&t=F3-xq4nMx4dc5lCJh-tRW-UJlWppsDjZLjaiL5k3bns" alt="Team">
                             </span>
                     </div>
                     <div class="team-content">
@@ -181,15 +187,15 @@
                             <span class="socials d-inline-block">
                                 <a href="#" class="zmdi zmdi-facebook"></a>
                                 <a href="#" class="zmdi zmdi-twitter"></a>
-                                <a href="#" class="zmdi zmdi-linkedin"></a>
+                                <a href="https://www.linkedin.com/in/laureenfernandes/" class="zmdi zmdi-linkedin"></a>
                                 <a href="#" class="zmdi zmdi-github"></a>
                             </span>
                         <span class="img-holder d-inline-block">
-                                <img src="https://picsum.photos/200" alt="Team">
+                                <img src="https://media-exp1.licdn.com/dms/image/C5603AQGATxe6tJVqnQ/profile-displayphoto-shrink_200_200/0/1595159549102?e=1623283200&v=beta&t=27ecLr2m3fLZSuBWxkRI-2adW83GyrQ4kXgJ9ADmgGo" alt="Team">
                             </span>
                     </div>
                     <div class="team-content">
-                        <h5 class="mb-2">Laureen</h5>
+                        <h5 class="mb-2">Laureen Fernandes</h5>
                     </div>
                 </div>
             </div>
@@ -206,6 +212,9 @@
         </div>
     </div>
     <div class="row justify-content-center">
+      
+      {% for t,d in team.items() %}
+
         <div class="col-md-6 col-lg-4 mb-30">
             <div class="team-item">
                 <div class="mb-30 position-relative d-flex align-items-center">
@@ -213,53 +222,21 @@
                           <a href="#" class="zmdi zmdi-facebook"></a>
                           <a href="#" class="zmdi zmdi-twitter"></a>
                           <a href="#" class="zmdi zmdi-linkedin"></a>
-                          <a href="#" class="zmdi zmdi-github"></a>
+                          <a href="https://github.com/{{d.username}}" class="zmdi zmdi-github"></a>
                         </span>
                     <span class="img-holder d-inline-block">
-                            <img src="https://picsum.photos/200" alt="Team">
+                            <img src="{{ d.image }}" alt="{{ d.name }}">
                         </span>
                 </div>
                 <div class="team-content">
-                    <h5 class="mb-2">[Contributor name]</h5>
+                    <h5 class="mb-2">{{ d.name }}</h5>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-4 mb-30">
-            <div class="team-item">
-                <div class="mb-30 position-relative d-flex align-items-center">
-                        <span class="socials d-inline-block">
-                          <a href="#" class="zmdi zmdi-facebook"></a>
-                          <a href="#" class="zmdi zmdi-twitter"></a>
-                          <a href="#" class="zmdi zmdi-linkedin"></a>
-                          <a href="#" class="zmdi zmdi-github"></a>
-                        </span>
-                    <span class="img-holder d-inline-block">
-                            <img src="https://picsum.photos/200" alt="Team">
-                        </span>
-                </div>
-                <div class="team-content">
-                    <h5 class="mb-2">[Contributor name]</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-4 mb-30">
-            <div class="team-item">
-                <div class="mb-30 position-relative d-flex align-items-center">
-                        <span class="socials d-inline-block">
-                          <a href="#" class="zmdi zmdi-facebook"></a>
-                          <a href="#" class="zmdi zmdi-twitter"></a>
-                          <a href="#" class="zmdi zmdi-linkedin"></a>
-                          <a href="#" class="zmdi zmdi-github"></a>
-                        </span>
-                    <span class="img-holder d-inline-block">
-                            <img src="https://picsum.photos/200" alt="Team">
-                        </span>
-                </div>
-                <div class="team-content">
-                    <h5 class="mb-2">[Contributor name]</h5>
-                </div>
-            </div>
-        </div>
+
+
+        {% endfor %}
+
     </div>
 </div>
 
@@ -277,7 +254,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="about-avatar">
-                    <img src="/images/favicon.png" title="" alt="">
+                    <img src="{{ url_for('static', filename='img/favicon.png') }}" title="" alt="">
                 </div>
             </div>
         </div>
@@ -289,16 +266,16 @@
   <div class="container">
     <h2 style="padding: 20px;font-size: 6vw;font-family: Montserrat;">Technology Used</h2>
      <section class="customer-logos slider" style="padding-bottom: 40px;">
-        <div class="slide"><img src="/images/sql.png"></div>
-        <div class="slide"><img src="/images/python.png"></div>
-        <div class="slide"><img src="images/postgresql.png"></div>
-        <div class="slide"><img src="/images/jquery.png"></div>
-        <div class="slide"><img src="/images/javascript.png"></div>
-        <div class="slide"><img src="/images/html.png"></div>
-        <div class="slide"><img src="/images/heroku.png"></div>
-        <div class="slide"><img src="/images/flask.png"></div>
-        <div class="slide"><img src="/images/css-3.png"></div>
-        <div class="slide"><img src="/images/bootstrap.png"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/sql.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/python.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/postgresql.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/jquery.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/javascript.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/html.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/heroku.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/flask.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/css-3.png') }}"></div>
+        <div class="slide"><img src="{{ url_for('static', filename='img/bootstrap.png') }}"></div>
      </section>
   </div>
 

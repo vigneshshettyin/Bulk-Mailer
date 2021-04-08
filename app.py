@@ -180,8 +180,8 @@ def match_passwords():
     return jsonify(password_mismatch='Password and Confirm Password do not match.')
 
 
-#login route
-@app.route('/login', methods = ['GET', 'POST'])
+# login route
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     # check if user is authenticated
     if current_user.is_authenticated:
@@ -420,8 +420,7 @@ def edit_group(group_id):
             return jsonify(group_success="Group edited successfully.")
         except Exception:
             return jsonify(
-                group_error=
-                "SOmething went wrong while editing. Please try again")
+                group_error="SOmething went wrong while editing. Please try again")
     else:
         try:
             grp = Group.query.filter_by(id=group_id).first()
@@ -741,7 +740,7 @@ def add_template():
 def home_page():
     response = requests.get(json["contributors_api"])
     team = response.json()
-    return render_template('home.html', team=team)
+    return render_template('landing.html', team=team)
 
 
 # dashboard page
