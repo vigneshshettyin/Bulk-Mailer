@@ -1,3 +1,7 @@
+html
+{
+  scroll-behavior: smooth;
+}
 .parent-div1 {
   height: 100%;
 }
@@ -68,3 +72,4 @@
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
+
