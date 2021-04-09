@@ -79,6 +79,106 @@ a
   }
 }
 
+body {
+    background: #D0D8DB;
+    padding-top: 60px;
+}
+
+textarea {
+    resize: none;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+@charset "UTF-8";
+
+.svg-inline--fa {
+  vertical-align: -0.200em;
+}
+
+.rounded-social-buttons {
+  text-align: center;
+}
+
+.rounded-social-buttons .social-button {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  width: 3.125rem;
+  height: 3.125rem;
+  border: 0.125rem solid transparent;
+  padding: 0;
+  text-decoration: none;
+  text-align: center;
+  color: #fefefe;
+  font-size: 1.5625rem;
+  font-weight: normal;
+  line-height: 2em;
+  border-radius: 1.6875rem;
+  transition: all 0.5s ease;
+  margin-right: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.rounded-social-buttons .social-button:hover, .rounded-social-buttons .social-button:focus {
+  -webkit-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
+.rounded-social-buttons .fa-twitter, .fa-facebook-f, .fa-linkedin, .fa-youtube, .fa-instagram {
+  font-size: 25px;
+}
+
+.rounded-social-buttons .social-button.facebook {
+  background: #3b5998;
+}
+
+.rounded-social-buttons .social-button.facebook:hover, .rounded-social-buttons .social-button.facebook:focus {
+  color: #3b5998;
+  background: #fefefe;
+  border-color: #3b5998;
+}
+
+.rounded-social-buttons .social-button.twitter {
+  background: #55acee;
+}
+
+.rounded-social-buttons .social-button.twitter:hover, .rounded-social-buttons .social-button.twitter:focus {
+  color: #55acee;
+  background: #fefefe;
+  border-color: #55acee;
+}
+
+.rounded-social-buttons .social-button.linkedin {
+  background: #007bb5;
+}
+
+.rounded-social-buttons .social-button.linkedin:hover, .rounded-social-buttons .social-button.linkedin:focus {
+  color: #007bb5;
+  background: #fefefe;
+  border-color: #007bb5;
+}
+
+.rounded-social-buttons .social-button.youtube {
+  background:black;
+}
+
+.rounded-social-buttons .social-button.youtube:hover, .rounded-social-buttons .social-button.youtube:focus {
+  color: black;
+    background: #fff;
+    border-color: black;
+}
+
 
   </style>
 </head>
@@ -344,16 +444,18 @@ a
 
   <!-- Footer -->
 
-  <footer class="white-section" id="footer">
-    <div class="container-fluid" id="social-icon">
-      <a href="#" class="fab fa-facebook"></a> 
-      <a href="#" class="fab fa-twitter"></a>
-      <a href="#" class="fab fa-linkedin"></a>
-      <a href="#" class="fab fa-github"></a>
-      <p>© Copyright 2021 BulkMailer</p>
-    </div>
-  </footer>
-
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
+<footer id="footer" class="py-5">
+<div class="container text-white pt-5">
+  <div class="rounded-social-buttons">
+                    <a class="social-button facebook" href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a class="social-button twitter" href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a class="social-button linkedin" href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a class="social-button youtube" href="#" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+      <p style="color:#fff;">© Copyright 2021 BulkMailer</p>
+</div>
+</footer>
 
   <!---slider script---->
 <script>
