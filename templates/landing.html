@@ -18,7 +18,7 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
   <!-- Bootstrap Scripts -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -178,7 +178,32 @@ textarea {
     border-color: black;
 }
 
+/*preloader*/
 
+.outer{
+    height:100vh;
+    width:100vw;
+   background-color:#b4bdf2;
+    position:absolute;
+    z-index: 100;
+    top:0px;
+    left:0px;
+}
+#mypage
+{
+   position: relative;
+   z-index: 1000;
+   height:55%;
+   width:40%;
+   top:30vh;
+   left:35vw;
+    background: url({{ url_for('static', filename='img/favicon.png') }});
+    background-repeat: no-repeat;
+    text-align: center;
+    justify-content: center;
+    background-size: contain;
+    
+}
   </style>
 </head>
 
@@ -186,6 +211,13 @@ textarea {
     <!-- Back to top button -->
 <a onclick="topFunction()" id="button" title="Go to top"></a>
 
+<!-- preloader -->
+<div class=" text-center outer">
+        <div id="mypage">
+            <!-- <img src="2.png" alt="Loading" /> -->
+       </div>
+    </div>
+  <!-- preloader end-->
 
   <section class="colored-section" id="title">
 
@@ -456,7 +488,7 @@ textarea {
 </div>
 </footer>
 
-  <!---slider script---->
+  <!---slider script -->
 <script>
   $(document).ready(function(){
   $('.customer-logos').slick({
@@ -510,6 +542,16 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
+
+<script>
+        $(document).ready(function(){
+            console.log("ready")
+          $('#mypage').fadeOut(6000);
+            $('.outer').fadeOut(6000);
+           
+        });
+    </script>
+
 </body>
 
 </html>
