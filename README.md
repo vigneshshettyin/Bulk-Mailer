@@ -51,7 +51,10 @@ $ cd Bulk-Mailer
 **3.** Setup virtual environment
  ```shell
 $ py -m venv env
+For Windows:-
 $ .\env\Scripts\activate
+For Linux:-
+$ source env/Scripts/activate
 ```
 
 **4.** Install requirements from requirements.txt  
