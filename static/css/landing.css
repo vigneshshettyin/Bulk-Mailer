@@ -293,7 +293,7 @@ h5 {
 }
 
 .about-text p {
-font-size: 18px;
+font-size: 1rem;
 font-family: Montserrat;
 color: #FFFFFF;
 }
@@ -439,3 +439,4 @@ color: #FFFFFF;
     transform: rotate(0);
   }
 }
+
