@@ -197,25 +197,14 @@ textarea {
    width:40%;
    top:30vh;
    left:35vw;
-    background: url({{ url_for('static', filename='img/favicon.png') }});
+    background: url("/static/img/favicon.png");
     background-repeat: no-repeat;
     text-align: center;
     justify-content: center;
     background-size: contain;
     
 }
-.img-profile
-{
-  width:2.5vw;
-  height:3.5vh;
-}
-@media screen and (max-width: 992px) {
-  .img-profile
-{
-  width:2vw;
-  height:1.5vh;
-}
-}
+
   </style>
 </head>
 
@@ -301,8 +290,8 @@ textarea {
         <a href="#about">  <button type="button"  class="btn btn-outline-light btn-lg download-button" >Get Started</button></a>
         </div>
 
-        <div class="col-lg-6">
-          <div class="card mb-3" style="min-width: 420px;max-width: 540px;border-radius: 50px;display: inline-block;">
+        <div class="col-lg-6 col-sm-11">
+          <div class="card mb-3" style="min-width: 420px;border-radius: 50px;display: inline-block;">
             <div class="row g-0">
              
               <div class="col-md-auto">
@@ -487,8 +476,8 @@ textarea {
 
   <!-- technology used section -->
 
-  <div class="container">
-    <h2 style="padding: 20px;font-size: 6vw;font-family: Montserrat;">Technology Used</h2>
+  <div class="container techused col-sm-11 px-2">
+    <h2 >Technology Used</h2>
      <section class="customer-logos slider" style="padding-bottom: 40px;">
         <div class="slide"><img src="{{ url_for('static', filename='img/sql.png') }}"></div>
         <div class="slide"><img src="{{ url_for('static', filename='img/python.png') }}"></div>

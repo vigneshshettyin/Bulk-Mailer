@@ -440,3 +440,69 @@ color: #FFFFFF;
   }
 }
 
+.techused h2
+{
+  padding: 20px;
+  font-size: 7vw;
+  font-family: Montserrat;
+}
+.img-profile
+{
+  width:2.5vw;
+  height:3.5vh;
+}
+@media screen and (max-width: 992px) {
+  .img-profile
+{
+  width:5vw;
+  height:2.5vh;
+}
+.about-text p {
+  font-size:2.5rem;
+  }
+  .about-section h2
+  {
+    font-size:8rem;
+  }
+  #title .container-fluid {
+    padding: 3% 8% 7%;
+}
+.big-heading
+{
+  font-size: 7rem;
+}
+#intro
+{
+  font-size: 2rem;
+}
+.colored-section button
+{
+  font-size: 3rem;
+}
+#tagline
+{
+  font-size: 3rem;
+}
+#para
+{
+  font-size: 2rem;
+}
+#logo
+{
+  margin-left:471px;
+  padding-top: 3vh;
+}
+.navbar .navbar-brand img
+{
+  width: 5vh;
+  height: 5vh;
+}
+.techused h2
+{
+  font-size: 5rem;
+}
+.navbar-dark .navbar-nav .nav-link
+{
+  font-size: 2.5rem;
+}
+}
