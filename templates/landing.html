@@ -79,143 +79,7 @@ a
   }
 }
 
-body {
-    background: #D0D8DB;
-}
 
-textarea {
-    resize: none;
-}
-
-.text {
-  color: white;
-  font-size: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  white-space: nowrap;
-}
-
-@charset "UTF-8";
-
-.svg-inline--fa {
-  vertical-align: -0.200em;
-}
-
-.rounded-social-buttons {
-  text-align: center;
-}
-
-.rounded-social-buttons .social-button {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  width: 3.125rem;
-  height: 3.125rem;
-  border: 0.125rem solid transparent;
-  padding: 0;
-  text-decoration: none;
-  text-align: center;
-  color: #fefefe;
-  font-size: 1.5625rem;
-  font-weight: normal;
-  line-height: 2em;
-  border-radius: 1.6875rem;
-  transition: all 0.5s ease;
-  margin-right: 0.25rem;
-  margin-bottom: 0.25rem;
-}
-
-.rounded-social-buttons .social-button:hover, .rounded-social-buttons .social-button:focus {
-  -webkit-transform: rotate(360deg);
-      -ms-transform: rotate(360deg);
-          transform: rotate(360deg);
-}
-
-.rounded-social-buttons .fa-twitter, .fa-facebook-f, .fa-linkedin, .fa-youtube, .fa-instagram {
-  font-size: 25px;
-}
-
-.rounded-social-buttons .social-button.facebook {
-  background: #3b5998;
-}
-
-.rounded-social-buttons .social-button.facebook:hover, .rounded-social-buttons .social-button.facebook:focus {
-  color: #3b5998;
-  background: #fefefe;
-  border-color: #3b5998;
-}
-
-.rounded-social-buttons .social-button.twitter {
-  background: #55acee;
-}
-
-.rounded-social-buttons .social-button.twitter:hover, .rounded-social-buttons .social-button.twitter:focus {
-  color: #55acee;
-  background: #fefefe;
-  border-color: #55acee;
-}
-
-.rounded-social-buttons .social-button.linkedin {
-  background: #007bb5;
-}
-
-.rounded-social-buttons .social-button.linkedin:hover, .rounded-social-buttons .social-button.linkedin:focus {
-  color: #007bb5;
-  background: #fefefe;
-  border-color: #007bb5;
-}
-
-.rounded-social-buttons .social-button.youtube {
-  background:black;
-}
-
-.rounded-social-buttons .social-button.youtube:hover, .rounded-social-buttons .social-button.youtube:focus {
-  color: black;
-    background: #fff;
-    border-color: black;
-}
-
-/*preloader*/
-
-.outer{
-    height:100vh;
-    width:100vw;
-   background-color:#b4bdf2;
-    position:absolute;
-    z-index: 100;
-    top:0px;
-    left:0px;
-}
-#mypage
-{
-   position: relative;
-   z-index: 1000;
-   height:55%;
-   width:40%;
-   top:30vh;
-   left:35vw;
-    background: url({{ url_for('static', filename='img/favicon.png') }});
-    background-repeat: no-repeat;
-    text-align: center;
-    justify-content: center;
-    background-size: contain;
-    
-}
-.img-profile
-{
-  width:2.5vw;
-  height:3.5vh;
-}
-@media screen and (max-width: 992px) {
-  .img-profile
-{
-  width:2vw;
-  height:1.5vh;
-}
-}
   </style>
 </head>
 
@@ -255,7 +119,7 @@ textarea {
               <a class="nav-link" href="#Contributors">Contributors</a>
             </li>
             <li class="nav-item">
-              <!----dashboard link------>
+              <!-- dashboard link -->
               <a class="nav-link" href="#about">About</a> 
             </li>
 
@@ -274,11 +138,11 @@ textarea {
                         </li>
             {% else %}
             <li class="nav-item">
-              <!----dashboard link------>
+              <!-- dashboard link -->
               <a class="nav-link" href="/login">Login</a> 
             </li>
 			<li class="nav-item">
-              <!----dashboard link------>
+              <!-- dashboard link -->
               <a class="nav-link" href="/register">Sign Up</a> 
             </li>
             {% endif %}
@@ -296,13 +160,13 @@ textarea {
           <h1 class="big-heading">BulkMailer</h1>
           <p id="intro">Bulk Mailer is a Mail Client web application that can be used by organisations to send bulk emails for different groups of subscribers.</p>
 
-          <!-------link to the dashboard onclick------->
+          <!-- link to the dashboard onclick -->
 
         <a href="#about">  <button type="button"  class="btn btn-outline-light btn-lg download-button" >Get Started</button></a>
         </div>
 
-        <div class="col-lg-6">
-          <div class="card mb-3" style="min-width: 420px;max-width: 540px;border-radius: 50px;display: inline-block;">
+        <div class="col-lg-6 col-sm-11">
+          <div class="card mb-3" style="min-width: 420px;border-radius: 50px;display: inline-block;">
             <div class="row g-0">
              
               <div class="col-md-auto">
@@ -336,7 +200,7 @@ textarea {
 
 <!--mentor-->
 
-<div class="container" id="Mentors">
+<div class="container px-1 col-sm-11" id="Mentors">
         <div class="row">
             <div class="col-12">
                 <div class="section-title  text-center ">
@@ -344,9 +208,9 @@ textarea {
                 </div>
             </div>
         </div>
-        <!-----Row------->
+        <!-- Row -->
         <div class="row justify-content-center">
-          <!---cols----->
+          <!-- cols -->
             <div class="col-md-6 col-lg-4 mb-30">
                 <div class="team-item">
                     <div class="mb-30 position-relative d-flex align-items-center">
@@ -427,7 +291,7 @@ textarea {
 </div>
  
   <!--contributors-->
-  <div class="container" id=Contributors>
+  <div class="container col-lg-10 px-1 col-sm-11" id=Contributors>
     <div class="row">
         <div class="col-12">
             <div class="section-title title-left text-center text-lg-left">
@@ -464,10 +328,10 @@ textarea {
     </div>
 </div>
 
-  <!----------About Section----------->
+  <!-- About Section -->
 
   <section class="section about-section " id="about">
-    <div class="container">
+    <div class="container col-sm-11 px-1">
       <h2>About</h2>
         <div class="row align-items-center flex-row-reverse">
             <div class="col-lg-6">
@@ -485,10 +349,10 @@ textarea {
     </div>
 </section>
 
-  <!-------technology used section--------->
+  <!-- technology used section -->
 
-  <div class="container">
-    <h2 style="padding: 20px;font-size: 6vw;font-family: Montserrat;">Technology Used</h2>
+  <div class="container techused col-sm-11 px-2">
+    <h2 >Technology Used</h2>
      <section class="customer-logos slider" style="padding-bottom: 40px;">
         <div class="slide"><img src="{{ url_for('static', filename='img/sql.png') }}"></div>
         <div class="slide"><img src="{{ url_for('static', filename='img/python.png') }}"></div>
