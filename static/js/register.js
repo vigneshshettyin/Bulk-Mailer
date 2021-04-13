@@ -89,3 +89,23 @@ password2Field.addEventListener("keyup", (e) => {
       });
   }
 });
+
+//for show password
+function showpassforregister()
+{  
+  var password=document.getElementById("exampleInputPassword");
+  var password2=document.getElementById("exampleRepeatPassword");
+  var x=document.getElementById("box").checked;
+  if(x==true)
+  {
+      password.type="text";
+      password2.type="text";
+      
+  }
+  else
+  {
+      password.type="password";
+      password2.type="password";
+      
+  }
+}
