@@ -158,7 +158,15 @@ a
 .theme-light body {
   background-color: aliceblue;
 }
-
+.theme-dark #title , .theme-dark .about-section , .theme-dark #footer
+{
+  background-color: #344d95;
+  color: #fff;
+}
+.theme-dark .top-sep , .theme-dark .top-sep1 , .theme-dark .techused h2
+{
+  color: #fff;
+}
 /* On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
   .switch{
@@ -554,38 +562,13 @@ function topFunction() {
 <script>
         $(document).ready(function(){
             console.log("ready")
-          $('#mypage').fadeOut(6000);
-            $('.outer').fadeOut(6000);
+          $('#mypage').fadeOut(4000);
+            $('.outer').fadeOut(4000);
            
         });
     </script>
 
-    <script>
-      function setTheme(themeName) {
-        localStorage.setItem('theme', themeName);
-        document.documentElement.className = themeName;
-    }
-    
-    // When toggle is switched, check local storage for the currently stored theme, and switch it to the opposite
-    
-    function toggleTheme() {
-        if (localStorage.getItem('theme') === 'theme-dark') {
-            setTheme('theme-light');
-        } else {
-            setTheme('theme-dark');
-        }
-    }
-    
-    // Invoke function on loading page - check storage if a previous theme was stored, if not, load default (light) theme
-    
-    (function () {
-        if (localStorage.getItem('theme') === 'theme-dark') {
-            setTheme('theme-dark');
-        } else {
-            setTheme('theme-light');
-        }
-    })();
-    </script>
+   <script src="/static/js/darkmode.js"></script>
 </body>
 
 </html>
