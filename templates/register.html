@@ -19,12 +19,148 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ url_for('static', filename='css/sb-admin-2.css') }}" rel="stylesheet">
+<style>
+body
+        {
+            padding-top: 2vh;
+        }
+    .switch {
+  position: absolute;
+  display: inline-block;
+  width: 3.8rem;
+  right:1rem;
+  top:1rem;
+  z-index: 10;
+  height: 2.1rem;
+}
 
+/*   // Hide checkbox
+ */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/*   // The slider
+   */
+.slider2 {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  transition: 0.4s ease-in-out;
+}
+
+/*   
+  // Design of slider for light mode
+ */
+.slider2:before {
+  position: absolute;
+  content: "";
+  height: 23px;
+  width: 23px;
+  left: 6px;
+  bottom: 6px;
+  background-color: yellow;
+  box-shadow: 0px 0px 5px 4px #ffd900;
+  transition: 0.4s;
+}
+
+/*   // When theme is dark, background is dark */
+.theme-dark .slider2 {
+  background-color: #3a2864;
+}
+
+/*    // If theme is dark, but slider is to the left, move it to the right and turn it into a moon
+ */
+.theme-dark .slider2:before {
+  transform: translateX(26px);
+  height: 3px;
+  width: 3px;
+  background-color: lightgrey;
+  bottom: 15px;
+  left: 10px;
+  box-shadow: 10px -7px 0px 1px lightgrey, -4px -8px 0px 0px lightgrey, 6px 6px 0px 1px lightgrey, 5px -1px 5px 13px white, 5px -1px 0px 12px white;
+}
+
+/* Rounded sliders */
+.slider2.round {
+  border-radius: 34px;
+}
+
+.slider2.round:before {
+  border-radius: 50%;
+}
+
+.theme-dark body {
+  background-color: black;
+}
+
+.theme-light body {
+  background-color: aliceblue;
+}
+.h4
+{
+    color:black;
+}
+.theme-dark .h4
+{
+    color:#fff;
+}
+.theme-dark .bg-gradient-primary {
+    background-color: #4e73df;
+    background-image: linear-gradient(
+180deg
+, #142964 10%, #0c1b47 100%);
+    background-size: cover;
+}
+.theme-dark .card , .theme-dark .small
+{
+    background-color: black;
+    color: #fff;
+}
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+  .switch{
+    right: 1rem;
+    width: 5rem;
+    top:0.5rem;
+    height: 2.5rem;
+  }
+  .theme-dark .slider2:before {
+    transform: translateX(26px);
+    height: 5px;
+    width: 5px;
+    background-color: lightgrey;
+    bottom: 17px;
+    left: 28px;
+  }
+  .slider2:before {
+    position: absolute;
+    content: "";
+    height: 30px;
+    width: 30px;
+    left: 6px;
+    bottom: 5px;
+    background-color: yellow;
+    box-shadow: 0px 0px 5px 4px #ffd900;
+    transition: 0.4s;
+}
+}
+    </style>
 </head>
 
 <body class="bg-gradient-primary">
-
-    <div class="container">
+<!-- toggle button -->
+<label id ="switch" class="switch">
+  <input type="checkbox" onchange="toggleTheme()" id="slider">
+  <span class="slider2 round"></span>
+</label>
+    <div class="container mt-3">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
@@ -34,7 +170,7 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 mb-4">Create an Account!</h1>
                             </div>
                             <form class="user" action="/register" method="post">
 
@@ -95,7 +231,7 @@
     <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
 
     <script src="{{url_for('static', filename='js/register.js')}}"></script>
-
+     <script src="{{ url_for('static', filename='js/darkmode.js') }}"></script>
 </body>
 
 </html>
