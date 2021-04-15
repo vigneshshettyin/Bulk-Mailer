@@ -22,6 +22,9 @@ This service is a prime example of how you can utilize technology to enhance tra
 [![Stargazers](https://img.shields.io/github/stars/vigneshshettyin/Bulk-Mailer.svg?logo=github)](https://github.com/vigneshshettyin/Bulk-Mailer/stargazers)
 [![Issues](https://img.shields.io/github/issues/vigneshshettyin/Bulk-Mailer.svg?logo=github)](https://github.com/vigneshshettyin/Bulk-Mailer/issues)
 [![MIT License](https://img.shields.io/github/license/vigneshshettyin/Bulk-Mailer.svg?style=flat-square)](https://github.com/vigneshshettyin/Bulk-Mailer/blob/master/LICENSE)
+![GitHub watchers](https://img.shields.io/github/watchers/vigneshshettyin/Bulk-Mailer)
+![GitHub contributors](https://img.shields.io/github/contributors/vigneshshettyin/Bulk-Mailer)
+
 
 Feel free to use it as-is or customize it as much as you want.
 
