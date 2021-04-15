@@ -79,13 +79,126 @@ a
   }
 }
 
+.switch {
+  position: absolute;
+  display: inline-block;
+  width: 3.8rem;
+  right:7rem;
+  top:3.7rem;
+  z-index: 10;
+  height: 2.1rem;
+}
 
+/*   // Hide checkbox
+ */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/*   // The slider
+   */
+.slider2 {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  transition: 0.4s ease-in-out;
+}
+
+/*   
+  // Design of slider for light mode
+ */
+.slider2:before {
+  position: absolute;
+  content: "";
+  height: 23px;
+  width: 23px;
+  left: 6px;
+  bottom: 6px;
+  background-color: yellow;
+  box-shadow: 0px 0px 5px 4px #ffd900;
+  transition: 0.4s;
+}
+
+/*   // When theme is dark, background is dark */
+.theme-dark .slider2 {
+  background-color: #3a2864;
+}
+
+/*    // If theme is dark, but slider is to the left, move it to the right and turn it into a moon
+ */
+.theme-dark .slider2:before {
+  transform: translateX(26px);
+  height: 3px;
+  width: 3px;
+  background-color: lightgrey;
+  bottom: 15px;
+  left: 10px;
+  box-shadow: 10px -7px 0px 1px lightgrey, -4px -8px 0px 0px lightgrey, 6px 6px 0px 1px lightgrey, 5px -1px 5px 13px white, 5px -1px 0px 12px white;
+}
+
+/* Rounded sliders */
+.slider2.round {
+  border-radius: 34px;
+}
+
+.slider2.round:before {
+  border-radius: 50%;
+}
+
+.theme-dark body {
+  background-color: black;
+}
+
+.theme-light body {
+  background-color: aliceblue;
+}
+
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+  .switch{
+    right: 12rem;
+    width: 6rem;
+    top:3.5rem;
+    height: 3.5rem;
+  }
+  .theme-dark .slider2:before {
+    transform: translateX(26px);
+    height: 20px;
+    width: 20px;
+    background-color: lightgrey;
+    bottom: 18px;
+    left: 28px;
+  }
+  .slider2:before {
+    position: absolute;
+    content: "";
+    height: 40px;
+    width: 40px;
+    left: 4px;
+    bottom: 8px;
+    background-color: yellow;
+    box-shadow: 0px 0px 5px 4px #ffd900;
+    transition: 0.4s;
+}
+}
   </style>
 </head>
 
 <body>
     <!-- Back to top button -->
 <a onclick="topFunction()" id="button" title="Go to top"></a>
+
+<!-- toggle button -->
+<label id ="switch" class="switch">
+  <input type="checkbox" onchange="toggleTheme()" id="slider">
+  <span class="slider2 round"></span>
+</label>
 
 <!-- preloader -->
 <div class=" text-center outer">
@@ -447,6 +560,32 @@ function topFunction() {
         });
     </script>
 
+    <script>
+      function setTheme(themeName) {
+        localStorage.setItem('theme', themeName);
+        document.documentElement.className = themeName;
+    }
+    
+    // When toggle is switched, check local storage for the currently stored theme, and switch it to the opposite
+    
+    function toggleTheme() {
+        if (localStorage.getItem('theme') === 'theme-dark') {
+            setTheme('theme-light');
+        } else {
+            setTheme('theme-dark');
+        }
+    }
+    
+    // Invoke function on loading page - check storage if a previous theme was stored, if not, load default (light) theme
+    
+    (function () {
+        if (localStorage.getItem('theme') === 'theme-dark') {
+            setTheme('theme-dark');
+        } else {
+            setTheme('theme-light');
+        }
+    })();
+    </script>
 </body>
 
 </html>
