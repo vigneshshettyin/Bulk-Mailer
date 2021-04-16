@@ -30,3 +30,18 @@ emailField.addEventListener("keyup", (e) => {
       });
   }
 });
+
+function showpassforlogin()
+  {
+    //for showpassword in login
+        var password=document.getElementById("exampleInputPassword");
+        var x=document.getElementById("box").checked;
+        if(x==true)
+        {
+            password.type="text";            
+        }
+        else
+        {
+            password.type="password";
+        }
+  }
