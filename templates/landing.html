@@ -571,21 +571,22 @@ function topFunction() {
    <script src="/static/js/darkmode.js"></script>
    <script>
     function confirmation(){
-    swal({
-      title: "Are you sure?",
-      text: "",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    })
-    .then((willDelete) => {
-      if (willDelete) {
-        window.location = "/logout";
-      } else {
-        
+      swal({
+        title: "Are you sure?",
+        text: "",
+        icon: "warning",
+        buttons: true,
+        buttons: ['cancel','Yes, Log out'],
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          window.location = "/logout";
+        } else {
+          
+        }
+      });
       }
-    });
-    }
   </script>
 </body>
 
