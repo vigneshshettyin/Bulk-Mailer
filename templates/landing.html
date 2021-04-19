@@ -253,9 +253,12 @@ a
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#" onclick="confirmation()">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout
-                                </a>
+                              <a class="dropdown-item" href="/dashboard">
+                                <i class="fas fa-user-circle fa-sm fa-fw mr-2 text-gray-400"></i> Dashboard
+                              </a>
+                              <a class="dropdown-item" href="#" onclick="confirmation()">
+                                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout
+                              </a>
                             </div>
                         </li>
             {% else %}
@@ -571,21 +574,22 @@ function topFunction() {
    <script src="/static/js/darkmode.js"></script>
    <script>
     function confirmation(){
-    swal({
-      title: "Are you sure?",
-      text: "",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    })
-    .then((willDelete) => {
-      if (willDelete) {
-        window.location = "/logout";
-      } else {
-        
+      swal({
+        title: "Are you sure?",
+        text: "",
+        icon: "warning",
+        buttons: true,
+        buttons: ['cancel','Yes, Log out'],
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          window.location = "/logout";
+        } else {
+          
+        }
+      });
       }
-    });
-    }
   </script>
 </body>
 
