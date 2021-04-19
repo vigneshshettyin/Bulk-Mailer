@@ -121,7 +121,13 @@ class User(db.Model, UserMixin):
                                 backref="templates")
     # subscribers = db.relationship('Subscriber',cascade = "all,delete", backref='subscribers')
 
-
+class Contact(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    firstname = db.Column(db.String(50), nullable=False)
+    lastname = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(50), nullable=False)
+    number = db.Column(db.String(50), nullable=False)
+    msg = db.Column(db.String(50), nullable=False)
 """END OF DATABASE MODELS"""
 
 # For Gravatar
@@ -883,6 +889,23 @@ def page_not_found(e):
     # note that we set the 404 status explicitly
     return render_template("404.html"), 404
 
+@app.route("/contact", methods=["POST", "GET"])
+def contact():
+    if request.method == "POST":
+        firstname = request.form.get("firstname")
+        lastname = request.form.get("lastname")
+        email = request.form.get("email")
+        number = request.form.get("number")
+        msg = request.form.get("msg")
+        print(firstname,lastname,email,number,msg)
+        entry = Contact(firstname = firstname, lastname = lastname,
+        email=email,number = number , msg = msg)
+        db.session.add(entry)
+        db.session.commit()
+        flash("Thanks For Contacting Us Someone will reach you soon!!", "success")
+        return redirect("/")
+    else:
+        return render_template("contact.html")
 
 # execute if file is the main file i.e., file wasn't imported
 if __name__ == "__main__":
