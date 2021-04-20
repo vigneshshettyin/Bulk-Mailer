@@ -82,13 +82,13 @@ a
 }
 
 .switch {
-  position: absolute;
+  position: relative;
   display: inline-block;
   width: 3.8rem;
-  right:7rem;
-  top:3.7rem;
   z-index: 10;
   height: 2.1rem;
+  margin-bottom: 0;
+    top: 10px;
 }
 
 /*   // Hide checkbox
@@ -216,11 +216,7 @@ a
 {% endfor %}
 {% endif %}
 {% endwith %}
-<!-- toggle button -->
-<label id ="switch" class="switch">
-  <input type="checkbox" onchange="toggleTheme()" id="slider">
-  <span class="slider2 round"></span>
-</label>
+
 
 <!-- preloader -->
 <div class=" text-center outer">
@@ -262,8 +258,8 @@ a
             </li>
 
             {% if current_user.is_authenticated %}
-              <li class="nav-item  nav-link dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <li class="nav-item  nav-link dropdown no-arrow" style="padding: top 0px;">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 0px; !important">
                                   {{current_user.name}}
                                 <img class="img-profile rounded-circle" src="https://www.gravatar.com/avatar/1da162c3c113331cc9fc91feb112e26d?d=identicon&amp;s=128">
                             </a>
@@ -287,6 +283,13 @@ a
               <a class="nav-link" href="/register">Sign Up</a> 
             </li>
             {% endif %}
+            <li class="nav-item">
+            <!-- toggle button -->
+<label id ="switch" class="switch">
+  <input type="checkbox" onchange="toggleTheme()" id="slider">
+  <span class="slider2 round"></span>
+</label>
+            </li>
           </ul>
 
         </div>

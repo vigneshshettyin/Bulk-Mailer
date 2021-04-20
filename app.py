@@ -907,6 +907,19 @@ def contact():
     else:
         return render_template("contact.html")
 
+@app.route("/view/contacts")
+@login_required
+def contact_page():
+    if current_user.is_staff == 1:
+        # get the records of all the users and display to the user
+        allContacts = Contact.query.all()
+        return render_template("contact_table.html", allContacts=allContacts, user=current_user)
+    else:
+        flash("Not authorized!", "danger")
+        return redirect("/dashboard")
+
+    
+
 # execute if file is the main file i.e., file wasn't imported
 if __name__ == "__main__":
     app.run(debug=True)

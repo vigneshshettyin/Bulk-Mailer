@@ -1,0 +1,70 @@
+{% extends "base.html" %} {% block body %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">CONTACT LIST</h1>
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div
+        class="alert alert-{{ category }} alert-dismissible fade show"
+        role="alert"
+      >
+        {{ message}}
+      </div>
+      {% endfor %} {% endif %} {% endwith %}
+
+      
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="auto"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>FIRST NAME</th>
+              <th>LAST NAME</th>
+              <th>EMAIL</th>
+              <th>NUMBER</th>
+              <th style="width: 20%">MESSAGE</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>#</th>
+              <th>FIRST NAME</th>
+              <th>LAST NAME</th>
+              <th>EMAIL</th>
+              <th>NUMBER</th>
+              <th style="width: 20%">MESSAGE</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            {# Start loop#} {% for Contacts in allContacts %}
+            <tr>
+              <td>{{ Contacts.id }}</td>
+              <td>
+                  {{ Contacts.firstname }}
+              </td>
+              <td>{{ Contacts.lastname }}</td>
+              <td>{{ Contacts.email }}</td>
+              <td>{{ Contacts.number }}</td>
+              <td>{{ Contacts.msg }}</td>
+              
+            </tr>
+            {# end loop#} {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.container-fluid -->
+
+{% endblock %}
