@@ -11,7 +11,7 @@ from flask import flash
 from flask import Flask
 from flask import jsonify
 from flask import redirect
-from flask import render_template
+from flask import render_template , make_response
 from flask import request
 from flask import url_for
 from flask_login import current_user
@@ -33,6 +33,8 @@ from email_utils.email_verification import validate_token
 from validation import EMAIL_VALIDATION
 from validation import PASSWORD_VALIDATION
 from validation import validate
+import csv
+import io
 
 # load import.json file containing database uri, admin email and other impt info
 with open("import.json", "r") as c:
@@ -918,7 +920,42 @@ def contact_page():
         flash("Not authorized!", "danger")
         return redirect("/dashboard")
 
-    
+#for contact
+def rowToListContact(obj):
+    lst = []
+    firstname = obj.firstname
+    lastname = obj.lastname
+    email = obj.email
+    number = obj.number
+    msg = obj.msg
+    lst.append(firstname)
+    lst.append(lastname)
+    lst.append(email)
+    lst.append(number)
+    lst.append(msg)
+    return lst
+
+@app.route('/downloadcontact')
+@login_required
+def ContactToCsv():
+    if current_user.is_staff == 1:
+        allContacts = Contact.query.all()
+        if len(allContacts) == 0:
+            flash("No Contacts available","danger")
+            return redirect("/view/contacts")
+        si = io.StringIO()
+        cw = csv.writer(si, delimiter=",")
+        cw.writerow(["FirstName","LastName", "Email" , "Number", "Message"])
+        for row in allContacts:
+            row = rowToListContact(row)
+            cw.writerow(row)
+        output = make_response(si.getvalue())
+        output.headers["Content-Disposition"] = f"attachment; filename=contact_response.csv"
+        output.headers["Content-type"] = "text/csv"
+        return output
+    else:
+        flash("Not authorized!", "danger")
+        return redirect("/dashboard")
 
 # execute if file is the main file i.e., file wasn't imported
 if __name__ == "__main__":
