@@ -74,8 +74,61 @@ or
 $ flask run
 ```
 
-Now fire up your favorite web browser and go to http://127.0.0.1:5000/
-You will find the application running there.
+**6**.Now fire up your favorite web browser and go to http://127.0.0.1:5000/
+ You will find the application running there.
+
+**Note : If your project root directory doesn't contains `bulkmailer.db` then Run this on your terminal: 👇**
+
+For Windows: 💾
+```
+$ py or python
+>>>from app import db
+>>>db.create_all()
+>>>exit()
+```
+
+For Linux: 👨‍💻
+```
+$ python3
+>>>from app import db
+>>>db.create_all()
+>>>exit()
+```
+## Lint and Format 📜
+
+- We use [Flake8](https://flake8.pycqa.org/en/latest/manpage.html) and [Black](https://pypi.org/project/black/) for linting & formatting source code of this project.
+<br>
+- **Run QA checks on local environment ⚡** :
+
+  - Run Shell script on Windows 💾 :
+
+  ```
+  ...\Bulk-Mailer> .\bulkmailer_QA_Checks
+  ``` 
+
+  - Run Shell script on Linux 👨‍💻 :
+
+  ```
+  .../Bulk-Mailer$ ./bulkmailer_QA_Checks
+  ``` 
+  
+  - Alternate option ✔ :
+    - Run this on terminal ⚡:
+      - Windows 💾
+        ```
+        ...\Bulk-Mailer> black .
+        ``` 
+        ```
+        ...\Bulk-Mailer> flake8 .
+        ``` 
+      - Linux 👨‍💻
+        ```
+        .../Bulk-Mailer$ black .
+        ``` 
+        ```
+        .../Bulk-Mailer$ flake8 .
+        ``` 
+  
 
 ## Live Deployment 📦
 
