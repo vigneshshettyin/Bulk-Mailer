@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Profile Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/profile-page/user.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+                <div class="col-lg-4">
+                   <div class="profile-card-4 z-depth-3">
+                    <div class="card">
+                      <div class="card-body text-center bg-primary rounded-top">
+                       <div class="user-box">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar">
+                      </div>
+                      <h5 class="mb-1 text-white">Vignesh Shetty</h5>
+                     </div>
+                      <div class="card-body">
+                        <div class="row text-center mt-4">
+                            <div class="col p-2">
+                             <h4 class="mb-1 line-height-5">154</h4>
+                              <small class="mb-0 font-weight-bold">Mail Sent</small>
+                             </div>
+                              <div class="col p-2">
+                                <h4 class="mb-1 line-height-5">2.2k</h4>
+                               <small class="mb-0 font-weight-bold">Mail Recieved</small>
+                              </div>
+                              <div class="col p-2">
+                               <h4 class="mb-1 line-height-5">9.1k</h4>
+                               <small class="mb-0 font-weight-bold">Views</small>
+                              </div>
+                           </div>
+                         </div>
+                        <div class="tab-pane" id="Activity">
+                            <div class="alert alert-info alert-dismissible" role="alert">
+                           <button type="button" class="close" data-dismiss="alert">×</button>
+                            <div class="alert-icon">
+                             <i class="icon-info"></i>
+                            </div>
+                            <div class="alert-message">
+                              <span><strong>Info!</strong> New Mail </span>
+                            </div>
+                          </div>
+                            <table class="table table-hover table-striped">
+                                <tbody>                                    
+                                    <tr>
+                                        <td>
+                                           <span class="float-right font-weight-bold">3 hrs ago</span> Here is your a link to the latest summary report from the..
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                           <span class="float-right font-weight-bold">Yesterday</span> There has been a request on your account since that was..
+                                        </td>
+                                    </tr>
+                                </tbody> 
+                            </table>
+                        </div>
+                       <div class="card-footer text-center">
+                         <a href="javascript:void()" class="btn-social btn-facebook waves-effect waves-light m-1"><i class="fa fa-facebook"></i></a>
+                         <a href="javascript:void()" class="btn-social btn-google-plus waves-effect waves-light m-1"><i class="fa fa-google-plus"></i></a>
+                         <a href="javascript:void()" class="list-inline-item btn-social btn-behance waves-effect waves-light"><i class="fa fa-behance"></i></a>
+                         <a href="javascript:void()" class="list-inline-item btn-social btn-dribbble waves-effect waves-light"><i class="fa fa-dribbble"></i></a>
+                       </div>
+                     </div>
+                   </div>
+                </div>
+                <div class="col-lg-8">
+                   <div class="card z-depth-3">
+                    <div class="card-body">
+                    <ul class="nav nav-pills nav-pills-primary nav-justified">
+                        <li class="nav-item">
+                            <a href="javascript:void();" data-target="#edit" data-toggle="pill" class="nav-link active show "><i class="icon-note"></i> <span class="hidden-xs">Edit Your Profile</span></a>
+                        </li> 
+                    </ul>
+                    <div class="tab-content p-3">
+                        
+                        <div class="tab-pane active show" id="edit">
+                            <form>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="text" value="Vignesh">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="text" value="Shetty">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="email" value="vignesh@shetty.com">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Change profile</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="file">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Website</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="url" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Address</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="text" value="" placeholder="Street">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                                    <div class="col-lg-6">
+                                        <input class="form-control" type="text" value="" placeholder="City">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <input class="form-control" type="text" value="" placeholder="State">
+                                    </div>
+                                </div>
+                               
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Username</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="text" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="password" value="11111122333">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="password" value="11111122333">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                                    <div class="col-lg-9">
+                                        <input type="reset" class="btn btn-secondary" value="Cancel">
+                                        <input type="button" class="btn btn-primary" value="Save Changes">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+              </div>
+              </div>
+                
+            </div>
+        </div>
+</body>
+</html>
