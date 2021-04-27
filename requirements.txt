@@ -15,5 +15,5 @@ SQLAlchemy==1.4.7
 starkbank-ecdsa==1.1.0
 Werkzeug==1.0.1
 oauthlib==3.1.0
-black==21.4b0
+black==21.4b1
 flake8==3.9.1
