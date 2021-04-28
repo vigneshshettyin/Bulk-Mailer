@@ -30,6 +30,121 @@
     <!-- Include SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+    
+    .navbar
+    {
+        background-color:#dedddd;
+    }
+    .theme-light .h3 
+    {
+        color:black;
+    }
+    .switch {
+    position: relative;
+    display: inline-block;
+    width: 3.8rem;
+    z-index: 10;
+    height: 2.1rem;
+    margin-bottom: 0;
+        top: 18px;
+    }
+
+/*   // Hide checkbox
+ */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/*   // The slider
+   */
+.slider2 {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  transition: 0.4s ease-in-out;
+}
+
+/*   
+  // Design of slider for light mode
+ */
+.slider2:before {
+  position: absolute;
+  content: "";
+  height: 23px;
+  width: 23px;
+  left: 6px;
+  bottom: 6px;
+  background-color: yellow;
+  box-shadow: 0px 0px 5px 4px #ffd900;
+  transition: 0.4s;
+}
+
+/*   // When theme is dark, background is dark */
+.theme-dark .slider2 {
+  background-color: #3a2864;
+}
+
+/*    // If theme is dark, but slider is to the left, move it to the right and turn it into a moon
+ */
+.theme-dark .slider2:before {
+  transform: translateX(26px);
+  height: 3px;
+  width: 3px;
+  background-color: lightgrey;
+  bottom: 15px;
+  left: 10px;
+  box-shadow: 10px -7px 0px 1px lightgrey, -4px -8px 0px 0px lightgrey, 6px 6px 0px 1px lightgrey, 5px -1px 5px 13px white, 5px -1px 0px 12px white;
+}
+
+/* Rounded sliders */
+.slider2.round {
+  border-radius: 34px;
+}
+
+.slider2.round:before {
+  border-radius: 50%;
+}
+
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+  .switch{
+    width: 5rem;
+    height: 2.5rem;
+  }
+  .theme-dark .slider2:before {
+    transform: translateX(26px);
+    height: 10px;
+    width: 10px;
+    background-color: lightgrey;
+    bottom: 15px;
+    left: 25px;
+  }
+  .slider2:before {
+    position: absolute;
+    content: "";
+    height: 33px;
+    width: 33px;
+    left: 2px;
+    bottom: 4px;
+    background-color: yellow;
+    box-shadow: 0px 0px 5px 4px #ffd900;
+    transition: 0.4s;
+}
+}
+
+.theme-dark #content , .theme-dark .sticky-footer
+{
+    background-color:black;
+    color:#fff;
+}
+    </style>
 </head>
 
 <body id="page-top">
@@ -116,7 +231,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -186,7 +301,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
+                                        <div class="small text-500">December 12, 2019</div>
                                         <span class="font-weight-bold">A new monthly report is ready to download!</span>
                                     </div>
                                 </a>
@@ -197,7 +312,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
+                                        <div class="small text-500">December 7, 2019</div>
                                         $290.29 has been deposited into your account!
                                     </div>
                                 </a>
@@ -313,7 +428,13 @@
                                 </a>
                             </div>
                         </li>
-
+                         <li class="nav-item">
+                            <!-- toggle button -->
+                        <label id ="switch" class="switch">
+                        <input type="checkbox" onchange="toggleTheme()" id="slider">
+                        <span class="slider2 round"></span>
+                        </label>
+                        </li>
                     </ul>
 
                 </nav>
@@ -329,7 +450,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Bulk Mailer 2020</span>
@@ -400,6 +521,7 @@
     });
     }
   </script>
+<script src="/static/js/darkmode.js"></script>
 </body>
 
 </html>
