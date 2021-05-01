@@ -317,11 +317,11 @@ svg {
               <a class="nav-link" href="#about">About</a> 
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/contact">Contact Us</a> 
+              <a class="nav-link" href="/contact">Contact</a>
             </li>
 
             {% if current_user.is_authenticated %}
-              <li class="nav-item  nav-link dropdown no-arrow" style="padding: top 0px;">
+              <li class="nav-item  nav-link dropdown no-arrow" style="padding-top: 0px">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 0px; !important">
                                   {{current_user.name}}
                                 <img class="img-profile rounded-circle" src="https://www.gravatar.com/avatar/1da162c3c113331cc9fc91feb112e26d?d=identicon&amp;s=128">
@@ -466,7 +466,7 @@ svg {
                                 <a href="#" class="zmdi zmdi-github"></a>
                             </span>
                         <span class="img-holder d-inline-block">
-                                <img src="https://media-exp1.licdn.com/dms/image/C5635AQH-n8zzOCTCJg/profile-framedphoto-shrink_200_200/0/1607897185789?e=1617937200&v=beta&t=F3-xq4nMx4dc5lCJh-tRW-UJlWppsDjZLjaiL5k3bns" alt="Team">
+                                <img src="https://avatars.githubusercontent.com/u/50332765?v=4" alt="Team">
                             </span>
                     </div>
                     <div class="team-content">
@@ -616,15 +616,15 @@ svg {
   <!-- Footer -->
 
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
-<footer id="footer" class="">
-<div class="container text-white pt-5">
+<footer id="footer" class="footer-copyright text-center py-3" >
+<div class="container text-white pt-5" >
   <div class="rounded-social-buttons">
                     <a class="social-button facebook" href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
                     <a class="social-button twitter" href="#" target="_blank"><i class="fab fa-twitter"></i></a>
                     <a class="social-button linkedin" href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
                     <a class="social-button youtube" href="#" target="_blank"><i class="fab fa-github"></i></a>
                 </div>
-      <p style="color:#fff;">© Copyright 2021 BulkMailer</p>
+      <p style="color:#fff; padding-top: 10px">© Copyright 2021 BulkMailer</p>
 </div>
 </footer>
 
