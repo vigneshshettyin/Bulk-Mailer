@@ -33,6 +33,7 @@ from flask_sqlalchemy import SQLAlchemy
 from oauthlib.oauth2 import WebApplicationClient
 from passlib.hash import sha256_crypt
 from validation import EMAIL_VALIDATION, PASSWORD_VALIDATION, validate
+from decouple import config
 
 # load import.json file containing database uri, admin email and other impt info
 with open("import.json", "r") as c:
@@ -61,8 +62,8 @@ def load_user(user_id):
 
 
 # Google Login Credentials
-GOOGLE_CLIENT_ID = json["google_client_id"]
-GOOGLE_CLIENT_SECRET = json["google_client_secret"]
+GOOGLE_CLIENT_ID = config("google_client_id")
+GOOGLE_CLIENT_SECRET = config("google_client_secret")
 GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid-configuration"
 """DATABASE MODELS"""
 
@@ -148,7 +149,7 @@ x = datetime.now()
 time = x.strftime("%c")
 
 # domain name
-testing_email = json["testing_email"]
+testing_email = config("testing_email")
 
 
 @app.route("/validate/email", methods=["POST"])
@@ -741,7 +742,7 @@ def add_template():
 # home page
 @app.route("/")
 def home_page():
-    response = requests.get(json["contributors_api"])
+    response = requests.get(config("contributors_api"))
     team = response.json()
     return render_template("landing.html", team=team)
 
