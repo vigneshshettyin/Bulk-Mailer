@@ -17,3 +17,4 @@ Werkzeug==1.0.1
 oauthlib==3.1.0
 black==21.4b2
 flake8==3.9.1
+python-decouple==3.4
