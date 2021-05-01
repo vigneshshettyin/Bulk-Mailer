@@ -35,14 +35,11 @@ from passlib.hash import sha256_crypt
 from validation import EMAIL_VALIDATION, PASSWORD_VALIDATION, validate
 from decouple import config
 
-# load import.json file containing database uri, admin email and other impt info
-with open("import.json", "r") as c:
-    json = json_lib.load(c)["jsondata"]
 
 # create a Flask app and setup its configuration
 app = Flask(__name__)
 app.secret_key = "76^)(HEY,BULK-MAILER-HERE!)(skh390880213%^*&%6h&^&69lkjw*&kjh"
-app.config["SQLALCHEMY_DATABASE_URI"] = json["databaseUri"]
+app.config["SQLALCHEMY_DATABASE_URI"] = config("databaseUri")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
