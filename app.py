@@ -35,18 +35,18 @@ from passlib.hash import sha256_crypt
 from validation import EMAIL_VALIDATION, PASSWORD_VALIDATION, validate
 from decouple import config
 
-# load import.json file containing database uri, admin email and other impt info
-with open("import.json", "r") as c:
-    json = json_lib.load(c)["jsondata"]
 
 # create a Flask app and setup its configuration
 app = Flask(__name__)
 app.secret_key = "76^)(HEY,BULK-MAILER-HERE!)(skh390880213%^*&%6h&^&69lkjw*&kjh"
-app.config["SQLALCHEMY_DATABASE_URI"] = json["databaseUri"]
+app.config["SQLALCHEMY_DATABASE_URI"] = config("databaseUri")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+
+# Config vars
+favTitle = config("favTitle")
 
 # use LoginManager to provide login functionality and do some initial confg
 login_manager = LoginManager(app)
@@ -213,7 +213,7 @@ def login():
         if not user:
             # if user doesn't exist i.e., email not found, flash an error
             flash("Valid account not found!", "danger")
-            return render_template("login.html", json=json)
+            return render_template("login.html", favTitle=favTitle)
         elif (sha256_crypt.verify(password, user.password) == 1) and (user.status == 1):
             # if user exists and correct password has been entered and the user's account has been activated
             # update the last login to current date and add it to the db
@@ -229,7 +229,7 @@ def login():
         else:
             # user doesn't exist so flash an error
             flash("Account not activated or invalid credentials!", "danger")
-    return render_template("login.html", json=json)
+    return render_template("login.html", favTitle=favTitle)
 
 
 # logout route
@@ -258,21 +258,21 @@ def register_page():
         # Validate email address
         if not validate(EMAIL_VALIDATION, email):
             flash("Invalid Email Address!", "danger")
-            return render_template("register.html", json=json)
+            return render_template("register.html", favTitle=favTitle)
 
         password = request.form.get("password")
 
         # Validate password
         if not validate(PASSWORD_VALIDATION, password):
             flash("Invalid Password. Please enter a valid password!", "danger")
-            return render_template("register.html", json=json)
+            return render_template("register.html", favTitle=favTitle)
 
         password2 = request.form.get("password2")
         # check if passwords match
         if password != password2:
             # if not, flash an error msg
             flash("Password unmatched!", "danger")
-            return render_template("register.html", json=json)
+            return render_template("register.html", favTitle=favTitle)
         else:
             # generate the hashed password
             password = sha256_crypt.hash(password)
@@ -318,8 +318,8 @@ def register_page():
             else:
                 # user exists so flash an error
                 flash("User exists!", "danger")
-                return render_template("register.html", json=json)
-    return render_template("register.html", json=json)
+                return render_template("register.html", favTitle=favTitle)
+    return render_template("register.html", favTitle=favTitle)
 
 
 # Verify email route
@@ -333,7 +333,7 @@ def verify_email(token, email):
         return redirect(url_for("dash_page"))
     else:
         flash("Email Verification Failed!!", "danger")
-        return render_template("login.html", json=json)
+        return render_template("login.html", favTitle=favTitle)
 
 
 # forgot password route
@@ -350,7 +350,7 @@ def forgot_password_page():
             if post.is_staff == 1:
                 # if user tried to reset admin password
                 flash("You can't reset password of administrator!", "danger")
-                return render_template("forgot-password.html", json=json)
+                return render_template("forgot-password.html", favTitle=favTitle)
             else:
                 # hash the new password generated
                 # passwordemail = new_password
@@ -382,9 +382,9 @@ def forgot_password_page():
         else:
             # user doesn't exist
             flash("We didn't find your account!", "danger")
-            return render_template("forgot-password.html", json=json)
+            return render_template("forgot-password.html", favTitle=favTitle)
 
-    return render_template("forgot-password.html", json=json)
+    return render_template("forgot-password.html", favTitle=favTitle)
 
 
 # route to view groups
@@ -626,8 +626,7 @@ def mail_page():
     group = Group.query.order_by(Group.id).all()
     mailtemp = Template.query.order_by(Template.id).all()
     return render_template(
-        "mail.html", group=group, template=mailtemp, user=current_user, json=json
-    )
+        "mail.html", group=group, template=mailtemp, user=current_user)
 
 
 # route to use a template

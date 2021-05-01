@@ -25,6 +25,11 @@
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  
+  <!-- Include Simple-Notify -->
+    <link href="{{ url_for('static', filename='css/simple-notify.min.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/simple-notify.min.js') }}"></script>
+    
   <style>
   html
 {
@@ -274,19 +279,6 @@ svg {
 <body>
     <!-- Back to top button -->
 <a onclick="topFunction()" id="button" title="Go to top"></a>
-
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-{% for category, message in messages %}
-<div class="alert alert-{{ category }} alert-dismissible fade show" role="alert" style="position: absolute;width:100%;padding:15px;">
-  {{ message}}
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-
-
-{% endfor %}
-{% endif %}
-{% endwith %}
 
 
 <!-- preloader -->
@@ -721,6 +713,47 @@ function topFunction() {
       }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+<!-- Start Simple-Notify -->
+{% with errors = get_flashed_messages(category_filter=["danger"]) %}
+  {% if errors %}
+    {% for error in errors %}
+      <script>
+        new Notify ({
+          title: 'Error',
+          text: `{{error|safe}}`,
+          status: 'error'
+        })
+      </script>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+{% with messages = get_flashed_messages(category_filter=["success"]) %}
+  {% if messages %}
+    {% for message in messages %}
+      <script>
+        new Notify ({
+            title: 'Success',
+            text: `{{message|safe}}`,
+            status: 'success'
+            })
+      </script>                      
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+{% with warnings = get_flashed_messages(category_filter=["warning"]) %}
+  {% if warnings %}
+    {% for warning in warnings %}
+      <script>
+        new Notify ({
+          title: 'Warning',
+          text: `{{warning|safe}}`,
+          status: 'warning'
+        })
+      </script>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<!-- End Simple-Notify -->
 </body>
 
 </html>

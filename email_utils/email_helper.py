@@ -1,5 +1,7 @@
 import json
 
+from decouple import config
+
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
@@ -14,8 +16,6 @@ def mail_handler(recepient_email=None, subject=None, content=None):
 
     Returns True if there is no error, or will return the error message.
     """
-    with open("import.json", "r") as c:
-        data = json.load(c)["jsondata"]
 
     message = Mail(
         from_email=("rohit.is.here99@gmail.com", "Bulk Mailer Register"),
@@ -26,7 +26,7 @@ def mail_handler(recepient_email=None, subject=None, content=None):
 
     try:
         # using the sendgrid api, send the email to the user's email
-        sg = SendGridAPIClient(data["sendgridapi"])
+        sg = SendGridAPIClient(config("sendgridapi"))
         response = sg.send(message)  # noqa
         # flash('Email Sent Successfully!', success)
         # print(response.status_code)

@@ -13,15 +13,6 @@
     Add Template
     </button>
 <div style="padding-top: 10px">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-                          {% if messages %}
-                          {% for category, message in messages %}
-                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                        {{ message}}</div>
-
-                        {% endfor %}
-                       {% endif %}
-                      {% endwith %}
     
 </div>
     <!-- Modal -->
@@ -94,4 +85,5 @@
     
 </div>
 <!-- /.container-fluid -->
+
 {% endblock %}

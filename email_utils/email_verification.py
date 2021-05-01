@@ -1,14 +1,11 @@
 from json import load
 
 from itsdangerous import SignatureExpired, URLSafeTimedSerializer
-
-config = None
-with open("import.json", "r") as f:
-    config = load(f)["jsondata"]
+from decouple import config
 
 # Token is valid for 1 day
-if len(config["email_verification_timeout"]) != 0:
-    MAX_TIME = int(config["email_verification_timeout"])
+if len(config("email_verification_timeout")) != 0:
+    MAX_TIME = int(config("email_verification_timeout"))
 else:
     raise Exception(
         "Property 'email_verification_timeout' not set in 'import.json' file"
@@ -16,14 +13,14 @@ else:
 
 
 # Salt
-if len(config["email_verification_timeout"]) != 0:
-    VERIFICATION_SALT = config["email_verification_salt"]
+if len(config("email_verification_timeout")) != 0:
+    VERIFICATION_SALT = config("email_verification_salt")
 else:
     raise Exception("Property 'email_verification_salt' not set in 'import.json' file")
 
 # Secret Key
-if len(config["email_verification_timeout"]) != 0:
-    SECRET = config["email_verification_secret"]
+if len(config("email_verification_timeout")) != 0:
+    SECRET = config("email_verification_secret")
 else:
     raise Exception(
         "Property 'email_verification_secret' not set in 'import.json' file"
