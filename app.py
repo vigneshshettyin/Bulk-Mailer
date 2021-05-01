@@ -34,6 +34,7 @@ from oauthlib.oauth2 import WebApplicationClient
 from passlib.hash import sha256_crypt
 from validation import EMAIL_VALIDATION, PASSWORD_VALIDATION, validate
 from decouple import config
+from functools import wraps
 
 
 # create a Flask app and setup its configuration
@@ -115,7 +116,7 @@ class User(db.Model, UserMixin):
     status = db.Column(db.Integer, nullable=False)
     date = db.Column(db.String(50), nullable=False)
     profile_image = db.Column(db.String(500), nullable=True)
-    is_staff = db.Column(db.Integer, nullable=True)
+    is_staff = db.Column(db.Boolean, default=False, nullable=False)
     groups = db.relationship("Group", cascade="all,delete", backref="groups")
     templates = db.relationship("Template", cascade="all,delete", backref="templates")
     # subscribers = db.relationship('Subscriber',cascade = "all,delete", backref='subscribers')
@@ -139,10 +140,21 @@ def avatar(email, size):
     digest = md5(email.lower().encode("utf-8")).hexdigest()
     return f"https://www.gravatar.com/avatar/{digest}?d=identicon&s={size}"
 
+# Admin Required Decorator
+
+def admin_required(func):
+    @wraps(func)
+    def decorated_view(*args, **kwargs):
+        if not current_user.is_staff:
+            flash('You are not authorized to access this page.', 'danger')
+            return render_template('block.html', favTitle=favTitle, user=current_user)
+        return func(*args, **kwargs)
+    return decorated_view
+
 
 # generate a random 8 lettered password for forgot password
 letters = string.ascii_letters
-new_password = "".join(random.choice(letters) for i in range(8))
+new_password = "".join(random.choice(letters) for _ in range(8))
 
 # convert the current datetime to string, to be stored in the db
 x = datetime.now()
@@ -287,7 +299,7 @@ def register_page():
                     date=time,
                     profile_image=profile_image,
                     status=1,
-                    is_staff=1,
+                    is_staff=False,
                 )
                 db.session.add(entry)
                 db.session.commit()
@@ -347,7 +359,7 @@ def forgot_password_page():
         post = User.query.filter_by(email=email).first()
         if post:
             # if user exists
-            if post.is_staff == 1:
+            if post.is_staff:
                 # if user tried to reset admin password
                 flash("You can't reset password of administrator!", "danger")
                 return render_template("forgot-password.html", favTitle=favTitle)
@@ -459,24 +471,21 @@ def delete_group(id):
 
 @app.route("/activate/user/<int:id>", methods=["GET"])
 @login_required
+@admin_required
 def activate_user(id):
-    if current_user.is_staff != 1:
-        # get the record of the user with the specified id
-        activate_user = User.query.filter_by(id=id).first()
-        if activate_user.status == 1:
-            # if user's status is active then deactivate account
-            activate_user.status = 0
-            flash("User deactivated successfully!", "warning")
-        else:
-            # otherwise, activate account
-            activate_user.status = 1
-            flash("User activated successfully!", "success")
-        db.session.commit()
-        # redirect to view users page
-        return redirect("/view/users")
+    # get the record of the user with the specified id
+    activate_user = User.query.filter_by(id=id).first()
+    if activate_user.status == 1:
+        # if user's status is active then deactivate account
+        activate_user.status = 0
+        flash("User deactivated successfully!", "warning")
     else:
-        flash("Can't perform this operation!", "danger")
-        return redirect("/view/users")
+        # otherwise, activate account
+        activate_user.status = 1
+        flash("User activated successfully!", "success")
+    db.session.commit()
+    # redirect to view users page
+    return redirect("/view/users")
 
 
 # route to delete a user
@@ -484,22 +493,18 @@ def activate_user(id):
 
 @app.route("/delete/user/<int:id>", methods=["GET"])
 @login_required
+@admin_required
 def delete_user(id):
     # get the record of the user with the specified id
     delete_user = User.query.filter_by(id=id).first()
     # if user tries to delete admin, flash an error
-    if delete_user.is_staff == 1:
+    if delete_user.is_staff:
         flash("You cannot delete administrator", "warning")
-    # otherwise check if user is admin
-    elif current_user.is_staff == 1:
+    else:
         # delete specified user
         db.session.delete(delete_user)
         db.session.commit()
         flash("User deleted successfully!", "danger")
-    else:
-        # flash an error msg that only admins can delete users
-        flash("Only admins can delete users!", "warning")
-    # redirect to view users page
     return redirect("/view/users")
 
 
@@ -764,15 +769,11 @@ def dash_page():
 
 @app.route("/view/users")
 @login_required
+@admin_required
 def users_page():
-    if current_user.is_staff == 1:
-        # get the records of all the users and display to the user
-        users = User.query.order_by(User.id).all()
-        return render_template("user_list.html", users=users, user=current_user)
-    else:
-        flash("Not authorized!", "danger")
-        return redirect("/dashboard")
-
+    # get the records of all the users and display to the user
+    users = User.query.order_by(User.id).all()
+    return render_template("user_list.html", users=users, user=current_user)
 
 # Google Login
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
@@ -793,8 +794,6 @@ def google_login():
 
     # Use library to construct the request for Google login and provide
     # scopes that let us retrieve user's profile from Google
-
-    print(f"I am base url {request.base_url}")
 
     request_uri = client.prepare_request_uri(
         authorization_endpoint,
@@ -860,7 +859,7 @@ def google_login_callback():
             date=time,
             profile_image=picture,
             status=1,
-            is_staff=1,
+            is_staff=False,
         )
         db.session.add(entry)
         db.session.commit()
@@ -905,16 +904,13 @@ def contact():
 
 @app.route("/view/contacts")
 @login_required
+@admin_required
 def contact_page():
-    if current_user.is_staff == 1:
-        # get the records of all the users and display to the user
-        allContacts = Contact.query.all()
-        return render_template(
-            "contact_table.html", allContacts=allContacts, user=current_user
-        )
-    else:
-        flash("Not authorized!", "danger")
-        return redirect("/dashboard")
+    # get the records of all the users and display to the user
+    allContacts = Contact.query.all()
+    return render_template(
+        "contact_table.html", allContacts=allContacts, user=current_user
+    )
 
 
 # for contact
@@ -935,27 +931,24 @@ def rowToListContact(obj):
 
 @app.route("/downloadcontact")
 @login_required
+@admin_required
 def ContactToCsv():
-    if current_user.is_staff == 1:
-        allContacts = Contact.query.all()
-        if len(allContacts) == 0:
-            flash("No Contacts available", "danger")
-            return redirect("/view/contacts")
-        si = io.StringIO()
-        cw = csv.writer(si, delimiter=",")
-        cw.writerow(["FirstName", "LastName", "Email", "Number", "Message"])
-        for row in allContacts:
-            row = rowToListContact(row)
-            cw.writerow(row)
-        output = make_response(si.getvalue())
-        output.headers[
-            "Content-Disposition"
-        ] = "attachment; filename=contact_response.csv"
-        output.headers["Content-type"] = "text/csv"
-        return output
-    else:
-        flash("Not authorized!", "danger")
-        return redirect("/dashboard")
+    allContacts = Contact.query.all()
+    if len(allContacts) == 0:
+        flash("No Contacts available", "danger")
+        return redirect("/view/contacts")
+    si = io.StringIO()
+    cw = csv.writer(si, delimiter=",")
+    cw.writerow(["FirstName", "LastName", "Email", "Number", "Message"])
+    for row in allContacts:
+        row = rowToListContact(row)
+        cw.writerow(row)
+    output = make_response(si.getvalue())
+    output.headers[
+        "Content-Disposition"
+    ] = "attachment; filename=contact_response.csv"
+    output.headers["Content-type"] = "text/csv"
+    return output
 
 
 # execute if file is the main file i.e., file wasn't imported
