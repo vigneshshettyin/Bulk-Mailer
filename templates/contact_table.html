@@ -9,17 +9,6 @@
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
     <div class="card-header py-3">
-      {% with messages = get_flashed_messages(with_categories=true) %} {% if
-      messages %} {% for category, message in messages %}
-      <div
-        class="alert alert-{{ category }} alert-dismissible fade show"
-        role="alert"
-      >
-        {{ message}}
-      </div>
-      {% endfor %} {% endif %} {% endwith %}
-
-      
     <div class="card-body">
       <div class="table-responsive">
         <table
@@ -69,5 +58,6 @@
   </div>
 </div>
 <!-- /.container-fluid -->
+
 
 {% endblock %}

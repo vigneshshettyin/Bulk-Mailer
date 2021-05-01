@@ -10,7 +10,10 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Staatliches&amp;display=swap'>
     <link href="{{ url_for('static', filename='css/error.css') }}" rel="stylesheet">
-
+    <!-- Include Simple-Notify -->
+    <link href="{{ url_for('static', filename='css/simple-notify.min.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/simple-notify.min.js') }}"></script>
+    
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -24,15 +27,6 @@
         
         <p class="display-3 mt-2 font-staatliches">Oops!</p>
 
-                     {% with messages = get_flashed_messages(with_categories=true) %}
-                          {% if messages %}
-                          {% for category, message in messages %}
-                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                        {{ message}}</div>
-                        {% endfor %}
-                       {% endif %}
-                      {% endwith %}
-
         <button class="btn btn-primary btn-block rounded-pill">HOME PAGE</button>
         
       </div>
@@ -40,6 +34,49 @@
   </div>
 </main>
 <!-- partial -->
+
+
+<!-- Start Simple-Notify -->
+{% with errors = get_flashed_messages(category_filter=["danger"]) %}
+  {% if errors %}
+    {% for error in errors %}
+      <script>
+        new Notify ({
+          title: 'Error',
+          text: `{{error|safe}}`,
+          status: 'error'
+        })
+      </script>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+{% with messages = get_flashed_messages(category_filter=["success"]) %}
+  {% if messages %}
+    {% for message in messages %}
+      <script>
+        new Notify ({
+            title: 'Success',
+            text: `{{message|safe}}`,
+            status: 'success'
+            })
+      </script>                      
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+{% with warnings = get_flashed_messages(category_filter=["warning"]) %}
+  {% if warnings %}
+    {% for warning in warnings %}
+      <script>
+        new Notify ({
+          title: 'Warning',
+          text: `{{warning|safe}}`,
+          status: 'warning'
+        })
+      </script>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<!-- End Simple-Notify -->
   
 </body>
 </html>
