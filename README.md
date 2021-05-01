@@ -65,7 +65,9 @@ $ source env/Scripts/activate
 $ pip3 install -r requirements.txt
 ```
 
-**5.** Run the development server
+**5.** Create a new file called `.env` and copy all the data from `.env.sample` to `.env` as it is.
+
+**6.** Run the development server
  ```shell
 $ python3 app.py
 ```
@@ -74,7 +76,7 @@ or
 $ flask run
 ```
 
-**6**.Now fire up your favorite web browser and go to http://127.0.0.1:5000/
+**7**.Now fire up your favorite web browser and go to http://127.0.0.1:5000/
  You will find the application running there.
 
 **Note : If your project root directory doesn't contains `bulkmailer.db` then Run this on your terminal: 👇**
