@@ -306,15 +306,16 @@ def register_page():
 
                 # Generate email verification token
                 verification_token = generate_token(email)
+                print(url_for('verify_email', token=verification_token, email=email))
                 # generate the welcome email to be sent to the user
                 subject = "Welcome aboard " + name + "!"
 
                 content = render_template(
-                    "email_template.html", token=verification_token, email=email
+                    "emails/register.html", token=verification_token, email=email
                 )
 
                 response = mail_handler(
-                    recepient_email=email, subject=subject, content=content
+                    recepient_email=email, subject=subject, content=content, name="Register Bot | Bulk Mailer"
                 )
 
                 # If any error occurs, the response will be equal to False
@@ -364,33 +365,25 @@ def forgot_password_page():
                 flash("You can't reset password of administrator!", "danger")
                 return render_template("forgot-password.html", favTitle=favTitle)
             else:
-                # hash the new password generated
-                # passwordemail = new_password
-                post.password = sha256_crypt.hash(new_password)
-                db.session.commit()
-                # generate the forgot password email to be sent to the user
-                # subject = "Password Generated : " + passwordemail
-                content = """<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head><title>Reset Your Password</title> <!--[if !mso]> --><meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--<![endif]--><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><style type="text/css">#outlook a{padding:0}.ReadMsgBody{width:100%}.ExternalClass{width:100%}.ExternalClass *{line-height:100%}body{margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}table,td{border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt}img{border:0;height:auto;line-height:100%;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic}p{display:block;margin:13px 0}</style><style type="text/css">@media only screen and (max-width:480px){@-ms-viewport{width:320px}@viewport{width:320px}}</style><style type="text/css">@media only screen and (min-width:480px){.mj-column-per-100{width:100%!important}}</style></head><body style="background: #f0f0f0;"><div class="mj-container" style="background-color:#f0f0f0;"><table role="presentation" cellpadding="0" cellspacing="0" style="background:#f0f0f0;font-size:0px;width:100%;" border="0"><tbody><tr><td><div style="margin:0px auto;max-width:600px;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;"><div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;"><table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0"><tbody><tr><td style="word-wrap:break-word;font-size:0px;"><div style="font-size:1px;line-height:30px;white-space:nowrap;">&#xA0;</div></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr></tbody></table><div style="margin:0px auto;max-width:600px;background:#FFFFFF;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;background:#FFFFFF;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:9px 0px 9px 0px;"><div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;"><table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0"><tbody><tr><td style="word-wrap:break-word;font-size:0px;padding:25px 25px 25px 25px;" align="center"><table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border-spacing:0px;" align="center" border="0"><tbody><tr><td style="width:204px;"> <img alt="" title="" height="100px" width="100px" src="https://cdn.discordapp.com/attachments/577137963985534994/791571694803353610/favicon.ico" style="border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:auto;" width="204"></td></tr></tbody></table></td></tr><tr><td style="word-wrap:break-word;font-size:0px;padding:0px 15px 0px 15px;" align="center"><div style="cursor:auto;color:#333333;font-family:Helvetica, sans-serif;font-size:15px;line-height:22px;text-align:center;"><h3 style="font-family: Helvetica, sans-serif; font-size: 24px; color: #333333; line-height: 50%;">Your password has been reset successfully</h3></div></td></tr><tr><td style="word-wrap:break-word;font-size:0px;padding:0px 50px 0px 50px;" align="center"><div style="cursor:auto;color:#333333;font-family:Helvetica, sans-serif;font-size:15px;line-height:22px;text-align:center;"><p>Forgot your password or need to change it? No problem.</p></div></td></tr><tr><td style="word-wrap:break-word;font-size:0px;padding:20px 25px 20px 25px;padding-top:10px;padding-left:25px;" align="center"><table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate;" align="center" border="0"><tbody><tr><td style="border:none;border-radius:5px;color:#FFFFFF;cursor:auto;padding:10px 25px;" align="center" valign="middle" bgcolor="#4DAA50"><a href="#" style="text-decoration: none; background: #4DAA50; color: #FFFFFF; font-family: Helvetica, sans-serif; font-size: 19px; font-weight: normal; line-height: 120%; text-transform: none; margin: 0px;" target="_blank">Login</a></td></tr></tbody></table></td></tr><tr><td style="word-wrap:break-word;font-size:0px;padding:0px 47px 0px 47px;" align="center"><div style="cursor:auto;color:#333333;font-family:Helvetica, sans-serif;font-size:15px;line-height:22px;text-align:center;"><p><span style="font-size:14px;"><strong>Questions?&#xA0;</strong><br>Email us at <a href="mailto:email@bulkmailer.cf" style="color: #555555;">email@bulkmailer.cf</a>.&#xA0;</span></p></div></td></tr></tbody></table></div></td></tr></tbody></table></div><table role="presentation" cellpadding="0" cellspacing="0" style="background:#f0f0f0;font-size:0px;width:100%;" border="0"><tbody><tr><td><div style="margin:0px auto;max-width:600px;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;"><div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;"><table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0"><tbody><tr><td style="word-wrap:break-word;font-size:0px;padding:0px 98px 0px 98px;" align="center"><div style="cursor:auto;color:#777777;font-family:Helvetica, sans-serif;font-size:15px;line-height:22px;text-align:center;"><p><span style="font-size:12px;"><a href="https://bulkmailer.cf" style="color: #555555;">TERMS OF SERVICE</a> | <a href="https://bulkmailer.cf" style="color: #555555;">PRIVACY POLICY</a><br>&#xA9; 2020 Bulk Mailer<br><a href="https://bulkmailer.cf/unsubscribe" style="color: #555555;">UNSUBSCRIBE</a></span></p></div></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr></tbody></table></div></body></html>"""  # noqa
-                # message = Mail(
-                #     from_email=(testing_email, "Bulk Mailer Reset Password"),
-                #     to_emails=email,
-                #     subject=subject,
-                #     html_content=content,
-                # )
-                try:
-                    # using the sendgrid api, send the email to the user's email
-                    # sg = SendGridAPIClient(json["sendgridapi"])
-                    # response = sg.send(message)
+                # Generate email verification token
+                verification_token = generate_token(email)
+                print(url_for('reset_password', token=verification_token, email=email))
+                # generate the email to be sent to the user
+                subject = "Password Reset Link | BulkMailer"
+                content = render_template(
+                    "emails/forgot-pwd.html", token=verification_token, email=email
+                )
+                response = mail_handler(
+                    recepient_email=email, subject=subject, content=content, name="Password Bot | Bulk Mailer"
+                )
+                # If any error occurs, the response will be equal to False
+                if isinstance(response, bool) and not response:
+                    flash("Error while sending mail!", "danger")
+                else:
                     flash(
-                        "You will receive a mail shortly. Password rested successfully!",
+                        f"We've sent a password reset link on {email}!",
                         "success",
                     )
-                    # print(response.status_code)
-                    # print(response.body)
-                    # print(response.headers)
-                except Exception:
-                    # if error occurs flash a msg
-                    print("Error!")
         else:
             # user doesn't exist
             flash("We didn't find your account!", "danger")
@@ -398,9 +391,26 @@ def forgot_password_page():
 
     return render_template("forgot-password.html", favTitle=favTitle)
 
+@app.route('/reset-password/<token>/<email>', methods=['GET', 'POST'])
+def reset_password(token, email):
+    if current_user.is_authenticated:
+        return redirect(url_for('dash_page'))
+    if request.method == 'POST':
+        password = request.form.get('password')
+        password = sha256_crypt.hash(password)
+        user = User.query.filter_by(email=email).first()
+        user.password = password
+        db.session.add(user)
+        db.session.commit()
+        flash('Password changed successfully.', 'success')
+        return redirect(url_for("login"))
+    if not validate_token(token):
+        return render_template('forgot-password.html', favTitle=favTitle, verified=False)
+    user = User.query.filter_by(email=email).first()
+    first_name = user.name.split(" ")[0]
+    return render_template("forgot-password.html", favTitle=favTitle, name=first_name, token=token, email=email, verified=True)
 
 # route to view groups
-
 
 @app.route("/view/groups")
 @login_required

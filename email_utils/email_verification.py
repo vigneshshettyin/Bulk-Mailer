@@ -1,4 +1,4 @@
-from json import load
+from flask import flash
 
 from itsdangerous import SignatureExpired, URLSafeTimedSerializer
 from decouple import config
@@ -38,6 +38,7 @@ def validate_token(token=None):
         )
 
     except SignatureExpired:
+        flash("Sorry, link has been expired.", "danger")
         return False
 
     # Token was successfully validated
