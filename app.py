@@ -634,20 +634,26 @@ def mail_page():
         "mail.html", group=group, template=mailtemp, user=current_user)
 
 
-# route to use a template
 
+# route to select a template
 
-@app.route("/use/template/<int:id>", methods=["GET"])
+@app.route("/select/template/<int:id>", methods=["GET"])
 @login_required
-def use_template(id):
+def select_template(id):
     # get the record of the template to be used
     post = Template.query.filter_by(id=id).first()
     content = {"content": post.content}
     return jsonify(post=content)
 
 
-# route to select a group
 
+# route to use a template
+@app.route('/use/template/<int:id>', methods=['GET'])
+@login_required
+def use_template(id):
+    return redirect(url_for('mail_page', selected=id))
+
+# route to select a group
 
 @app.route("/use/group/<int:id>", methods=["GET"])
 @login_required
