@@ -1,4 +1,4 @@
-import json
+from flask import flash
 
 from decouple import config
 
@@ -6,7 +6,7 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
 
-def mail_handler(recepient_email=None, subject=None, content=None):
+def mail_handler(recepient_email=None, subject=None, content=None, name="Bulk Mailer"):
     """
     Uses Sendgrid Api to send a mail to the receipients.\n
     Keyword Arguments\n
@@ -18,7 +18,7 @@ def mail_handler(recepient_email=None, subject=None, content=None):
     """
 
     message = Mail(
-        from_email=("rohit.is.here99@gmail.com", "Bulk Mailer Register"),
+        from_email=("email@gmail.com", name),
         to_emails=recepient_email,
         subject=subject,
         html_content=content,
@@ -28,12 +28,13 @@ def mail_handler(recepient_email=None, subject=None, content=None):
         # using the sendgrid api, send the email to the user's email
         sg = SendGridAPIClient(config("sendgridapi"))
         response = sg.send(message)  # noqa
-        # flash('Email Sent Successfully!', success)
+        flash('Email Sent Successfully!', 'success')
         # print(response.status_code)
         # print(response.body)
         # print(response.headers)
     except Exception as e:  # noqa
         # if an error occurs flash a msg
+        flash('Something went wrong while sending email!', 'error')
         return False
 
     # Returns true if no error occured
