@@ -96,8 +96,21 @@
                 <!-- /.container-fluid -->
 <script>
     function useTemplate(temp_id){
-        console.log("Sending request")
-        fetch(`/use/template/${temp_id}`,{
+        fetch(`/select/template/${temp_id}`,{
+            method: "GET"
+        })
+        .then((res) => res.json())
+        .then((data)=>{
+            $(".note-editable").html(`${data.post.content}`);
+            $("#username").removeAttr("readonly");
+        })
+    }
+</script>
+<script>
+    const urlParams = new URLSearchParams(location.search)
+    if(urlParams.has('selected')){
+        const template_id = urlParams.get('selected');
+        fetch(`/select/template/${template_id}`,{
             method: "GET"
         })
         .then((res) => res.json())
