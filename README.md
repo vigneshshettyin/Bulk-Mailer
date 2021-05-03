@@ -96,7 +96,9 @@ $ python3
 >>>db.create_all()
 >>>exit()
 ```
-## Lint and Format 📜
+## Detailed Step by Step [Video](https://drive.google.com/file/d/12rSDVQ2JElS83xglNhIDRzXX_jt4F5ES/view)
+
+## Lint aFormnd at 📜
 
 - We use [Flake8](https://flake8.pycqa.org/en/latest/manpage.html) and [Black](https://pypi.org/project/black/) for linting & formatting source code of this project.
 <br>
