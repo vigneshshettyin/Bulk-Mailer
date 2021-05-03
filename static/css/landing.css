@@ -79,6 +79,7 @@ p {
 #title {
   background-color: #4e73df;
   color: #fff;
+  height: 100vh;
   text-align: left;
 }
 
@@ -286,7 +287,7 @@ h5 {
 }
 .about-section h2 {
   padding: 20px;
-  font-size: 8vw;
+  font-size: 7vw;
   font-family: Montserrat;
   font-weight: bold;
   color: red;
@@ -432,6 +433,7 @@ color: #FFFFFF;
 
   #title {
     text-align: center;
+    height:100vh;
   }
 
   .title-image {
@@ -443,7 +445,7 @@ color: #FFFFFF;
 .techused h2
 {
   padding: 20px;
-  font-size: 7vw;
+  font-size: 6vw;
   font-family: Montserrat;
 }
 body {
