@@ -11,7 +11,7 @@ mysqlclient==2.0.3
 passlib==1.7.4
 python-http-client==3.3.2
 sendgrid==6.7.0
-SQLAlchemy==1.4.7
+SQLAlchemy==1.4.13
 starkbank-ecdsa==1.1.0
 Werkzeug==1.0.1
 oauthlib==3.1.0
