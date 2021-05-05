@@ -10,6 +10,8 @@ from hashlib import md5
 import requests
 from email_utils.email_helper import mail_handler
 from email_utils.email_verification import generate_token, validate_token
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 from flask import (
     Flask,
     abort,
@@ -40,7 +42,7 @@ from functools import wraps
 # create a Flask app and setup its configuration
 app = Flask(__name__)
 app.secret_key = "76^)(HEY,BULK-MAILER-HERE!)(skh390880213%^*&%6h&^&69lkjw*&kjh"
-app.config["SQLALCHEMY_DATABASE_URI"] = config("databaseUri")
+app.config["SQLALCHEMY_DATABASE_URI"] = config("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
@@ -139,6 +141,13 @@ class Contact(db.Model):
 def avatar(email, size):
     digest = md5(email.lower().encode("utf-8")).hexdigest()
     return f"https://www.gravatar.com/avatar/{digest}?d=identicon&s={size}"
+
+
+def send_mail(message):
+    sg = SendGridAPIClient(config('SENDGRID_API_KEY'))
+    response = sg.send(message)
+    return response
+
 
 # Admin Required Decorator
 
@@ -298,8 +307,8 @@ def register_page():
                     password=password,
                     date=time,
                     profile_image=profile_image,
-                    status=1,
-                    is_staff=False,
+                    status=0,
+                    is_staff=True,
                 )
                 db.session.add(entry)
                 db.session.commit()
@@ -308,18 +317,16 @@ def register_page():
                 verification_token = generate_token(email)
                 print(url_for('verify_email', token=verification_token, email=email))
                 # generate the welcome email to be sent to the user
-                subject = "Welcome aboard " + name + "!"
 
-                content = render_template(
-                    "emails/register.html", token=verification_token, email=email
-                )
-
-                response = mail_handler(
-                    recepient_email=email, subject=subject, content=content, name="Register Bot | Bulk Mailer"
-                )
+                message = Mail(
+                    from_email=('register@bulkmailer.cf', 'Register Bot | Bulk Mailer'),
+                    to_emails=email,
+                    subject="Welcome aboard " + name + "!",
+                    html_content=render_template(
+                    "emails/register.html", token=verification_token, email=email))
 
                 # If any error occurs, the response will be equal to False
-                if isinstance(response, bool) and not response:
+                if isinstance(send_mail(message), bool) and not response:
                     flash("Error while sending mail!", "danger")
                 else:
                     flash(
@@ -369,15 +376,15 @@ def forgot_password_page():
                 verification_token = generate_token(email)
                 print(url_for('reset_password', token=verification_token, email=email))
                 # generate the email to be sent to the user
-                subject = "Password Reset Link | BulkMailer"
-                content = render_template(
+                message = Mail(
+                    from_email=('forgot@bulkmailer.cf', 'Password Bot | Bulk Mailer'),
+                    to_emails=email,
+                    subject="Password Reset Link | BulkMailer",
+                    html_content=render_template(
                     "emails/forgot-pwd.html", token=verification_token, email=email
-                )
-                response = mail_handler(
-                    recepient_email=email, subject=subject, content=content, name="Password Bot | Bulk Mailer"
-                )
+                ))
                 # If any error occurs, the response will be equal to False
-                if isinstance(response, bool) and not response:
+                if isinstance(send_mail(message), bool) and not response:
                     flash("Error while sending mail!", "danger")
                 else:
                     flash(
@@ -605,39 +612,45 @@ def delete_subscriber(gid, number):
 def mail_page():
     # check if form has been submitted
     if request.method == "POST":
-        # get the email fields entered
-        # username = request.form.get("username")
-        # name = request.form.get("name")
-        # subject = request.form.get("subject")
-        group = request.form.get("group")
-        html_content = request.form.get("editordata")
-        html_content = (
-            html_content
-            + """<table role="presentation" cellpadding="0" cellspacing="0" style="background:#f0f0f0;font-size:0px;width:100%;" border="0"><tbody><tr><td><div style="margin:0px auto;max-width:600px;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;"><div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;"><table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0"><tbody><tr><td style="word-wrap:break-word;font-size:0px;padding:0px 98px 0px 98px;" align="center"><div style="cursor:auto;color:#777777;font-family:Helvetica, sans-serif;font-size:15px;line-height:22px;text-align:center;"><p><span style="font-size:12px;"><a href="https://bulkmailer.cf" style="color: #555555;">TERMS OF SERVICE</a> | <a href="https://bulkmailer.cf" style="color: #555555;">PRIVACY POLICY</a><br>© 2020 Bulk Mailer<br><a href="https://bulkmailer.cf/unsubscribe" style="color: #555555;">UNSUBSCRIBE</a></span></p></div></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr></tbody></table>"""  # noqa
-        )
-        # generate the from email
-        # fromemail = testing_email
-        # generate the mail list by extracting the emails of all the subscribers in the specified group
-        mailobj = Subscriber.query.filter_by(group_id=group).all()
-        maillist = []
-        for mailobj in mailobj:
-            maillist = maillist + [mailobj.email]
-        # generate the mail
-        # message = Mail(
-        #     from_email=(fromemail, name),
-        #     to_emails=maillist,
-        #     subject=subject,
-        #     html_content=html_content,
-        # )
-        try:
-            # send the email
-            # sg = SendGridAPIClient(json["sendgridapi"])
-            # response = sg.send(message)
-            flash("Mail has been sent successfully!", "success")
-        except Exception:
-            # flash an error msg if exception occurs
-            flash("Error due to invalid details entered!", "danger")
-    # get all the groups and templates in the db to display to the user
+    #     # get the email fields entered
+    #     # username = request.form.get("username")
+    #     # name = request.form.get("name")
+    #     # subject = request.form.get("subject")
+    #     group = request.form.get("group")
+    #     html_content = request.form.get("editordata")
+    #     html_content = (
+    #         html_content
+    #         + """<table role="presentation" cellpadding="0" cellspacing="0" style="background:#f0f0f0;font-size:0px;width:100%;" border="0"><tbody><tr><td><div style="margin:0px auto;max-width:600px;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;"><div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;"><table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0"><tbody><tr><td style="word-wrap:break-word;font-size:0px;padding:0px 98px 0px 98px;" align="center"><div style="cursor:auto;color:#777777;font-family:Helvetica, sans-serif;font-size:15px;line-height:22px;text-align:center;"><p><span style="font-size:12px;"><a href="https://bulkmailer.cf" style="color: #555555;">TERMS OF SERVICE</a> | <a href="https://bulkmailer.cf" style="color: #555555;">PRIVACY POLICY</a><br>© 2020 Bulk Mailer<br><a href="https://bulkmailer.cf/unsubscribe" style="color: #555555;">UNSUBSCRIBE</a></span></p></div></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr></tbody></table>"""  # noqa
+    #     )
+    #     # generate the from email
+    #     # fromemail = testing_email
+    #     # generate the mail list by extracting the emails of all the subscribers in the specified group
+    #     mailobj = Subscriber.query.filter_by(group_id=group).all()
+    #     maillist = []
+    #     for mailobj in mailobj:
+    #         maillist = maillist + [mailobj.email]
+    #     # generate the mail
+    #     # message = Mail(
+    #     #     from_email=(fromemail, name),
+    #     #     to_emails=maillist,
+    #     #     subject=subject,
+    #     #     html_content=html_content,
+    #     # )
+    #     try:
+    #         # send the email
+    #         # sg = SendGridAPIClient(json["sendgridapi"])
+    #         # response = sg.send(message)
+    #         flash("Mail has been sent successfully!", "success")
+    #     except Exception:
+    #         # flash an error msg if exception occurs
+    #         flash("Error due to invalid details entered!", "danger")
+    # # get all the groups and templates in the db to display to the user
+
+
+        group = Group.query.order_by(Group.id).all()
+        mailtemp = Template.query.order_by(Template.id).all()
+        flash("Due to security reasons we have disabled mailing functionality!", "warning")
+        return redirect('/mail')
     group = Group.query.order_by(Group.id).all()
     mailtemp = Template.query.order_by(Template.id).all()
     return render_template(
