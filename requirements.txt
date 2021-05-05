@@ -2,7 +2,7 @@ alembic==1.6.0
 appdirs==1.4.4
 black==21.5b0
 certifi==2020.12.5
-chardet==3.0.4
+chardet==4.0.0
 click==7.1.2
 flake8==3.9.1
 Flask==1.1.2
