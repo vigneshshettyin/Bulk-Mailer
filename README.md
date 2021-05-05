@@ -163,7 +163,7 @@ For Linux: 👨‍💻
 
  Click Here to view the deployment!
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://bulkmailercf.herokuapp.com//)<br>
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://bulkmailer.cf/)<br>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/949ff150-ae0c-4368-b749-e9a083b8ee65/deploy-status)](https://app.netlify.com/sites/elegant-lamarr-3ec036/deploys)
 
