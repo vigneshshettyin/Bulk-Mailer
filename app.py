@@ -145,20 +145,22 @@ def avatar(email, size):
 
 
 def send_mail(message):
-    sg = SendGridAPIClient(config('SENDGRID_API_KEY'))
+    sg = SendGridAPIClient(config("SENDGRID_API_KEY"))
     response = sg.send(message)
     return response
 
 
 # Admin Required Decorator
 
+
 def admin_required(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
         if not current_user.is_staff:
-            flash('You are not authorized to access this page.', 'danger')
-            return render_template('block.html', favTitle=favTitle, user=current_user)
+            flash("You are not authorized to access this page.", "danger")
+            return render_template("block.html", favTitle=favTitle, user=current_user)
         return func(*args, **kwargs)
+
     return decorated_view
 
 
@@ -316,15 +318,17 @@ def register_page():
 
                 # Generate email verification token
                 verification_token = generate_token(email)
-                print(url_for('verify_email', token=verification_token, email=email))
+                print(url_for("verify_email", token=verification_token, email=email))
                 # generate the welcome email to be sent to the user
 
                 message = Mail(
-                    from_email=('register@bulkmailer.cf', 'Register Bot | Bulk Mailer'),
+                    from_email=("register@bulkmailer.cf", "Register Bot | Bulk Mailer"),
                     to_emails=email,
                     subject="Welcome aboard " + name + "!",
                     html_content=render_template(
-                    "emails/register.html", token=verification_token, email=email))
+                        "emails/register.html", token=verification_token, email=email
+                    ),
+                )
 
                 # If any error occurs, the response will be equal to False
                 if isinstance(send_mail(message), bool) and not response:
@@ -375,15 +379,16 @@ def forgot_password_page():
             else:
                 # Generate email verification token
                 verification_token = generate_token(email)
-                print(url_for('reset_password', token=verification_token, email=email))
+                print(url_for("reset_password", token=verification_token, email=email))
                 # generate the email to be sent to the user
                 message = Mail(
-                    from_email=('forgot@bulkmailer.cf', 'Password Bot | Bulk Mailer'),
+                    from_email=("forgot@bulkmailer.cf", "Password Bot | Bulk Mailer"),
                     to_emails=email,
                     subject="Password Reset Link | BulkMailer",
                     html_content=render_template(
-                    "emails/forgot-pwd.html", token=verification_token, email=email
-                ))
+                        "emails/forgot-pwd.html", token=verification_token, email=email
+                    ),
+                )
                 # If any error occurs, the response will be equal to False
                 if isinstance(send_mail(message), bool) and not response:
                     flash("Error while sending mail!", "danger")
@@ -399,26 +404,38 @@ def forgot_password_page():
 
     return render_template("forgot-password.html", favTitle=favTitle)
 
-@app.route('/reset-password/<token>/<email>', methods=['GET', 'POST'])
+
+@app.route("/reset-password/<token>/<email>", methods=["GET", "POST"])
 def reset_password(token, email):
     if current_user.is_authenticated:
-        return redirect(url_for('dash_page'))
-    if request.method == 'POST':
-        password = request.form.get('password')
+        return redirect(url_for("dash_page"))
+    if request.method == "POST":
+        password = request.form.get("password")
         password = sha256_crypt.hash(password)
         user = User.query.filter_by(email=email).first()
         user.password = password
         db.session.add(user)
         db.session.commit()
-        flash('Password changed successfully.', 'success')
+        flash("Password changed successfully.", "success")
         return redirect(url_for("login"))
     if not validate_token(token):
-        return render_template('forgot-password.html', favTitle=favTitle, verified=False)
+        return render_template(
+            "forgot-password.html", favTitle=favTitle, verified=False
+        )
     user = User.query.filter_by(email=email).first()
     first_name = user.name.split(" ")[0]
-    return render_template("forgot-password.html", favTitle=favTitle, name=first_name, token=token, email=email, verified=True)
+    return render_template(
+        "forgot-password.html",
+        favTitle=favTitle,
+        name=first_name,
+        token=token,
+        email=email,
+        verified=True,
+    )
+
 
 # route to view groups
+
 
 @app.route("/view/groups")
 @login_required
@@ -613,53 +630,55 @@ def delete_subscriber(gid, number):
 def mail_page():
     # check if form has been submitted
     if request.method == "POST":
-    #     # get the email fields entered
-    #     # username = request.form.get("username")
-    #     # name = request.form.get("name")
-    #     # subject = request.form.get("subject")
-    #     group = request.form.get("group")
-    #     html_content = request.form.get("editordata")
-    #     html_content = (
-    #         html_content
-    #         + """<table role="presentation" cellpadding="0" cellspacing="0" style="background:#f0f0f0;font-size:0px;width:100%;" border="0"><tbody><tr><td><div style="margin:0px auto;max-width:600px;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;"><div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;"><table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0"><tbody><tr><td style="word-wrap:break-word;font-size:0px;padding:0px 98px 0px 98px;" align="center"><div style="cursor:auto;color:#777777;font-family:Helvetica, sans-serif;font-size:15px;line-height:22px;text-align:center;"><p><span style="font-size:12px;"><a href="https://bulkmailer.cf" style="color: #555555;">TERMS OF SERVICE</a> | <a href="https://bulkmailer.cf" style="color: #555555;">PRIVACY POLICY</a><br>© 2020 Bulk Mailer<br><a href="https://bulkmailer.cf/unsubscribe" style="color: #555555;">UNSUBSCRIBE</a></span></p></div></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr></tbody></table>"""  # noqa
-    #     )
-    #     # generate the from email
-    #     # fromemail = testing_email
-    #     # generate the mail list by extracting the emails of all the subscribers in the specified group
-    #     mailobj = Subscriber.query.filter_by(group_id=group).all()
-    #     maillist = []
-    #     for mailobj in mailobj:
-    #         maillist = maillist + [mailobj.email]
-    #     # generate the mail
-    #     # message = Mail(
-    #     #     from_email=(fromemail, name),
-    #     #     to_emails=maillist,
-    #     #     subject=subject,
-    #     #     html_content=html_content,
-    #     # )
-    #     try:
-    #         # send the email
-    #         # sg = SendGridAPIClient(json["sendgridapi"])
-    #         # response = sg.send(message)
-    #         flash("Mail has been sent successfully!", "success")
-    #     except Exception:
-    #         # flash an error msg if exception occurs
-    #         flash("Error due to invalid details entered!", "danger")
-    # # get all the groups and templates in the db to display to the user
-
+        #     # get the email fields entered
+        #     # username = request.form.get("username")
+        #     # name = request.form.get("name")
+        #     # subject = request.form.get("subject")
+        #     group = request.form.get("group")
+        #     html_content = request.form.get("editordata")
+        #     html_content = (
+        #         html_content
+        #         + """<table role="presentation" cellpadding="0" cellspacing="0" style="background:#f0f0f0;font-size:0px;width:100%;" border="0"><tbody><tr><td><div style="margin:0px auto;max-width:600px;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:0px 0px 0px 0px;"><div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;"><table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0"><tbody><tr><td style="word-wrap:break-word;font-size:0px;padding:0px 98px 0px 98px;" align="center"><div style="cursor:auto;color:#777777;font-family:Helvetica, sans-serif;font-size:15px;line-height:22px;text-align:center;"><p><span style="font-size:12px;"><a href="https://bulkmailer.cf" style="color: #555555;">TERMS OF SERVICE</a> | <a href="https://bulkmailer.cf" style="color: #555555;">PRIVACY POLICY</a><br>© 2020 Bulk Mailer<br><a href="https://bulkmailer.cf/unsubscribe" style="color: #555555;">UNSUBSCRIBE</a></span></p></div></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr></tbody></table>"""  # noqa
+        #     )
+        #     # generate the from email
+        #     # fromemail = testing_email
+        #     # generate the mail list by extracting the emails of all the subscribers in the specified group
+        #     mailobj = Subscriber.query.filter_by(group_id=group).all()
+        #     maillist = []
+        #     for mailobj in mailobj:
+        #         maillist = maillist + [mailobj.email]
+        #     # generate the mail
+        #     # message = Mail(
+        #     #     from_email=(fromemail, name),
+        #     #     to_emails=maillist,
+        #     #     subject=subject,
+        #     #     html_content=html_content,
+        #     # )
+        #     try:
+        #         # send the email
+        #         # sg = SendGridAPIClient(json["sendgridapi"])
+        #         # response = sg.send(message)
+        #         flash("Mail has been sent successfully!", "success")
+        #     except Exception:
+        #         # flash an error msg if exception occurs
+        #         flash("Error due to invalid details entered!", "danger")
+        # # get all the groups and templates in the db to display to the user
 
         group = Group.query.order_by(Group.id).all()
         mailtemp = Template.query.order_by(Template.id).all()
-        flash("Due to security reasons we have disabled mailing functionality!", "warning")
-        return redirect('/mail')
+        flash(
+            "Due to security reasons we have disabled mailing functionality!", "warning"
+        )
+        return redirect("/mail")
     group = Group.query.order_by(Group.id).all()
     mailtemp = Template.query.order_by(Template.id).all()
     return render_template(
-        "mail.html", group=group, template=mailtemp, user=current_user)
-
+        "mail.html", group=group, template=mailtemp, user=current_user
+    )
 
 
 # route to select a template
+
 
 @app.route("/select/template/<int:id>", methods=["GET"])
 @login_required
@@ -670,14 +689,15 @@ def select_template(id):
     return jsonify(post=content)
 
 
-
 # route to use a template
-@app.route('/use/template/<int:id>', methods=['GET'])
+@app.route("/use/template/<int:id>", methods=["GET"])
 @login_required
 def use_template(id):
-    return redirect(url_for('mail_page', selected=id))
+    return redirect(url_for("mail_page", selected=id))
+
 
 # route to select a group
+
 
 @app.route("/use/group/<int:id>", methods=["GET"])
 @login_required
@@ -804,6 +824,7 @@ def users_page():
     # get the records of all the users and display to the user
     users = User.query.order_by(User.id).all()
     return render_template("user_list.html", users=users, user=current_user)
+
 
 # Google Login
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
@@ -974,9 +995,7 @@ def ContactToCsv():
         row = rowToListContact(row)
         cw.writerow(row)
     output = make_response(si.getvalue())
-    output.headers[
-        "Content-Disposition"
-    ] = "attachment; filename=contact_response.csv"
+    output.headers["Content-Disposition"] = "attachment; filename=contact_response.csv"
     output.headers["Content-type"] = "text/csv"
     return output
 
