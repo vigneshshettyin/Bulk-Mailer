@@ -310,7 +310,7 @@ def register_page():
                     date=time,
                     profile_image=profile_image,
                     status=0,
-                    is_staff=True,
+                    is_staff=False,
                 )
                 db.session.add(entry)
                 db.session.commit()
