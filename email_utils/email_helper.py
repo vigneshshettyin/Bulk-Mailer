@@ -28,13 +28,13 @@ def mail_handler(recepient_email=None, subject=None, content=None, name="Bulk Ma
         # using the sendgrid api, send the email to the user's email
         sg = SendGridAPIClient(config("sendgridapi"))
         response = sg.send(message)  # noqa
-        flash('Email Sent Successfully!', 'success')
+        flash("Email Sent Successfully!", "success")
         # print(response.status_code)
         # print(response.body)
         # print(response.headers)
     except Exception as e:  # noqa
         # if an error occurs flash a msg
-        flash('Something went wrong while sending email!', 'error')
+        flash("Something went wrong while sending email!", "error")
         return False
 
     # Returns true if no error occured

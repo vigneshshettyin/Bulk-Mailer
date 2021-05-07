@@ -82,20 +82,45 @@ $ flask run
 **Note : If your project root directory doesn't contains `bulkmailer.db` then Run this on your terminal: 👇**
 
 For Windows: 💾
-```
-$ py or python
->>>from app import db
->>>db.create_all()
->>>exit()
-```
+
+* To initialise a new database
+  ```
+  python manage.py db init
+  ```
+* To migrate changes in the database
+  ```
+  python manage.py db migrate
+  ```
+* To update the database with the new migrations
+  ```
+  python manage.py db upgrade
+  ```
+* To degrade the database
+  ```
+  python manage.py db downgrade
+  ```
+
 
 For Linux: 👨‍💻
-```
-$ python3
->>>from app import db
->>>db.create_all()
->>>exit()
-```
+* To initialise a new database
+  ```
+  python3 manage.py db init
+  ```
+* To migrate changes in the database
+  ```
+  python3 manage.py db migrate
+  ```
+* To update the database with the new migrations
+  ```
+  python3 manage.py db upgrade
+  ```
+* To degrade the database
+  ```
+  python3 manage.py db downgrade
+  ```
+
+**Note** : Users need to run the upgrade command only during the project setup since the initial migrations have already been done. It just need to be applied using the `python manage.py db upgrade` command.
+
 ## Detailed Step by Step [Video](https://drive.google.com/file/d/12rSDVQ2JElS83xglNhIDRzXX_jt4F5ES/view)
 
 ## Lint aFormnd at 📜
@@ -138,7 +163,7 @@ $ python3
 
  Click Here to view the deployment!
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://bulkmailercf.herokuapp.com//)<br>
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://bulkmailer.cf/)<br>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/949ff150-ae0c-4368-b749-e9a083b8ee65/deploy-status)](https://app.netlify.com/sites/elegant-lamarr-3ec036/deploys)
 
