@@ -272,7 +272,19 @@ svg {
   to {transform: translateY(20%);}
 }
 
-
+.contributorscrousel
+{
+  width: 15vw !important;
+}
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+  
+.contributorscrousel
+{
+  width: 18vw !important;
+  height:auto !important;
+}
+}
   </style>
 </head>
 
@@ -504,12 +516,10 @@ svg {
             </div>
         </div>
     </div>
-    <div class="row justify-content-center">
-      
-      {% for t,d in team.items() %}
-
-        <div class="col-md-6 col-lg-3 mb-30">
-            <div class="team-item">
+   
+      <section class="contibutors-logos slider">
+        {% for t,d in team.items() %}
+            <div class="contributorscrousel">
                 <div class="mb-30 position-relative d-flex align-items-center">
                         <span class="socials d-inline-block">
                           <a href="#" class="zmdi zmdi-facebook"></a>
@@ -525,12 +535,10 @@ svg {
                     <h5 class="mb-2">{{ d.name }}</h5>
                 </div>
             </div>
-        </div>
-
-
         {% endfor %}
 
-    </div>
+     </section>
+   
 </div>
 
   <!-- About Section -->
@@ -632,6 +640,28 @@ svg {
   $(document).ready(function(){
   $('.customer-logos').slick({
       slidesToShow: 6,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 1500,
+      arrows: false,
+      dots: false,
+      pauseOnHover: false,
+      responsive: [{
+          breakpoint: 768,
+          settings: {
+              slidesToShow: 4
+          }
+      }, {
+          breakpoint: 520,
+          settings: {
+              slidesToShow: 3
+          }
+      }]
+  });
+});
+  $(document).ready(function(){
+  $('.contibutors-logos').slick({
+      slidesToShow: 4,
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 1500,
