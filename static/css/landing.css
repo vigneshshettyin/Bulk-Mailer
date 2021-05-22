@@ -18,8 +18,13 @@ p {
 
 .big-heading {
   font-family: "Montserrat";
-  font-size: 3.5rem;
+  /* font-size: 3.5rem; */
   line-height: 1.5;
+}
+#bg{
+  font-size: 56px;
+  margin-top: -30px;
+  padding-top: -20px;
 }
 #intro{
   color: white;
@@ -571,7 +576,7 @@ color: black;
   text-align: center;
   justify-content: center;
   background-size: contain;
-  
+
 }
 
 .img-profile
@@ -605,15 +610,21 @@ color: black;
 }
 .colored-section button
 {
-  font-size: 3rem;
+  font-size: 15px;
+  margin-top: 0px;
+  padding-top: 0px;
 }
 #tagline
 {
-  font-size: 3rem;
+  margin-top: 0px;
+  padding-top: 0px;
+  font-size: 25px;
 }
 #para
 {
-  font-size: 2rem;
+  margin-top: -1px;
+  padding-top: 0px;
+  font-size: 10px;
 }
 #logo
 {
@@ -649,7 +660,7 @@ svg {
   animation: drop 5s ease infinite normal;
   stroke: #4478e3;
   stroke-width:0.5;
-  opacity:.6; 
+  opacity:.6;
   transform: translateY(80%);
 }
 .drop1 {
@@ -679,21 +690,21 @@ svg {
 }
 @keyframes drop {
   0% {
-    transform: translateY(80%); 
-    opacity:.6; 
+    transform: translateY(80%);
+    opacity:.6;
   }
   80% {
-    transform: translateY(80%); 
-    opacity:.6; 
+    transform: translateY(80%);
+    opacity:.6;
   }
-  90% { 
-    transform: translateY(10%) ; 
-    opacity:.6; 
+  90% {
+    transform: translateY(10%) ;
+    opacity:.6;
   }
-  100% { 
-    transform: translateY(0%) scale(1.5);  
+  100% {
+    transform: translateY(0%) scale(1.5);
     stroke-width:0.2;
-    opacity:0; 
+    opacity:0;
   }
 }
 @keyframes wave {
@@ -724,7 +735,7 @@ a
   position: fixed;
   bottom: 10px;
   right: 10px;
-  transition: background-color .3s, 
+  transition: background-color .3s,
     opacity .5s, visibility .5s;
   opacity: 0;
   visibility: hidden;
@@ -784,7 +795,7 @@ a
   transition: 0.4s ease-in-out;
 }
 
-/*   
+/*
   // Design of slider for light mode
  */
 .slider2:before {
@@ -870,10 +881,10 @@ a
 }
 }
 
-  
+
 /* Styles for the content section */
 @media (min-width: 500px) {
-  
+
   #button {
     margin: 30px;
   }
