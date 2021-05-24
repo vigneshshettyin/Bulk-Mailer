@@ -119,6 +119,9 @@ For Linux: 👨‍💻
   python3 manage.py db downgrade
   ```
 
+For Checking Linting errors:-
+
+```pylint --load-plugins pylint_flask [module_name]```
 **Note** : Users need to run the upgrade command only during the project setup since the initial migrations have already been done. It just need to be applied using the `python manage.py db upgrade` command.
 
 ## Detailed Step by Step [Video](https://drive.google.com/file/d/12rSDVQ2JElS83xglNhIDRzXX_jt4F5ES/view)
