@@ -28,7 +28,7 @@ This service is a prime example of how you can utilize technology to enhance tra
 
 Feel free to use it as-is or customize it as much as you want.
 
-But if you want to **Contribute** and make this much better for other developer have a look at [Issues](https://github.com/vigneshshettyin/Bulk-Mailer/issues).
+But if you want to **Contribute** and make this much better for other developers have a look at [Issues](https://github.com/vigneshshettyin/Bulk-Mailer/issues).
 
 
 If you created something awesome and want to contribute then feel free to open Please don't hesitate to open an [Pull Request](https://github.com/vigneshshettyin/Bulk-Mailer/pulls).
@@ -79,11 +79,11 @@ $ flask run
 **7**.Now fire up your favorite web browser and go to http://127.0.0.1:5000/
  You will find the application running there.
 
-**Note : If your project root directory doesn't contains `bulkmailer.db` then Run this on your terminal: 👇**
+**Note: If your project root directory doesn't contain `bulkmailer.db` then Run this on your terminal: 👇**
 
 For Windows: 💾
 
-* To initialise a new database
+* To initialize a new database
   ```
   python manage.py db init
   ```
@@ -102,7 +102,7 @@ For Windows: 💾
 
 
 For Linux: 👨‍💻
-* To initialise a new database
+* To initialize a new database
   ```
   python3 manage.py db init
   ```
@@ -122,7 +122,7 @@ For Linux: 👨‍💻
 For Checking Linting errors:-
 
 ```pylint --load-plugins pylint_flask [module_name]```
-**Note** : Users need to run the upgrade command only during the project setup since the initial migrations have already been done. It just need to be applied using the `python manage.py db upgrade` command.
+**Note**: Users need to run the upgrade command only during the project setup since the initial migrations have already been done. It just needs to be applied using the `python manage.py db upgrade` command.
 
 ## Detailed Step by Step [Video](https://drive.google.com/file/d/12rSDVQ2JElS83xglNhIDRzXX_jt4F5ES/view)
 
@@ -164,13 +164,13 @@ For Checking Linting errors:-
 
 ## Live Deployment 📦
 
-Deploy it live on web!
+Deploy it live on the web!
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vigneshshettyin/Bulk-Mailer/tree/master)<br>
 
 
 When you are done with the setup, you should host your website online.
-We highly recommend to read through the:<br>
+We highly recommend reading through the:<br>
 - [Deploying on Heroku](https://stackabuse.com/deploying-a-flask-application-to-heroku/).<br>
 - [Deploying on Netlify](https://www.netlify.com/blog/2016/10/27/a-step-by-step-guide-deploying-a-static-site-or-single-page-app/).<br>
 
