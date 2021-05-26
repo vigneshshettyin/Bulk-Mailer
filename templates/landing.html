@@ -64,7 +64,7 @@
 
   <section class="colored-section" id="title">
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="height:100%">
 
       <!-- Nav Bar -->
 
@@ -134,9 +134,9 @@
 
       <!-- Title -->
 
-      <div class="row mt-5 py-3">
+      <div class="row mt-5 py-3 main" style="height:100%">
 
-        <div class="col-lg-6">
+        <div class="col-lg-6 getstart">
           <h1 class="big-heading" id="bg">BulkMailer</h1>
           <p id="intro"  style="font-size: 20px">Bulk Mailer is a Mail Client web application that can be used by organisations to send bulk emails for different groups of subscribers.</p>
           <!-- link to the dashboard onclick -->
@@ -145,7 +145,7 @@
         </div>
 
         <div class="col-lg-6 col-sm-11">
-          <div class="card mb-3" style="min-width: 420px;border-radius: 50px;display: inline-block;">
+          <div class="card mb-3" style="border-radius: 50px;display: inline-block;">
             <div class="row g-0">
 
               <div class="col-md-auto">
@@ -190,7 +190,7 @@
         <!-- Row -->
         <div class="row justify-content-center">
           <!-- cols -->
-            <div class="col-md-6 col-lg-3 mb-30">
+            <div class="col-md-6 col-sm-12 col-lg-3 mb-30 card-flex">
                 <div class="team-item">
                     <div class="mb-30 position-relative d-flex align-items-center">
                             <span class="socials d-inline-block">
@@ -209,7 +209,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-3 mb-30">
+            <div class="col-md-6 col-sm-12 col-lg-3 mb-30 card-flex">
                 <div class="team-item">
                     <div class="mb-30 position-relative d-flex align-items-center">
                             <span class="socials d-inline-block">
@@ -228,7 +228,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-3 mb-30">
+            <div class="col-md-6 col-sm-12 col-lg-3 mb-30 card-flex">
                 <div class="team-item">
                     <div class="mb-30 position-relative d-flex align-items-center">
                             <span class="socials d-inline-block">
@@ -247,7 +247,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-3 mb-30">
+            <div class="col-md-6 col-sm-12 col-lg-3 mb-30 card-flex">
                 <div class="team-item">
                     <div class="mb-30 position-relative d-flex align-items-center">
                             <span class="socials d-inline-block">
@@ -257,7 +257,7 @@
                                 <a href="#" class="zmdi zmdi-github"></a>
                             </span>
                         <span class="img-holder d-inline-block">
-                                <img src="https://media-exp1.licdn.com/dms/image/C5603AQGATxe6tJVqnQ/profile-displayphoto-shrink_200_200/0/1595159549102?e=1623283200&v=beta&t=27ecLr2m3fLZSuBWxkRI-2adW83GyrQ4kXgJ9ADmgGo" alt="Team">
+                                <img src="https://avatars.githubusercontent.com/u/60699752?v=4" alt="Team">
                             </span>
                     </div>
                     <div class="team-content">
@@ -280,7 +280,7 @@
 
       <section class="contibutors-logos slider">
         {% for t,d in team.items() %}
-            <div class="contributorscrousel">
+            <div >
                 <div class="mb-30 position-relative d-flex align-items-center">
                         <span class="socials d-inline-block">
                           <a href="https://github.com/{{d.username}}" class="zmdi zmdi-github" style="text-decoration: none"></a>
@@ -325,16 +325,16 @@
   <div class="container techused col-sm-11 px-2">
     <h2 >Technology Used</h2>
      <section class="customer-logos slider" style="padding-bottom: 40px;">
-        <div class="slide"><img src="{{ url_for('static', filename='img/sql.png') }}"></div>
-        <div class="slide"><img src="{{ url_for('static', filename='img/python.png') }}"></div>
-        <div class="slide"><img src="{{ url_for('static', filename='img/postgresql.png') }}"></div>
-        <div class="slide"><img src="{{ url_for('static', filename='img/jquery.png') }}"></div>
-        <div class="slide"><img src="{{ url_for('static', filename='img/javascript.png') }}"></div>
-        <div class="slide"><img src="{{ url_for('static', filename='img/html.png') }}"></div>
-        <div class="slide"><img src="{{ url_for('static', filename='img/heroku.png') }}"></div>
-        <div class="slide"><img src="{{ url_for('static', filename='img/flask.png') }}"></div>
-        <div class="slide"><img src="{{ url_for('static', filename='img/css-3.png') }}"></div>
-        <div class="slide"><img src="{{ url_for('static', filename='img/bootstrap.png') }}"></div>
+        <div "><img src="{{ url_for('static', filename='img/sql.png') }}"></div>
+        <div "><img src="{{ url_for('static', filename='img/python.png') }}"></div>
+        <div "><img src="{{ url_for('static', filename='img/postgresql.png') }}"></div>
+        <div "><img src="{{ url_for('static', filename='img/jquery.png') }}"></div>
+        <div "><img src="{{ url_for('static', filename='img/javascript.png') }}"></div>
+        <div "><img src="{{ url_for('static', filename='img/html.png') }}"></div>
+        <div "><img src="{{ url_for('static', filename='img/heroku.png') }}"></div>
+        <div "><img src="{{ url_for('static', filename='img/flask.png') }}"></div>
+        <div "><img src="{{ url_for('static', filename='img/css-3.png') }}"></div>
+        <div "><img src="{{ url_for('static', filename='img/bootstrap.png') }}"></div>
      </section>
   </div>
 

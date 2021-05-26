@@ -84,8 +84,20 @@ p {
 #title {
   background-color: #4e73df;
   color: #fff;
-  height: 100vh;
   text-align: left;
+  height: 100vh;
+
+}
+
+.main{
+  justify-content: center;
+}
+
+.getstart{
+  height: 31%;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
 }
 
 #title .container-fluid {
@@ -118,16 +130,30 @@ p {
 }
 /* mentor */
 .team-item {
-  padding: 35px;
-  padding-right: 0;
+  padding: 40px;
+  padding-right: 0px;
   position: relative;
   z-index: 0;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  height: 85%;
+  width: 85%;
+}
+
+.card-flex{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }
 .top-sep{
   color: #4F4F51;
   margin-top: 50px;
   margin-bottom: 50px;
-  font-size: 8vw;
+  font-size: 56px;
   font-family: "Montserrat";
 }
 
@@ -170,14 +196,14 @@ p {
       flex-shrink: 0;
   -webkit-box-shadow: 0 0 20px 0 rgba(51, 51, 51, 0.2);
           box-shadow: 0 0 20px 0 rgba(51, 51, 51, 0.2);
-  border-radius: 10px;
+  border-radius: 130px;
   width: calc(100% - 70px);
   margin-left: 70px;
   overflow: hidden;
 }
 
 .team-item .img-holder img {
-  border-radius: 10px;
+  border-radius: 500px;
   width: 100%;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
@@ -185,6 +211,9 @@ p {
   transition: all 0.6s ease;
 }
 
+.img-holder img{
+  border-radius:500px ;
+}
 .team-item:hover .img-holder img {
   -webkit-transform: scale(1);
           transform: scale(1);
@@ -272,7 +301,7 @@ h5 {
   margin-top: 50px;
   margin-bottom: 50px;
   text-align: center;
-  font-size: 8vw;
+  font-size: 56px;
   font-family: "Montserrat";
 }
 
@@ -291,17 +320,17 @@ h5 {
   color: ye;
 }
 .about-section h2 {
-  padding: 20px;
-  font-size: 7vw;
+  margin-bottom: 50px;
+  font-size: 56px;
   font-family: Montserrat;
-  font-weight: bold;
-  color: red;
+  color:white;
 }
 
 .about-text p {
-font-size: 1rem;
-font-family: Montserrat;
-color: #FFFFFF;
+  font-size: 2vh;
+  text-align: justify;
+  font-family: Montserrat;
+  color: #FFFFFF;
 }
 
 
@@ -310,10 +339,11 @@ color: #FFFFFF;
 
 .slick-slide {
   margin: 0px 20px;
+  padding: 15px;
 }
 
 .slick-slide img {
-  width: 100%;
+  width: 80%;
 }
 
 .slick-slider
@@ -433,12 +463,25 @@ color: #FFFFFF;
   padding: 10px;
 }
 
+.slick-track{
+  width: 20000px!important;
+}
 
 @media (max-width: 1028px) {
 
   #title {
     text-align: center;
-    height:100vh;
+    height: 100vh;
+  }
+
+  .slick-slide{
+    padding: 0;
+    min-width: 180px;
+  }
+
+  .techused .slick-slide{
+    padding: 15px;
+    min-width: 180px;
   }
 
   .title-image {
@@ -449,8 +492,9 @@ color: #FFFFFF;
 
 .techused h2
 {
+  margin: 50px 0;
   padding: 20px;
-  font-size: 6vw;
+  font-size: 56px;
   font-family: Montserrat;
 }
 body {
@@ -579,6 +623,9 @@ color: black;
 
 }
 
+.about-avatar img{
+  width: 35%;
+}
 .img-profile
 {
   width:2.5vw;
@@ -590,12 +637,10 @@ color: black;
   width:5vw;
   height:2.5vh;
 }
-.about-text p {
-  font-size:2.5rem;
-  }
+
   .about-section h2
   {
-    font-size:8rem;
+    font-size:56px;
   }
   #title .container-fluid {
     padding: 3% 8% 7%;
@@ -638,7 +683,8 @@ color: black;
 }
 .techused h2
 {
-  font-size: 4.8rem;
+  font-size: 56px;
+  
 }
 .navbar-dark .navbar-nav .nav-link
 {
@@ -810,6 +856,10 @@ a
   transition: 0.4s;
 }
 
+
+.theme-dark .team-content{
+  color: rgb(194, 194, 194);
+}
 /*   // When theme is dark, background is dark */
 .theme-dark .slider2 {
   background-color: #3a2864;
