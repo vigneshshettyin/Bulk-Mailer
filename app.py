@@ -1001,4 +1001,5 @@ def ContactToCsv():
 
 # execute if file is the main file i.e., file wasn't imported
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.debug=True
+    app.run(host='192.168.43.144',port=5000)
