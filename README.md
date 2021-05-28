@@ -1,7 +1,8 @@
 # Bulk-Mailer Using Flask & Sendgrid API ⚡️
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-## Overview of the Topic:
+![](https://res.cloudinary.com/vigneshshettyin/image/upload/v1622210274/wlcexdghbh9vi1wdzzqn.png)
+
+
 
 Bulk Mailer is a Mail Client web application that can be used by organizations to send bulk emails for different groups of subscribers. In general, a bulk email service is a company that allows its customers to send mass email messages to multiple lists of recipients at a specified time. With this service, you can send a single message to thousands of people on a mailing list or a personalized email to each address on a list that can be of any size.
 Today, marketers prefer to use bulk email services to deliver important messages with minimal effort. Unlike junk emails sent without the recipients’ permission, bulk emails are legal marketing campaigns since the recipients subscribe to receive them. However, if bulk email marketing is not properly managed, users may consider it spam, and consequently, it may hurt the sender’s reputation.
