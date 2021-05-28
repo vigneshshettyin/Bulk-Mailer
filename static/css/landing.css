@@ -985,6 +985,14 @@ a
   width: auto;
   margin-left: 50%;
   }
+
+  .classbox{
+    height: 40%;
+  }
+
+  .card{
+    height: 100%;
+  }
 }
 
 .social-button:hover{
@@ -994,6 +1002,8 @@ a
 .flex-row-reverse{
   --bs-gutter-x:0!important
 }
+
+
 #intro{
   font-size: 20px;
 }
