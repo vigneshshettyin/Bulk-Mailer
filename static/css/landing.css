@@ -94,7 +94,6 @@ p {
 }
 
 .getstart{
-  height: 31%;
   justify-content: space-between;
   display: flex;
   flex-direction: column;
@@ -196,14 +195,14 @@ p {
       flex-shrink: 0;
   -webkit-box-shadow: 0 0 20px 0 rgba(51, 51, 51, 0.2);
           box-shadow: 0 0 20px 0 rgba(51, 51, 51, 0.2);
-  border-radius: 130px;
+  border-radius: 100%;
   width: calc(100% - 70px);
   margin-left: 70px;
   overflow: hidden;
 }
 
 .team-item .img-holder img {
-  border-radius: 500px;
+  border-radius: 120px;
   width: 100%;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
@@ -333,6 +332,9 @@ h5 {
   color: #FFFFFF;
 }
 
+.about-text{
+  padding: 20px;
+}
 
 
 /* Slider */
@@ -487,6 +489,42 @@ h5 {
   .title-image {
     position: static;
     transform: rotate(0);
+
+
+  }
+  @media screen and (min-width: 500px) and (max-width:768px) {
+
+    .card-flex{
+      width: 50%!important;
+    }
+
+    .team-item{
+      height: 100%;
+      width: 100%;
+    }
+
+    .team-item .team-content{
+      padding-top: 30px;
+    }
+
+  }
+
+
+
+ @media (max-width:500px)
+ {
+   .team-item{
+     height: 100%;
+
+   }
+   .team-item .team-content{
+    padding-top: 30px;
+  }
+ }
+
+
+  .team-item .img-holder img{
+    border-radius: 120px;
   }
 }
 
@@ -516,7 +554,7 @@ transform: translate(-50%, -50%);
 white-space: nowrap;
 }
 
-@charset "UTF-8";
+
 
 .svg-inline--fa {
 vertical-align: -0.200em;
@@ -673,7 +711,6 @@ color: black;
 }
 #logo
 {
-  margin-left:471px;
   padding-top: 3vh;
 }
 .navbar .navbar-brand img
@@ -939,3 +976,44 @@ a
     margin: 30px;
   }
 }
+
+@media screen and (max-width:768px)
+{
+  #logo{
+  padding: 0;
+  margin: 0;
+  width: auto;
+  margin-left: 50%;
+  }
+
+  .classbox{
+    height: 40%;
+  }
+
+  .card{
+    height: 100%;
+  }
+}
+
+.social-button:hover{
+  transform: scale(2);
+}
+
+.flex-row-reverse{
+  --bs-gutter-x:0!important
+}
+
+
+#intro{
+  font-size: 20px;
+}
+@media (max-width: 600px) {
+
+ #bg,.top-sep,.top-sep1,.about-section h2,.techused h2{
+   font-size: 8vw;
+ }
+ #intro{
+   font-size: 5vw;
+ }
+}
+
