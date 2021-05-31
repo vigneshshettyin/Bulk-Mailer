@@ -28,6 +28,7 @@ p {
 }
 #intro{
   color: white;
+  text-align: center;
 }
 
 .section-heading {
@@ -100,7 +101,7 @@ p {
 }
 
 #title .container-fluid {
-  padding: 3% 15% 7%;
+  padding: 3% 10% 7%;
 }
 
 /* Title Image */
@@ -111,21 +112,25 @@ p {
   word-spacing: 3px;
   padding-left: 15px;
 }
+
+
+
+
+.card,#para,#logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.card{
+  height: fit-content!important;
+  min-height: 300px!important;
+}
+
 #tagline{
-  padding-top: 15px;
-  font-weight: bold;
-  text-align: left;
-}
-#logo{
-  position: absolute;
-  padding-left: 10px;
-  margin-left: 240px;
-  padding-top: 20px;
-}
-#para{
-  padding-top: 15px;
-  font-weight: bold;
-  text-align: left;
+  text-align: center;
 }
 /* mentor */
 .team-item {
@@ -676,6 +681,9 @@ color: black;
   height:2.5vh;
 }
 
+.navbar-nav{
+  display: none!important;
+}
   .about-section h2
   {
     font-size:56px;
@@ -697,22 +705,8 @@ color: black;
   margin-top: 0px;
   padding-top: 0px;
 }
-#tagline
-{
-  margin-top: 0px;
-  padding-top: 0px;
-  font-size: 25px;
-}
-#para
-{
-  margin-top: -1px;
-  padding-top: 0px;
-  font-size: 10px;
-}
-#logo
-{
-  padding-top: 3vh;
-}
+
+
 .navbar .navbar-brand img
 {
   width: 5vh;
@@ -968,7 +962,112 @@ a
 }
 }
 
+/* Mobile Navigation */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 9999;
+  overflow-y: auto;
+  height: 100vh;
+  left: -70%;
+  width: 70%;
+  padding: 0;
+  padding-top: 18px;
+  background: rgb(34 50 99);
+  transition: 0.4s;
+}
 
+.mobile-nav * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mobile-nav a {
+  display: block;
+  position: relative;
+  color: #fff;
+  padding: 10px 20px;
+  font-weight: 500;
+}
+
+.mobile-nav a:hover, .mobile-nav .active > a, .mobile-nav li:hover > a {
+  color: #8dc2fa;
+  text-decoration: none;
+}
+
+.mobile-nav .drop-down > a:after {
+  content: "\f078";
+  font-family: FontAwesome;
+  padding-left: 10px;
+  position: absolute;
+  right: 15px;
+}
+
+.mobile-nav .active.drop-down > a:after {
+  content: "\f077";
+}
+
+.mobile-nav .drop-down > a {
+  padding-right: 35px;
+}
+
+.mobile-nav .drop-down ul {
+  display: none;
+  overflow: hidden;
+}
+
+.mobile-nav .drop-down li {
+  padding-left: 20px;
+}
+
+.mobile-nav-toggle {
+z-index: 99;
+    border: 0;
+    background: none;
+    font-size: 24px!important;
+    transition: all 0.4s;
+    outline: none !important;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.mobile-nav-toggle i {
+  margin: 18px 18px 0 0;
+}
+
+.mobile-nav-overly {
+  width: 100%;
+  height: 100%;
+  z-index: 9997;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: rgb(34 50 99 / 71%);
+  overflow: hidden;
+  display: none;
+}
+
+
+.mobile-nav-active {
+  overflow: hidden;
+}
+
+.mobile-nav-active .mobile-nav{
+  left: 0;
+}
+
+.mobile-nav-active .mobile-nav-toggle i {
+  color: #fff;
+}
+
+.classbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 /* Styles for the content section */
 @media (min-width: 500px) {
 
@@ -979,16 +1078,9 @@ a
 
 @media screen and (max-width:768px)
 {
-  #logo{
-  padding: 0;
-  margin: 0;
-  width: auto;
-  margin-left: 50%;
-  }
 
-  .classbox{
-    height: 40%;
-  }
+
+
 
   .card{
     height: 100%;
@@ -1003,7 +1095,9 @@ a
   --bs-gutter-x:0!important
 }
 
-
+#tagline{
+  font-weight: 700;
+}
 #intro{
   font-size: 20px;
 }
@@ -1012,8 +1106,30 @@ a
  #bg,.top-sep,.top-sep1,.about-section h2,.techused h2{
    font-size: 8vw;
  }
- #intro{
-   font-size: 5vw;
- }
+#intro{
+  font-size: 2vh;
+}
+}
+@media screen and (min-width: 992px) {
+  .navbar-nav{
+    flex-direction: row!important;
+  }
 }
 
+@media screen and (max-width:800px) {
+ 
+  #logo{
+    display: none
+  }
+}
+
+@media screen and (max-width:300px) {
+ 
+#tagline{
+  font-size: 6vw;
+}
+
+#para{
+  font-size: 4vw;
+}
+}
