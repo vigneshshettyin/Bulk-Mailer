@@ -20,6 +20,7 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
   <!-- Bootstrap Scripts -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -70,17 +71,12 @@
 
       <!-- Nav Bar -->
 
-      <nav class="navbar navbar-expand-lg navbar-dark">
+      <nav class="navbar  navbar-dark">
 
         <a class="navbar-brand" href=""><img src="{{ url_for('static', filename='img/favicon.png') }}" width="40px"></a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" style="margin:-10px;padding:-10px">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav main-nav ml-auto">
             <li class="nav-item">
               <a class="nav-link" href="#Mentors">Mentors</a>
             </li>
@@ -130,15 +126,14 @@
             </li>
           </ul>
 
-        </div>
       </nav>
 
 
       <!-- Title -->
 
-      <div class="row mt-5 py-3 main" style="height:100%">
+      <div class="row  py-3 main" style="height:100%">
 
-        <div class="col-lg-6">
+        <div class="col-lg-6 classbox">
           <h1 class="big-heading" id="bg">BulkMailer</h1>
           <p id="intro"  >Bulk Mailer is a Mail Client web application that can be used by organisations to send bulk emails for different groups of subscribers.</p>
           <!-- link to the dashboard onclick -->
@@ -147,29 +142,26 @@
         </div>
 
         <div class="col-lg-6 col-sm-11 classbox" >
-          <div class="card mb-3" style="border-radius: 50px;display: inline-block;">
-            <div class="row g-0">
-
-              <div class="col-md-auto">
-                <div class="card-body" style="position: relative;">
+          <div class="card mb-3" style="border-radius: 50px;">
+                
                   <h4 class="card-title" id="tagline">Open Source Events Project <br/>is associated  with : <span style="color: #ef6f00;">GSSOC</span></h4>
-                  <div class="col-md-auto" id="logo">
+                  <div class="row">
+                  <div class="col-lg-6 col-xm-12" id="logo">
                     <img src="{{ url_for('static', filename='img/gssoc.png') }}" alt="logo" class="img-fluid" width="150px"/>
                   </div>
-                  <p class="col-md-auto" id="para">
-                      GSSOC is a 3 months long <br />
-                      Open Source program <br />
-                      during summers <br />
-                      conduted by GirlScript <br />
-                      Foundation with an aim to <br />
-                      help begineers get started <br />
-                      with Open Source <br />
-                      Development while <br />
+                  <p class="col-lg-6 col-xm-12" id="para">
+                      GSSOC is a 3 months long
+                      Open Source program
+                      during summers
+                      conduted by GirlScript
+                      Foundation with an aim to
+                      help begineers get started
+                      with Open Source
+                      Development while
                       encouraging diversity.
                   </p>
-                </div>
-              </div>
-            </div>
+                  </div>
+            
           </div>
         </div>
 
@@ -502,6 +494,7 @@ function topFunction() {
       }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 <!-- Start Simple-Notify -->
 {% with errors = get_flashed_messages(category_filter=["danger"]) %}
   {% if errors %}
