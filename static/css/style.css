@@ -21,13 +21,6 @@ html
   border-radius: 80px;
 }
 
-#logo {
-  position: absolute;
-  top: 50px;
-  left: 340px;
-  width: 220px;
-  height: 220px;
-}
 
 #leftarrow {
   position: absolute;
@@ -92,4 +85,33 @@ html
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background-image: linear-gradient(to top, #4094fc, #c384e8, #ff7ab8, #ff8883, #ffa95c, #ffb049, #ffb831, #ffc100, #ffa300, #fb8400, #f46314, #ea3e22);
+}
+
+@media screen and (max-width: 360px) {
+  
+  .topbar .nav-item .nav-link{
+    padding: 0 .15rem!important;
+  }
+
+  .switch{
+    width: 3rem;
+    height: 1.5rem;
+    top: 22px;
+  }
+
+  .theme-dark .slider2:before{
+    transform: translateX(26px);
+    height: 1px;
+    width: 1px;
+    background-color: lightgrey;
+    bottom: 11px;
+    left: 7px;
+  }
+
+  .slider2:before{
+    height: 1px;
+    width: 1px;
+    bottom: 11px;
+    left: 7px;
+  }
 }

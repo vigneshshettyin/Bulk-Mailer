@@ -894,40 +894,26 @@ a {
 #intro {
   font-size: 20px;
 }
-@media (max-width: 600px) {
-  #bg,
-  .top-sep,
-  .top-sep1,
-  .about-section h2,
-  .techused h2 {
-    font-size: 8vw;
-  }
-  #intro {
-    font-size: 2vh;
-  }
-}
-@media screen and (min-width: 992px) {
-  .navbar-nav {
-    flex-direction: row !important;
-  }
-}
 
-@media screen and (max-width: 800px) {
-  #logo {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 300px) {
-  #tagline {
-    font-size: 6vw;
+@media screen and (min-width:993px) and (max-width:1350px) {
+  
+  .team-content{
+    padding-top: 15px;
   }
 
-  #para {
-    font-size: 4vw;
+  .team-item{
+    height: 100%;
   }
-}
 
+  .team-item .socials{
+    left: -30px;
+  }
+
+  .team-item .socials a{
+    margin-bottom: 2px;
+  }
+
+}
 @media (max-width: 1028px) {
   #title {
     text-align: center;
@@ -950,27 +936,9 @@ a {
   }
 }
 
-@media screen and (min-width: 500px) and (max-width: 768px) {
-  .card-flex {
-    width: 50% !important;
-  }
-
-  .team-item {
-    height: 100%;
-    width: 100%;
-  }
-
-  .team-item .team-content {
-    padding-top: 30px;
-  }
-}
-
-@media (max-width: 500px) {
-  .team-item {
-    height: 100%;
-  }
-  .team-item .team-content {
-    padding-top: 30px;
+@media screen and (min-width: 992px) {
+  .navbar-nav {
+    flex-direction: row !important;
   }
 }
 
@@ -986,6 +954,11 @@ a {
   .about-section h2 {
     font-size: 56px;
   }
+
+  .card {
+    height: fit-content;
+    min-height: 0px!important;
+  }
   #title .container-fluid {
     padding: 3% 8% 7%;
   }
@@ -993,7 +966,7 @@ a {
     font-size: 7rem;
   }
   #intro {
-    font-size: 2rem;
+    font-size: 2vw;
   }
   .colored-section button {
     font-size: 15px;
@@ -1011,7 +984,111 @@ a {
   .navbar-dark .navbar-nav .nav-link {
     font-size: 2.5rem;
   }
+
+  .switch {
+    right: 1rem;
+    width: 6rem;
+    top: 1.5rem;
+    height: 3.5rem;
+  }
+  .theme-dark .slider2:before {
+    transform: translateX(26px);
+    height: 20px;
+    width: 20px;
+    background-color: lightgrey;
+    bottom: 18px;
+    left: 28px;
+  }
+  .slider2:before {
+    position: absolute;
+    content: "";
+    height: 40px;
+    width: 40px;
+    left: 4px;
+    bottom: 8px;
+    background-color: yellow;
+    box-shadow: 0px 0px 5px 4px #ffd900;
+    transition: 0.4s;
+  }
 }
+
+@media screen and (max-height:600px) and (max-width:992px){
+  #logo {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #logo {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    height: 100%;
+    min-height: 0px!important;
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 768px) {
+  .card-flex {
+    width: 50% !important;
+  }
+
+  .team-item {
+    height: 100%;
+    width: 100%;
+  }
+
+  .team-item .team-content {
+    padding-top: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  #bg,
+  .top-sep,
+  .top-sep1,
+  .about-section h2,
+  .techused h2 {
+    font-size: 8vw;
+  }
+  #intro {
+    font-size: 2vh;
+  }
+}
+
+@media (min-width: 500px) {
+  #button {
+    margin: 30px;
+  }
+}
+
+
+
+@media (max-width: 500px) {
+  .team-item {
+    height: 100%;
+  }
+  .team-item .team-content {
+    padding-top: 30px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  #tagline {
+    font-size: 6vw;
+  }
+
+  #para {
+    font-size: 4vw;
+  }
+}
+
+
+
+
 
 @keyframes drop {
   0% {
@@ -1043,45 +1120,7 @@ a {
   }
 }
 
-@media screen and (max-width: 992px) {
-  .switch {
-    right: 1rem;
-    width: 6rem;
-    top: 1.5rem;
-    height: 3.5rem;
-  }
-  .theme-dark .slider2:before {
-    transform: translateX(26px);
-    height: 20px;
-    width: 20px;
-    background-color: lightgrey;
-    bottom: 18px;
-    left: 28px;
-  }
-  .slider2:before {
-    position: absolute;
-    content: "";
-    height: 40px;
-    width: 40px;
-    left: 4px;
-    bottom: 8px;
-    background-color: yellow;
-    box-shadow: 0px 0px 5px 4px #ffd900;
-    transition: 0.4s;
-  }
-}
 
-@media (min-width: 500px) {
-  #button {
-    margin: 30px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .card {
-    height: 100%;
-  }
-}
 
 /* Scroll Bar Feature */
 
