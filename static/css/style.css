@@ -109,6 +109,7 @@ html
   }
 
   .slider2:before{
+    
     height: 1px!important;
     width: 1px!important;
     bottom: 11px!important;
