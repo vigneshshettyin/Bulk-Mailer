@@ -5,7 +5,6 @@ import os
 import random
 import re
 import string
-import psycopg2
 from datetime import datetime
 from hashlib import md5
 import requests
