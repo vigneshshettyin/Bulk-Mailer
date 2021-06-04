@@ -935,6 +935,11 @@ a {
   .about-section h2 {
     font-size: 56px;
   }
+
+  .card {
+    height: fit-content;
+    min-height: 0px!important;
+  }
   #title .container-fluid {
     padding: 3% 8% 7%;
   }
@@ -942,7 +947,7 @@ a {
     font-size: 7rem;
   }
   #intro {
-    font-size: 2rem;
+    font-size: 2vw;
   }
   .colored-section button {
     font-size: 15px;
@@ -988,6 +993,12 @@ a {
   }
 }
 
+@media screen and (max-height:600px) and (max-width:992px){
+  #logo {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 800px) {
   #logo {
     display: none;
@@ -997,6 +1008,7 @@ a {
 @media screen and (max-width: 768px) {
   .card {
     height: 100%;
+    min-height: 0px!important;
   }
 }
 

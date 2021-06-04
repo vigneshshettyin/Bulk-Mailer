@@ -21,13 +21,6 @@ html
   border-radius: 80px;
 }
 
-#logo {
-  position: absolute;
-  top: 50px;
-  left: 340px;
-  width: 220px;
-  height: 220px;
-}
 
 #leftarrow {
   position: absolute;
