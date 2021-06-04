@@ -895,6 +895,25 @@ a {
   font-size: 20px;
 }
 
+@media screen and (min-width:993px) and (max-width:1350px) {
+  
+  .team-content{
+    padding-top: 15px;
+  }
+
+  .team-item{
+    height: 100%;
+  }
+
+  .team-item .socials{
+    left: -30px;
+  }
+
+  .team-item .socials a{
+    margin-bottom: 2px;
+  }
+
+}
 @media (max-width: 1028px) {
   #title {
     text-align: center;
