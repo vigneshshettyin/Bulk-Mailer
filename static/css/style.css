@@ -94,24 +94,24 @@ html
   }
 
   .switch{
-    width: 3rem;
-    height: 1.5rem;
-    top: 22px;
+    width: 3rem!important;
+    height: 1.5rem!important;
+    top: 22px!important;
   }
 
   .theme-dark .slider2:before{
     transform: translateX(26px);
-    height: 1px;
-    width: 1px;
+    height: 1px!important;
+    width: 1px!important;
     background-color: lightgrey;
-    bottom: 11px;
-    left: 7px;
+    bottom: 11px!important;
+    left: 7px!important;
   }
 
   .slider2:before{
-    height: 1px;
-    width: 1px;
-    bottom: 11px;
-    left: 7px;
+    height: 1px!important;
+    width: 1px!important;
+    bottom: 11px!important;
+    left: 7px!important;
   }
 }
