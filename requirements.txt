@@ -34,7 +34,7 @@ regex==2021.9.30
 requests==2.26.0
 sendgrid==6.8.3
 six==1.15.0
-SQLAlchemy==1.4.25
+SQLAlchemy==1.4.26
 starkbank-ecdsa==1.1.0
 toml==0.10.2
 urllib3==1.26.4
