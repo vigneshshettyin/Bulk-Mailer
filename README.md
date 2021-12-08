@@ -202,10 +202,6 @@ If you can help us with these. Please don't hesitate to open a [Pull Request](ht
 
 ## Cool Developers🚧
 
-<a href="https://github.com/data-charya/Cn-project/graphs/contributors">
-  <img src="https://contributors-img.web.app/image?repo=data-charya/Cn-project" />
-</a>
-
 <a href="https://github.com/vigneshshettyin/Bulk-Mailer/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=vigneshshettyin/Bulk-Mailer" />
 </a>
