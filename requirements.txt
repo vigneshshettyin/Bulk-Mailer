@@ -29,7 +29,7 @@ pyflakes==2.3.1
 python-dateutil==2.8.2
 python-decouple==3.6
 python-editor==1.0.4
-python-http-client==3.3.6
+python-http-client==3.3.7
 regex==2022.3.2
 requests==2.27.1
 sendgrid==6.9.7
