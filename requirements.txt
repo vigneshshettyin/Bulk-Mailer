@@ -1,4 +1,4 @@
-alembic==1.7.3
+alembic==1.8.0
 appdirs==1.4.4
 black==21.12b0
 certifi==2021.5.30
