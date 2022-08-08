@@ -38,5 +38,5 @@ SQLAlchemy==1.4.31
 starkbank-ecdsa==2.0.1
 toml==0.10.2
 urllib3==1.26.8
-Werkzeug==1.0.1
+Werkzeug==2.2.2
 pylint-flask==0.6 
