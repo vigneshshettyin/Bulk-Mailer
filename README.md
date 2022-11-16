@@ -56,9 +56,9 @@ $ cd Bulk-Mailer
  ```shell
 $ py -m venv env
 For Windows:-
-$ .\env\Scripts\activate
+$ .\env\bin\activate
 For Linux:-
-$ source env/Scripts/activate
+$ source env/bin/activate
 ```
 
 **4.** Install requirements from requirements.txt  
