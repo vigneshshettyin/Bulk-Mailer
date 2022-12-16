@@ -1,7 +1,7 @@
 alembic==1.7.3
 appdirs==1.4.4
 black==21.12b0
-certifi==2021.5.30
+certifi==2022.12.7
 chardet==3.0.4
 click==7.1.2
 flake8==6.0.0
