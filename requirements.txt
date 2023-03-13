@@ -37,6 +37,6 @@ six==1.15.0
 SQLAlchemy==1.4.45
 starkbank-ecdsa==2.0.1
 toml==0.10.2
-urllib3==1.26.13
+urllib3==1.26.15
 Werkzeug==1.0.1
 pylint-flask==0.6 
